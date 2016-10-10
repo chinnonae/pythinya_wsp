@@ -1,24 +1,12 @@
-from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
-from django.utils.translation import ugettext_lazy as _
-from django.db.models.signals import post_save
 from django.conf import settings
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.db import models
+from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils.translation import ugettext_lazy as _
 from rest_framework.authtoken.models import Token
 
-
-class UserManager(BaseUserManager):
-    use_in_migrations = True
-
-    def _create_user(self, email, password, **extra_field):
-        email = self.normalize_email(email)
-        user = self.model(email=email, **extra_field)
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
-
-    def create_user(self, email, password=None, **extra_field):
-        return self._create_user(email, password, **extra_field)
+from .managers import UserManager
 
 
 class User(AbstractBaseUser, PermissionsMixin):
