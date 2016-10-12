@@ -11,8 +11,8 @@ from .managers import UserManager
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
-    first_name = models.CharField(_('first name'), max_length=50)
-    last_name = models.CharField(_('last name'), max_length=50)
+    first_name = models.CharField(_('first name'), max_length=50, default="")
+    last_name = models.CharField(_('last name'), max_length=50, default="")
     is_active = models.BooleanField(_('active'), default=True)
 
     objects = UserManager()
