@@ -15,9 +15,9 @@ class Register(APIView):
     def post(self, request, format=None):
         user = UserSerializer(data=request.data)
         user.is_valid()
-        user.create(user.validated_data)
+        created = user.create(user.validated_data)
 
-        return Response(user.data)
+        return Response(UserSerializer(created).data)
 
 
 class UserView(APIView):
