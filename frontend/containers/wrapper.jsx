@@ -1,16 +1,18 @@
-import {RaisedButton, AppBar} from 'material-ui';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import muiTheme from './theme';
+import {Router, Route, browserHistory} from 'react-router';
+import Signin from './auth/signin.jsx';
+import Signup from './auth/signup.jsx';
+import App from './app.jsx';
 injectTapEventPlugin();
 export default class Wrapper extends React.Component {
 	render() {
 		return (
-			<MuiThemeProvider muiTheme={muiTheme}>
-				<div>
-          <AppBar title="Pythinya"/>
-				</div>
-			</MuiThemeProvider>
+      <Router history={browserHistory}>
+        <Route path='/' component={App}>
+          <Route path='signin' component={Signin} />
+          <Route path='signup' component={Signup} />
+        </Route>
+      </Router>
 		);
 	}
 }

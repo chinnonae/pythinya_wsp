@@ -24,6 +24,8 @@
     "css-loader": "^0.25.0",
     "material-ui": "^0.16.1",
     "node-sass": "^3.10.0",
+    "react-router": "^2.8.1",
+    "react-router-redux": "^4.0.6",
     "react-tap-event-plugin": "^1.0.0",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
