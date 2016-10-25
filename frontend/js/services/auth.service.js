@@ -18,6 +18,23 @@ var auth = {
 					callback(res);
 				}
 			});
+	},
+	signup: function(user, callback) {
+		$.ajax({
+				method: 'POST',
+				url: URL + '/api/user/signup/',
+				data: user
+			})
+			.done(function(res) {
+				if (typeof callback === 'function') {
+					callback(res);
+				}
+			})
+			.fail(function(res) {
+				if (typeof callback === 'function') {
+					callback(res);
+				}
+			});
 	}
 };
 
