@@ -19,15 +19,17 @@
 Note:
   For step 3-5 you can use `pip3 install -r requirements.txt` in the project directory
 
-  ### Frontend
-  ---
 
-  #### Preinstallation
+
+### Frontend
+---
+
+#### Preinstallation
   1. `cd frontend`
   2. `npm install`
 
 
-  #### Convention
+#### Convention
   1. All components (.jsx,..) are stored in `containers` folder.
   2. All services (.js,...) are stored in `js/services` folder.
   3. All libraries are stored in `js` folder.
@@ -38,7 +40,7 @@ Note:
     - auth-form
   7. No more `require`. We are providing Component Collecting Service.
 
-  #### Component Collecting Service.
+#### Component Collecting Service.
 
   > Creating the component
   ```
@@ -58,6 +60,6 @@ Note:
   `No more require(...) from path.`
 
 
-  #### Get started
+#### Get started
   1. `npm start`
   2. Go to `http://localhost:8080`
