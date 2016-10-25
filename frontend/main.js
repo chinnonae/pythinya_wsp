@@ -4,5 +4,6 @@ window.$ = require('jquery');
 // window.cc = require('./js/component-collection').default;
 require('./js');
 require('./containers/shared-components');
+require('./js/services');
 import './stylesheets';
 var App = require('./containers/wrapper.jsx');

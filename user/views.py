@@ -4,6 +4,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import status
+
 
 from .serializers import UserSerializer
 from .models import User
@@ -18,11 +20,21 @@ class Register(APIView):
         user.create(user.validated_data)
 
         return Response(user.data)
+        try:
+            created = user.create(user.validated_data)
+        except KeyError as err:
+            if("email" in err.args):
+                return Response({
+                    "message": "The email has been used"
+                    },
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+        return Response(UserSerializer(created).data)
 
 
 class UserView(APIView):
     renderer_classes = (JSONRenderer,)
-    permission_classe   s = (IsAuthenticated,)
+    permission_classe = (IsAuthenticated,)
     authentication_classes = (TokenAuthentication,)
 
     def get(self, request, pk):

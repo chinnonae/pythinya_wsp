@@ -2,19 +2,21 @@ import {Card, CardHeader} from 'material-ui/Card';
 import {Col, Grid, Row, Form} from 'react-bootstrap';
 import {TextField, RaisedButton, Divider} from 'material-ui';
 var Input = cc.get('components.input');
+var authService = cc.get('services.auth');
 class Signin extends React.Component {
 
 	constructor(props) {
 		super(props);
 		this.onSubmit = this.onSubmit.bind(this);
 	}
+  callback(res) {
+    console.log(res);
+  }
 	onSubmit(e) {
 		e.preventDefault();
-		console.log("submitting data");
 		var username = $("#username")[0].value;
 		var password = $("#password")[0].value;
-		console.log(username);
-		console.log(password);
+    authService.signin(username, password, this.callback);
 	}
 	render() {
 		return (
@@ -34,7 +36,7 @@ class Signin extends React.Component {
                     {/* <TextField id="username" className="container-center full-width" hintText="Username" floatingLabelText="Username"/> */}
                     {/* <TextField id="password" className="container-center full-width" hintText="Password" floatingLabelText="Password"/> */}
                     <Input label="Username" elementId="username"/>
-                    <Input label="Password" elementId="password"/>
+                    <Input type="password" label="Password" elementId="password"/>
 									</Row>
                   <Row className="flex padding-bottom no-margin padding-left padding-right">
                     <RaisedButton type="submit" className="margin-top full-width" label="Signin" primary={true}/>
