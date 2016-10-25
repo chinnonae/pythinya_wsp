@@ -24,7 +24,11 @@ class Register(APIView):
                     },
                     status=status.HTTP_400_BAD_REQUEST,
                 )
-        return Response(UserSerializer(created).data)
+        return Response(
+            {
+                "token": str(created.auth_token)
+            }
+        )
 
 
 class UserView(APIView):
