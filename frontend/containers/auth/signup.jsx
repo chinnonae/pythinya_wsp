@@ -3,7 +3,7 @@ class Signup extends React.Component {
   render() {
     return (
       <div>
-        <Input label="Username" />
+        Sign up page
       </div>
     );
   }
