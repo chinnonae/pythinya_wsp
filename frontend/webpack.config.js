@@ -17,7 +17,11 @@ module.exports = {
       {
         test: /\.scss$/,
         loaders: ['style', 'css', 'sass']
-      }
+      },
+      { test: /\.ttf$/,  loader: "url-loader?limit=10000&mimetype=application/octet-stream" }
     ]
+  },
+  devServer: {
+    historyApiFallback: true
   }
 };

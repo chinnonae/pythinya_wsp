@@ -1,3 +1,88 @@
-h1 {
-  color : red;
+@font-face {
+  font-family: 'Sukhumvit';
+  font-weight: normal;
+  src: url('./fonts/sukhumvit-set/SukhumvitSet-Medium.ttf');
+}
+@font-face {
+  font-family: 'Sukhumvit';
+  font-weight: bold;
+  src: url('./fonts/sukhumvit-set/SukhumvitSet-Bold.ttf');
+}
+@font-face {
+  font-family: 'Sukhumvit';
+  src: url('./fonts/sukhumvit-set/SukhumvitSet-SemiBold.ttf');
+}
+@font-face {
+  font-family: 'Sukhumvit';
+  src: url('./fonts/sukhumvit-set/SukhumvitSet-Text.ttf');
+}
+@font-face {
+  font-family: 'Sukhumvit';
+  font-weight: lighter;
+  src: url('./fonts/sukhumvit-set/SukhumvitSet-Thin.ttf');
+}
+
+html,body {
+  font-family: 'Sukhumvit' !important;
+  margin: 0px;
+}
+
+.flex {
+  display: flex;
+}
+
+.container-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.padding-left {
+  padding-left: 15px;
+}
+
+.padding-right {
+  padding-right: 15px;
+}
+
+.padding-bottom {
+  padding-bottom: 15px;
+}
+
+.padding-top {
+  padding-top: 15px;
+}
+.no-margin {
+  margin: 0px;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.margin-top {
+  margin-top: 15px;
+}
+
+.margin-bottom {
+  margin-bottom: 15px;
+}
+
+.padding-all {
+  padding: 15px;
+}
+
+.flex-center {
+  justify-content: center;
+}
+
+.flex-middle {
+  align-items: center;
+}
+
+.full-width {
+  width: 100% !important;
+}
+
+.text-center {
+  text-align: center;
 }

@@ -1,0 +1,69 @@
+.phAnimate {
+  position: relative;
+  padding-top: 20px;
+  margin-bottom: 10px;
+}
+
+.phAnimate input { padding-left: 15px; }
+
+.phAnimate label {
+  cursor: text;
+  margin: 0;
+  padding: 0;
+  left: 15px;
+  top: 31px;
+  position: absolute;
+  font-size: 14px;
+  color: #bdbdbd;
+  font-weight: normal;
+  transition: all 0.3s ease;
+}
+
+.phAnimate label.active {
+  top: 0;
+  left: 0;
+  font-size: 12px;
+}
+
+.phAnimate label.active.focusIn { color: #66afe9; }
+
+.form-control {
+  border-radius: 0;
+  border: solid 0px white !important;
+  -webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,.075) !important;
+  background-color: #E0E0E0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+// .custom-input {
+//   position: relative;
+//   padding-top: 20px;
+//   margin-bottom: 10px;
+// }
+//
+// .custom-input input {
+//   padding-left: 15px;
+// }
+//
+// .custom-input label {
+//   cursor: text;
+//   margin: 0;
+//   padding: 0;
+//   left: 15px;
+//   top: 27px;
+//   position: absolute;
+//   font-size: 14px;
+//   color: #ccc;
+//   font-weight: normal;
+//   transition: all .3s ease;
+// }
+//
+// .custom-input label.active {
+//   top: 0;
+//   left: 0;
+//   font-size: 12px;
+// }
+//
+// .custom-input label.active.focusIn {
+//   color: #66afe9;
+// }

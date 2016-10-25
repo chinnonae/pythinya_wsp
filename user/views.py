@@ -17,6 +17,9 @@ class Register(APIView):
     def post(self, request, format=None):
         user = UserSerializer(data=request.data)
         user.is_valid()
+        user.create(user.validated_data)
+
+        return Response(user.data)
         try:
             created = user.create(user.validated_data)
         except KeyError as err:
@@ -31,7 +34,7 @@ class Register(APIView):
 
 class UserView(APIView):
     renderer_classes = (JSONRenderer,)
-    permission_classes = (IsAuthenticated,)
+    permission_classe = (IsAuthenticated,)
     authentication_classes = (TokenAuthentication,)
 
     def get(self, request, pk):
@@ -43,4 +46,3 @@ class UserView(APIView):
         serialized = UserSerializer(user)
 
         return Response(serialized.data)
-
