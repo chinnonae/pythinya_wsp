@@ -1,20 +1,19 @@
 import {Card, CardHeader} from 'material-ui/Card';
 import {Col, Grid, Row, Form} from 'react-bootstrap';
 import {TextField, RaisedButton, Divider} from 'material-ui';
+const actions = cc.get('redux.actions.signin');
+
 class Signin extends React.Component {
 	constructor(props) {
 		super(props);
 		this.onSubmit = this.onSubmit.bind(this);
 	}
-  callback(res) {
-    console.log(res.token);
-  }
 	onSubmit(e) {
 		e.preventDefault();
     var authService = cc.get('services.auth');
 		var username = $("#username")[0].value;
 		var password = $("#password")[0].value;
-    authService.signin(username, password, this.callback);
+    authService.signin(username, password, this.props.actions.signinCallback);
 	}
 	render() {
     var Input = cc.get('components.input');
@@ -48,4 +47,4 @@ class Signin extends React.Component {
 	}
 }
 
-cc.register('components.signin', Signin);
+cc.register('components.signin', connect(mapStateToProps,mapDispatchToProps(actions))(Signin));
