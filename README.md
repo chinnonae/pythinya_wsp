@@ -10,11 +10,56 @@
 4. Django Rest Framework  
     `
     OSX/Linux: pip3 install djangorestframework
-    ` 
+    `
 5. Djagno-CORS-header   
     `
     OSX/Linux: pip3 install django-cors-headers
     `   
-     
+
 Note:
   For step 3-5 you can use `pip3 install -r requirements.txt` in the project directory
+
+
+
+### Frontend
+---
+
+#### Preinstallation
+  1. `cd frontend`
+  2. `npm install`
+
+
+#### Convention
+  1. All components (.jsx,..) are stored in `containers` folder.
+  2. All services (.js,...) are stored in `js/services` folder.
+  3. All libraries are stored in `js` folder.
+  4. All stylesheets (.scss,css,...) are stored in `stylesheets` folder.
+  5. After create new stylesheet file. You must import it in `stylesheets/index.js`
+  6. file's name and directory's name must be snake-case with dash (-).
+    - shared-components
+    - auth-form
+  7. No more `require`. We are providing Component Collecting Service.
+
+#### Component Collecting Service.
+
+  > Creating the component
+  ```
+  class Input extends React.Component { ... }
+  cc.register('components.input', Input);
+  ```
+
+  <br/>
+  > Requiring the component
+  ```
+  render() {
+    var Input = cc.get('components.input');
+    return (...)
+  }
+  ```
+
+  `No more require(...) from path.`
+
+
+#### Get started
+  1. `npm start`
+  2. Go to `http://localhost:8080`

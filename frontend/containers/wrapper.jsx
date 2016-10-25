@@ -1,20 +1,31 @@
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import {Router, Route, browserHistory} from 'react-router';
-var Signin = cc.get('components.signin');
-var Signup = cc.get('components.signup');
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+
+
 import App from './app.jsx';
 injectTapEventPlugin();
-export default class Wrapper extends React.Component {
+class Wrapper extends React.Component {
+	constructor(props) {
+		super(props);
+    const reducers = cc.get('redux.reducers');
+    this.store = createStore(reducers);
+	}
 	render() {
+    var Signin = cc.get('components.signin');
+    var Signup = cc.get('components.signup');
 		return (
-      <Router history={browserHistory}>
-        <Route path='/' component={App}>
-          <Route path='signin' component={Signin} />
-          <Route path='signup' component={Signup} />
-        </Route>
-      </Router>
+			<Provider store={this.store}>
+				<Router history={browserHistory}>
+					<Route path='/' component={App}>
+						<Route path='signin' component={Signin}/>
+						<Route path='signup' component={Signup}/>
+					</Route>
+				</Router>
+			</Provider>
 		);
 	}
 }
-ReactDOM.render(
-	<Wrapper/>, document.getElementById('app'));
+
+cc.register('root', Wrapper);
