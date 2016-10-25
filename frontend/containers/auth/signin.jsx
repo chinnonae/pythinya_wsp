@@ -1,6 +1,6 @@
 import {Card, CardHeader} from 'material-ui/Card';
 import {Col, Grid, Row, Form} from 'react-bootstrap';
-import {TextField, RaisedButton} from 'material-ui';
+import {TextField, RaisedButton, Divider} from 'material-ui';
 class Signin extends React.Component {
 
 	constructor(props) {
@@ -20,18 +20,22 @@ class Signin extends React.Component {
 			<Grid className="flex flex-center flex-middle" style={{height: '90vh'}}>
 				<Grid>
 					<Row className="flex">
-						<Col md={5} lg={5} className="container-center">
-							<Card>
+						<Col md={6} lg={6} className="container-center">
+							<Card className="padding-left padding-right">
 								<form onSubmit={this.onSubmit}>
-									<CardHeader title="Signin"/>
-									<Row className="padding-left padding-right no-margin flex flex-column padding-all" style={{paddingTop: 50, paddingBottom:50}}>
-                    <TextField id="username" className="container-center" hintText="Username" floatingLabelText="Username"/>
-                    <TextField id="password" className="container-center" hintText="Password" floatingLabelText="Password"/>
-									</Row>
-                  <Row className="flex padding-bottom">
-                    <RaisedButton type="submit" className="container-center margin-top" label="Signin" primary={true}/>
+                  <Row className="flex padding-all">
+                    <div className="container-center">
+                      Sign in
+                    </div>
                   </Row>
-
+                  <Divider />
+									<Row className="padding-left padding-right no-margin flex flex-column padding-all" style={{paddingTop: 30, paddingBottom:50}}>
+                    <TextField id="username" className="container-center full-width" hintText="Username" floatingLabelText="Username"/>
+                    <TextField id="password" className="container-center full-width" hintText="Password" floatingLabelText="Password"/>
+									</Row>
+                  <Row className="flex padding-bottom no-margin padding-left padding-right">
+                    <RaisedButton type="submit" className="margin-top full-width" label="Signin" primary={true}/>
+                  </Row>
 								</form>
 							</Card>
 						</Col>
