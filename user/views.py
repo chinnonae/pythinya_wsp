@@ -1,25 +1,20 @@
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.parsers import JSONParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 
-
 from .serializers import UserSerializer
 from .models import User
 
 
 class Register(APIView):
-    parser_classes = (JSONParser,)
 
     def post(self, request, format=None):
         user = UserSerializer(data=request.data)
         user.is_valid()
-        user.create(user.validated_data)
 
-        return Response(user.data)
         try:
             created = user.create(user.validated_data)
         except KeyError as err:
