@@ -1,9 +1,12 @@
+var Input = cc.get('components.input');
 class Signup extends React.Component {
   render() {
     return (
-      <div>Sign up</div>
+      <div>
+        <Input label="Username" />
+      </div>
     );
   }
 }
 
-export default Signup;
+cc.register('components.signup', Signup);

@@ -1,7 +1,7 @@
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import {Router, Route, browserHistory} from 'react-router';
-import Signin from './auth/signin.jsx';
-import Signup from './auth/signup.jsx';
+var Signin = cc.get('components.signin');
+var Signup = cc.get('components.signup');
 import App from './app.jsx';
 injectTapEventPlugin();
 export default class Wrapper extends React.Component {
