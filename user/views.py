@@ -15,14 +15,14 @@ class Register(APIView):
     def post(self, request, format=None):
         user = UserSerializer(data=request.data)
         user.is_valid()
-        created = user.create(user.validated_data)
+        user.create(user.validated_data)
 
-        return Response(UserSerializer(created).data)
+        return Response(user.data)
 
 
 class UserView(APIView):
     renderer_classes = (JSONRenderer,)
-    permission_classes = (IsAuthenticated,)
+    permission_classe   s = (IsAuthenticated,)
     authentication_classes = (TokenAuthentication,)
 
     def get(self, request, pk):
@@ -34,4 +34,3 @@ class UserView(APIView):
         serialized = UserSerializer(user)
 
         return Response(serialized.data)
-
