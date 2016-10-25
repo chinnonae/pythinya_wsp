@@ -1,7 +1,7 @@
 import {Card, CardHeader} from 'material-ui/Card';
 import {Col, Grid, Row, Form} from 'react-bootstrap';
 import {TextField, RaisedButton, Divider} from 'material-ui';
-const actions = cc.get('redux.actions.signin');
+const actions = cc.get('redux.actions.auth');
 
 class Signin extends React.Component {
 	constructor(props) {

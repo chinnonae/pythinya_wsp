@@ -20,10 +20,21 @@ var auth = {
 			});
 	},
 	signup: function(user, callback) {
+		var data = {};
+		/* serializing data from form*/
+		_.map(user, function(item) {
+			data[item.name] = item.value;
+		});
+    console.log(data);
 		$.ajax({
 				method: 'POST',
 				url: URL + '/api/user/signup/',
-				data: user
+				data: data,
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+        dataType: 'json'
 			})
 			.done(function(res) {
 				if (typeof callback === 'function') {
