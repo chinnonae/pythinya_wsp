@@ -1,10 +1,13 @@
 window.React = require('react');
 window.ReactDOM = require('react-dom');
 window.$ = require('jquery');
-// window.cc = require('./js/component-collection').default;
+var Turbolinks = require("turbolinks");
+Turbolinks.start();
 require('./js');
-require('./containers/shared-components');
-require('./containers/auth');
-require('./js/services');
+require('./containers');
 import './stylesheets';
 var App = require('./containers/wrapper.jsx');
+
+document.addEventListener("turbolinks:load", function() {
+  console.log("loaded turbolinks");
+});
