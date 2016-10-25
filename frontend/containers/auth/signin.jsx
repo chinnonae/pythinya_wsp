@@ -23,7 +23,7 @@ class Signin extends React.Component {
 			<Grid className="flex flex-center flex-middle" style={{height: '90vh'}}>
 				<Grid>
 					<Row className="flex">
-						<Col md={6} lg={6} className="container-center">
+						<Col xs={12} sm={8} md={6} lg={5} className="container-center">
 							<Card className="padding-left padding-right padding-bottom">
 								<form onSubmit={this.onSubmit}>
                   <Row className="flex padding-all">
