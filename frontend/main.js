@@ -5,7 +5,6 @@ var Turbolinks = require("turbolinks");
 Turbolinks.start();
 require('./js');
 require('./containers');
-require('./js/services');
 import './stylesheets';
 var App = require('./containers/wrapper.jsx');
 

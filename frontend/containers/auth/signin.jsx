@@ -7,17 +7,17 @@ class Signin extends React.Component {
 		this.onSubmit = this.onSubmit.bind(this);
 	}
   callback(res) {
-    console.log(res);
+    console.log(res.token);
   }
 	onSubmit(e) {
 		e.preventDefault();
+    var authService = cc.get('services.auth');
 		var username = $("#username")[0].value;
 		var password = $("#password")[0].value;
     authService.signin(username, password, this.callback);
 	}
 	render() {
     var Input = cc.get('components.input');
-    var authService = cc.get('services.auth');
 		return (
 			<Grid className="flex flex-center flex-middle" style={{height: '90vh'}}>
 				<Grid>
