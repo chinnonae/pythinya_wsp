@@ -20,13 +20,15 @@ class Register(APIView):
         except KeyError as err:
             if("email" in err.args):
                 return Response({
-                    "message": "The email has been used"
+                    "message": "The email has been used",
+                    "status": 400
                     },
                     status=status.HTTP_400_BAD_REQUEST,
                 )
         return Response(
             {
-                "token": str(created.auth_token)
+                "token": str(created.auth_token),
+                "status": 200
             }
         )
 
