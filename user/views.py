@@ -22,8 +22,7 @@ class Register(APIView):
                 return Response({
                     "message": "The email has been used",
                     "status": 400
-                    },
-                    status=status.HTTP_400_BAD_REQUEST,
+                    }
                 )
         return Response(
             {

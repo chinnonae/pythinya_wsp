@@ -11,12 +11,15 @@ class Signin extends React.Component {
 	onSubmit(e) {
 		e.preventDefault();
     var authService = cc.get('services.auth');
-		var username = $("#username")[0].value;
+		var username = $("#email")[0].value;
 		var password = $("#password")[0].value;
     authService.signin(username, password, this.props.actions.signinCallback);
 	}
 	render() {
     var Input = cc.get('components.input');
+    var error = !this.props.reducer.signin.isSuccess;
+    var emailLabel = "Email";
+    emailLabel += error ? " (Invalid email or password)" : "";
 		return (
 			<Grid className="flex flex-center flex-middle" style={{height: "calc(100vh - 64px)"}}>
 				<Grid className="full-width padding-all">
@@ -31,8 +34,8 @@ class Signin extends React.Component {
                   </Row>
                   <Divider />
 									<Row className="padding-left padding-right no-margin flex flex-column padding-all" style={{paddingTop: 30, paddingBottom:50}}>
-                    <Input label="Username" elementId="username"/>
-                    <Input type="password" label="Password" elementId="password"/>
+                    <Input error={error} label={emailLabel} elementId="email"/>
+                    <Input error={error} type="password" label="Password" elementId="password"/>
 									</Row>
                   <Row className="flex padding-bottom no-margin padding-left padding-right">
                     <RaisedButton type="submit" className="margin-top full-width" label="Signin" primary={true}/>

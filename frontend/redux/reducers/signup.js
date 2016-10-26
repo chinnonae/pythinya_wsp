@@ -1,5 +1,6 @@
 const initialState = {
-	isSuccess: true
+	isSuccess: true,
+  message: ""
 };
 
 const reducer = (state, action) => {
@@ -11,6 +12,7 @@ const reducer = (state, action) => {
   switch(action.type) {
     case constants.SIGNUP_CB:
       newState.isSuccess = action.data.isSuccess;
+      newState.message = action.data.message;
       return newState;
     default:
       return state;

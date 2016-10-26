@@ -12,7 +12,6 @@ const reducer = (state, action) => {
   switch(action.type) {
     case constants.SIGNIN_CB:
       newState.isSuccess    = action.data.isSuccess;
-      newState.errorMessage = action.data.errorMessage;
       return newState;
     default:
       return state;
