@@ -13,11 +13,6 @@ class Signup extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     var form = $('#signup-form');
-    var firstname = $("#firstname")[0].value;
-    var lastname = $("#lastname")[0].value;
-    var email = $("#email")[0].value;
-    var password = $("#password")[0].value;
-    var mobileNumber = $("#mobileNumber")[0].value;
     authService.signup(form.serializeArray(), this.props.actions.signupCallback);
   }
 
@@ -25,6 +20,8 @@ class Signup extends React.Component {
     /* Components */
     var Input = cc.get('components.input');
     var error = !this.props.reducer.signup.isSuccess;
+    var emailLabel = "E-mail";
+    emailLabel += error ? _.template(' (${message})')({message: this.props.reducer.signup.message}) : '';
     /* rendering */
     return (
       <Grid id="signup-panel" className="flex flex-center flex-middle" style={{height: "calc(100vh - 64px)"}}>
@@ -42,7 +39,7 @@ class Signup extends React.Component {
                   <Row className="padding-left padding-right no-margin flex flex-column padding-all" style={{paddingTop: 30, paddingBottom:50}} >
                     <Input name="first_name" label="Firstname" elementId="firstname"/>
                     <Input name="last_name" label="Lastname" elementId="lastname"/>
-                    <Input error={error} name="email" label="E-mail" elementId="email"/>
+                    <Input error={error} name="email" label={emailLabel} elementId="email"/>
                     <Input name="password" type="password" label="Password" elementId="password"/>
                     <Input name="telephone" label="Mobile number" elementId="mobileNumber"/>
                   </Row>
