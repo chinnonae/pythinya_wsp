@@ -22,7 +22,7 @@ class Signin extends React.Component {
 				<Grid>
 					<Row className="flex">
 						<Col xs={12} sm={8} md={6} lg={5} className="container-center">
-							<Card className="padding-left padding-right padding-bottom">
+							<div className="flat-card padding-left padding-right padding-bottom">
 								<form onSubmit={this.onSubmit}>
                   <Row className="flex padding-all">
                     <div className="container-center">
@@ -38,7 +38,7 @@ class Signin extends React.Component {
                     <RaisedButton type="submit" className="margin-top full-width" label="Signin" primary={true}/>
                   </Row>
 								</form>
-							</Card>
+							</div>
 						</Col>
 					</Row>
 				</Grid>
