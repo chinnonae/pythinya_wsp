@@ -10,10 +10,6 @@ class Signup extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  callback(res) {
-    console.log(res);
-  }
-
   onSubmit(e) {
     e.preventDefault();
     var form = $('#signup-form');
@@ -28,6 +24,7 @@ class Signup extends React.Component {
   render() {
     /* Components */
     var Input = cc.get('components.input');
+    var error = !this.props.reducer.signup.isSuccess;
     /* rendering */
     return (
       <Grid className="flex flex-center flex-middle" style={{height: '90vh'}}>
@@ -45,7 +42,7 @@ class Signup extends React.Component {
                   <Row className="padding-left padding-right no-margin flex flex-column padding-all" style={{paddingTop: 30, paddingBottom:50}} >
                     <Input name="first_name" label="Firstname" elementId="firstname"/>
                     <Input name="last_name" label="Lastname" elementId="lastname"/>
-                    <Input name="email" label="E-mail" elementId="email"/>
+                    <Input error={error} name="email" label="E-mail" elementId="email"/>
                     <Input name="password" type="password" label="Password" elementId="password"/>
                     <Input name="telephone" label="Mobile number" elementId="mobileNumber"/>
                   </Row>

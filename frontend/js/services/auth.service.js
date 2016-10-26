@@ -29,12 +29,7 @@ var auth = {
 		$.ajax({
 				method: 'POST',
 				url: URL + '/api/user/signup/',
-				data: data,
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
-        dataType: 'json'
+				data: data
 			})
 			.done(function(res) {
 				if (typeof callback === 'function') {
