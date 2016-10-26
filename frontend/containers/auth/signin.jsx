@@ -18,8 +18,8 @@ class Signin extends React.Component {
 	render() {
     var Input = cc.get('components.input');
 		return (
-			<Grid className="flex flex-center flex-middle" style={{height: '90vh'}}>
-				<Grid>
+			<Grid className="flex flex-center flex-middle" style={{height: "calc(100vh - 64px)"}}>
+				<Grid className="full-width padding-all">
 					<Row className="flex">
 						<Col xs={12} sm={8} md={6} lg={5} className="container-center">
 							<div className="flat-card padding-left padding-right padding-bottom">
@@ -39,6 +39,9 @@ class Signin extends React.Component {
                   </Row>
 								</form>
 							</div>
+              <div className="flat-card padding-all flex margin-top">
+                <a href="/signup" className="container-center">Don't have an account? Sign up now</a>
+              </div>
 						</Col>
 					</Row>
 				</Grid>

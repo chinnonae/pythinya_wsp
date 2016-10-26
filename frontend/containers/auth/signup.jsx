@@ -27,8 +27,8 @@ class Signup extends React.Component {
     var error = !this.props.reducer.signup.isSuccess;
     /* rendering */
     return (
-      <Grid className="flex flex-center flex-middle" style={{height: '90vh'}}>
-        <Grid>
+      <Grid id="signup-panel" className="flex flex-center flex-middle" style={{height: "calc(100vh - 64px)"}}>
+        <Grid className="padding-all full-width">
           <Row className="flex">
             <Col xs={12} sm={8} md={6} lg={5} className="container-center">
               <div className="flat-card padding-left padding-right padding-bottom">
@@ -50,6 +50,9 @@ class Signup extends React.Component {
                     <RaisedButton type="submit" className="margin-top full-width" label="Signup" primary={true}/>
                   </Row>
                 </form>
+              </div>
+              <div className="flat-card padding-all flex margin-top">
+                <a href="/signin" className="container-center">Already be a member? Sign in now</a>
               </div>
             </Col>
           </Row>

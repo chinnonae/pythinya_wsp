@@ -27,6 +27,8 @@
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-react": "^6.11.1",
     "css-loader": "^0.25.0",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
     "lodash": "^4.16.4",
     "material-ui": "^0.16.1",
     "node-sass": "^3.10.0",
