@@ -1,15 +1,13 @@
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.renderers import JSONRenderer
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import status
 
 from .serializers import UserSerializer
 from .models import User
 
 
 class Register(APIView):
+    permission_classes = (AllowAny,)
 
     def post(self, request, format=None):
         user = UserSerializer(data=request.data)
@@ -21,22 +19,18 @@ class Register(APIView):
             if("email" in err.args):
                 return Response({
                     "message": "The email has been used",
-                    "status": 400
                     },
-                    status=status.HTTP_400_BAD_REQUEST,
+                    status=400,
                 )
         return Response(
             {
                 "token": str(created.auth_token),
-                "status": 200
-            }
+            },
+            status=200,
         )
 
 
 class UserView(APIView):
-    renderer_classes = (JSONRenderer,)
-    permission_classe = (IsAuthenticated,)
-    authentication_classes = (TokenAuthentication,)
 
     def get(self, request, pk):
         if pk:
@@ -46,4 +40,4 @@ class UserView(APIView):
 
         serialized = UserSerializer(user)
 
-        return Response(serialized.data)
+        return Response(serialized.data, status=200)
