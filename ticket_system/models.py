@@ -10,11 +10,11 @@ class Ticket(models.Model):
     booster = models.ForeignKey(User, on_delete=models.CASCADE, related_name='booster')
     client = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='client')
     day_used = models.PositiveIntegerField(_("day used to boost MMR"))
-    status = models.CharField(choices=(
-        (_("A"), _("available")),
-        (_("B"), _("boosting")),
-        (_("WP"), _("waiting for payment")),
-        (_("D"), _("done")),
-    ), max_length=2)
+    status = models.IntegerField(choices=(
+        (1, _("available")),
+        (2, _("boosting")),
+        (3, _("waiting for payment")),
+        (4, _("done")),
+    ))
     current_mmr = models.PositiveIntegerField(_("current MMR"), null=True)
 
