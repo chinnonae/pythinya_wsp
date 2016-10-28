@@ -8,5 +8,6 @@ urlpatterns = [
     url(r'^(?P<pk>[0-9]+)/buy$', views.TicketPurchaseView.as_view()),
     url(r'^(?P<pk>[0-9]+)/reserve$', views.TicketReserveView.as_view()),
     url(r'^(?P<pk>[0-9]+)/progress$', views.TicketProgressView.as_view()),
-    url(r'^(?P<pk>[0-9]+)/cancel', views.TicketCancelView.as_view())
+    url(r'^(?P<pk>[0-9]+)/cancel$', views.TicketCancelView.as_view()),
+    url(r'^(?P<pk>[0-9]+)/complete$', views.TicketCompleteView.as_view())
 ]
