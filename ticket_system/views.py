@@ -90,8 +90,16 @@ class TicketReserveView(APIView):
         }, status=200)
 
 
+class TicketCancelView(APIView):
 
+    def put(self, request, pk):
+        ticket = Ticket.objects.get(pk=pk)
 
+        ticket.client = None
+        ticket.status = 1
+        ticket.save()
 
-
-
+        return Response({
+            "message": "cancel ticket successfully",
+            "status": 200
+        }, status=200)
