@@ -17,7 +17,8 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 apipatterns = [
-    url(r'^user/', include('user.urls'))
+    url(r'^user/', include('user.urls')),
+    url(r'^ticket/', include('ticket_system.urls'))
 ]
 
 urlpatterns = [
