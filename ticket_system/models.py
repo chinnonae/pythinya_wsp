@@ -18,3 +18,6 @@ class Ticket(models.Model):
     ))
     current_mmr = models.PositiveIntegerField(_("current MMR"), null=True)
 
+    def __str__(self):
+        return "MRR range: %d-%d, %s, %s" % (self.min_mmr, self.max_mmr, self.booster.email, self.get_status_display())
+
