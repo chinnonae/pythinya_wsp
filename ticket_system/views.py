@@ -48,6 +48,7 @@ class TicketPurchaseView(APIView):
     def put(self, request, pk):
         ticket = Ticket.objects.get(pk=pk)
         ticket.client = request.user
+        ticket.status = "B"
         ticket.save()
 
         return Response({
