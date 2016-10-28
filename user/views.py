@@ -19,12 +19,14 @@ class Register(APIView):
             if("email" in err.args):
                 return Response({
                     "message": "The email has been used",
+                    "status": 400
                     },
                     status=400,
                 )
         return Response(
             {
                 "token": str(created.auth_token),
+                "status": 200
             },
             status=200,
         )
@@ -40,4 +42,10 @@ class UserView(APIView):
 
         serialized = UserSerializer(user)
 
-        return Response(serialized.data, status=200)
+        return Response(
+            {
+                "user": serialized.data,
+                "status": 200
+            },
+            status=200
+        )
