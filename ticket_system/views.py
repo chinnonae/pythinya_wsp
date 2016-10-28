@@ -27,7 +27,7 @@ class TicketView(APIView):
             "max_mmr": int(request.data.get("max_mmr")),
             "day_used": int(request.data.get("day_used")),
             "booster": request.user.id,
-            "status": "A",
+            "status": 1,
         })
         ticket.is_valid()
         ticket.save()
@@ -48,7 +48,7 @@ class TicketPurchaseView(APIView):
     def put(self, request, pk):
         ticket = Ticket.objects.get(pk=pk)
         ticket.client = request.user
-        ticket.status = "B"
+        ticket.status = 2
         ticket.save()
 
         return Response({
@@ -74,6 +74,46 @@ class TicketProgressView(APIView):
         }, status=200)
 
 
+class TicketReserveView(APIView):
+
+    def put(self, request, pk):
+        ticket = Ticket.objects.get(pk=pk)
+        client = request.user
+
+        ticket.client = client
+        ticket.status = 3
+        ticket.save()
+
+        return Response({
+            "message": "reserve successfully",
+            "status": 200
+        }, status=200)
 
 
+class TicketCancelView(APIView):
 
+    def put(self, request, pk):
+        ticket = Ticket.objects.get(pk=pk)
+
+        ticket.client = None
+        ticket.status = 1
+        ticket.save()
+
+        return Response({
+            "message": "cancel ticket successfully",
+            "status": 200
+        }, status=200)
+
+
+class TicketCompleteView(APIView):
+
+    def put(self, request, pk):
+        ticket = Ticket.objects.get(pk=pk)
+
+        ticket.status = 4
+        ticket.save()
+
+        return Response({
+            "message": "ticket status updated to done",
+            "status": 200
+        }, status=200)
