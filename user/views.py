@@ -20,7 +20,7 @@ class Register(APIView):
                 return Response({
                     "message": "The email has been used",
                     "status": 400
-                )
+                })
         return Response(
             {
                 "token": str(created.auth_token),
