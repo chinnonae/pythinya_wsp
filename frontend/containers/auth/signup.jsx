@@ -2,7 +2,7 @@ import {Card, CardHeader} from 'material-ui/Card';
 import {Col, Grid, Row, Form} from 'react-bootstrap';
 import {TextField, RaisedButton, Divider} from 'material-ui';
 var authService = cc.get('services.auth');
-var actions = cc.get('redux.actions.auth');
+var actions = cc.get('redux.actions');
 class Signup extends React.Component {
 
   constructor(props) {
@@ -19,9 +19,9 @@ class Signup extends React.Component {
   render() {
     /* Components */
     var Input = cc.get('components.input');
-    var error = !this.props.reducer.signup.isSuccess;
+    var error = !this.props.reducer.auth.isSuccess;
     var emailLabel = "E-mail";
-    emailLabel += error ? _.template(' (${message})')({message: this.props.reducer.signup.message}) : '';
+    emailLabel += error ? _.template(' (${message})')({message: this.props.reducer.auth.message}) : '';
     /* rendering */
     return (
       <Grid id="signup-panel" className="flex flex-center flex-middle" style={{height: "calc(100vh - 64px)"}}>
@@ -49,7 +49,7 @@ class Signup extends React.Component {
                 </form>
               </div>
               <div className="flat-card padding-all flex margin-top">
-                <a href="/signin" className="container-center">Already be a member? Sign in now</a>
+                <Link to={'/signin'} className="container-center">Already be a member? Sign in now</Link>
               </div>
             </Col>
           </Row>

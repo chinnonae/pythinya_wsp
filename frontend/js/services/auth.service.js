@@ -1,3 +1,4 @@
+import cookie from 'js-cookie';
 var auth = {
 	signin: function(username, password, callback) {
 		$.ajax({
@@ -25,7 +26,6 @@ var auth = {
 		_.map(user, function(item) {
 			data[item.name] = item.value;
 		});
-    console.log(data);
 		$.ajax({
 				method: 'POST',
 				url: URL + '/api/user/signup/',
@@ -41,7 +41,13 @@ var auth = {
 					callback(res);
 				}
 			});
-	}
+	},
+  signout: function(callback) {
+    const cb = typeof callback === 'function' ? callback : () => {};
+    var profileService = cc.get('services.profile');
+    profileService.clear();
+    cb();
+  }
 };
 
 cc.register('services.auth', auth);

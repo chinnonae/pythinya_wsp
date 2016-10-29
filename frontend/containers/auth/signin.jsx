@@ -2,7 +2,6 @@ import {Card, CardHeader} from 'material-ui/Card';
 import {Col, Grid, Row, Form} from 'react-bootstrap';
 import {TextField, RaisedButton, Divider} from 'material-ui';
 const actions = cc.get('redux.actions.auth');
-
 class Signin extends React.Component {
 	constructor(props) {
 		super(props);
@@ -17,7 +16,7 @@ class Signin extends React.Component {
 	}
 	render() {
     var Input = cc.get('components.input');
-    var error = !this.props.reducer.signin.isSuccess;
+    var error = !this.props.reducer.auth.isSuccess;
     var emailLabel = "Email";
     emailLabel += error ? " (Invalid email or password)" : "";
 		return (
@@ -43,7 +42,7 @@ class Signin extends React.Component {
 								</form>
 							</div>
               <div className="flat-card padding-all flex margin-top">
-                <a href="/signup" className="container-center">Don't have an account? Sign up now</a>
+                <Link to={'/signup'} className="container-center">Don't have an account? Sign up now</Link>
               </div>
 						</Col>
 					</Row>
