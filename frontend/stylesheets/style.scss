@@ -109,7 +109,9 @@ html,body {
   text-transform: uppercase;
   font-weight: 500;
   font-size: 14px;
+  display: block;
+  text-decoration: none;
 }
-.link-button:hover {
+.link-button:hover, .link-button:visited, .link-button:active, .link-button:link {
   text-decoration: none;
 }
