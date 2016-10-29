@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-import signinReducer from './signin';
-import signupReducer from './signup';
+import authReducer from './auth';
+import profileReducer from './profile';
 var reducers = combineReducers({
-  signin: signinReducer,
-  signup: signupReducer
+  auth: authReducer,
+  profile: profileReducer
 });
 cc.register('redux.reducers', reducers);
