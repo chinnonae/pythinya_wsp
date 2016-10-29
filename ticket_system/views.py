@@ -8,7 +8,7 @@ from .serializers import TicketSerializer
 class TicketView(APIView):
 
     def get(self, request):
-        queryset = Ticket.objects.all()
+        queryset = Ticket.objects.all().filter(status=1)
 
         start_mmr = self.request.query_params.get('start_mmr', None)
         ending_mmr = self.request.query_params.get('ending_mmr', None)
