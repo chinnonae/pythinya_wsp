@@ -11,7 +11,6 @@ window.mapStateToProps = (state) => {
   return { reducer: state };
 };
 window.mapDispatchToProps = (action) => {
-  console.log(action);
   return (dispatch) => {
     return { actions: bindActionCreators(action, dispatch) };
   };
