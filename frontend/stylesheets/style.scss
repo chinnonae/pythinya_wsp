@@ -1,26 +1,26 @@
-@font-face {
-  font-family: 'Sukhumvit';
-  font-weight: normal;
-  src: url('./fonts/sukhumvit-set/SukhumvitSet-Medium.ttf');
-}
+// @font-face {
+//   font-family: 'Sukhumvit';
+//   src: url('./fonts/sukhumvit-set/SukhumvitSet-Medium.ttf');
+// }
 @font-face {
   font-family: 'Sukhumvit';
   font-weight: bold;
   src: url('./fonts/sukhumvit-set/SukhumvitSet-Bold.ttf');
 }
+// @font-face {
+//   font-family: 'Sukhumvit';
+//   src: url('./fonts/sukhumvit-set/SukhumvitSet-SemiBold.ttf');
+// }
 @font-face {
   font-family: 'Sukhumvit';
-  src: url('./fonts/sukhumvit-set/SukhumvitSet-SemiBold.ttf');
-}
-@font-face {
-  font-family: 'Sukhumvit';
+  font-weight: normal;
   src: url('./fonts/sukhumvit-set/SukhumvitSet-Text.ttf');
 }
-@font-face {
-  font-family: 'Sukhumvit';
-  font-weight: lighter;
-  src: url('./fonts/sukhumvit-set/SukhumvitSet-Thin.ttf');
-}
+// @font-face {
+//   font-family: 'Sukhumvit';
+//   font-weight: lighter;
+//   src: url('./fonts/sukhumvit-set/SukhumvitSet-Thin.ttf');
+// }
 
 html,body {
   font-family: 'Sukhumvit' !important;
@@ -90,4 +90,12 @@ html,body {
 
 .text-center {
   text-align: center;
+}
+
+.error-text {
+  color: red !important;
+}
+
+.full-width {
+  width: 100%;
 }

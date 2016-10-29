@@ -1,17 +1,18 @@
 const initialState = {
 	isSuccess: true,
-  errorMessage: ""
+  message: ""
 };
 
 const reducer = (state, action) => {
   state = typeof state === 'undefined' ? initialState : state;
 
   const constants = cc.get('redux.constants');
-  const newState  = _.clone(state);
+  const newState = _.clone(state);
 
   switch(action.type) {
-    case constants.SIGNIN_CB:
-      newState.isSuccess    = action.data.isSuccess;
+    case constants.SIGNUP_CB:
+      newState.isSuccess = action.data.isSuccess;
+      newState.message = action.data.message;
       return newState;
     default:
       return state;
