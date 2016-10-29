@@ -3,6 +3,7 @@ from rest_framework.response import Response
 
 from .models import Ticket
 from .serializers import TicketSerializer
+from .apis import BoosterTicketAction
 
 
 class TicketView(APIView):
@@ -25,17 +26,14 @@ class TicketView(APIView):
         }, status=200)
 
     def post(self, request):
-        ticket = TicketSerializer(data={
-            "min_mmr": int(request.data.get("min_mmr")),
-            "max_mmr": int(request.data.get("max_mmr")),
-            "day_used": int(request.data.get("day_used")),
-            "booster": request.user.id,
-            "price": int(request.data.get("price")),
-            "status": 1,
-        })
-        ticket.is_valid()
-        ticket.save()
-        return Response(ticket.data)
+        booster_ticket_action = BoosterTicketAction(request.user)
+        ticket_data = booster_ticket_action.create_ticket(
+            request.data.get("min_mmr", None),
+            request.data.get("max_mmr", None),
+            request.data.get("day_used", None),
+            request.data.get("price", None)
+        )
+        return Response(ticket_data)
 
 
 class TicketDetailView(APIView):
