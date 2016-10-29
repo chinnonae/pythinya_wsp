@@ -12,7 +12,7 @@ class TicketSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def to_representation(self, instance):
-        fields = ('id', 'min_mmr', 'current_mmr', 'max_mmr', 'booster', 'client', 'day_used', 'status')
+        fields = ('id', 'min_mmr', 'current_mmr', 'max_mmr', 'booster', 'client', 'day_used', 'status', 'price')
 
         dict = {}
         for field in fields:

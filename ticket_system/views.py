@@ -30,6 +30,7 @@ class TicketView(APIView):
             "max_mmr": int(request.data.get("max_mmr")),
             "day_used": int(request.data.get("day_used")),
             "booster": request.user.id,
+            "price": int(request.data.get("price")),
             "status": 1,
         })
         ticket.is_valid()
