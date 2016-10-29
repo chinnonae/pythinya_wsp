@@ -15,12 +15,14 @@ class Wrapper extends React.Component {
 	render() {
     var Signin = cc.get('components.signin');
     var Signup = cc.get('components.signup');
+    var Checkout = cc.get('components.checkout.wrapper');
 		return (
 			<Provider store={this.store}>
 				<Router history={browserHistory}>
 					<Route path='/' component={App}>
 						<Route path='signin' component={Signin}/>
 						<Route path='signup' component={Signup}/>
+            <Route path='checkout' component={Checkout}/>
 					</Route>
 				</Router>
 			</Provider>
