@@ -3,17 +3,20 @@ from rest_framework.response import Response
 
 from .models import Ticket
 from .serializers import TicketSerializer
-from user.serializers import UserSerializer
+
 
 class TicketView(APIView):
 
     def get(self, request):
         queryset = Ticket.objects.all()
 
-        start_mmr = self.request.query_params.get('start_mmr', 0)
+        start_mmr = self.request.query_params.get('start_mmr', None)
         ending_mmr = self.request.query_params.get('ending_mmr', None)
 
-        result = queryset.filter(min_mmr__lte=start_mmr).filter(max_mmr__gte=ending_mmr)
+        if start_mmr is not None or ending_mmr is not None:
+            result = queryset.filter(min_mmr__lte=start_mmr).filter(max_mmr__gte=ending_mmr)
+        else:
+            result = queryset
 
         serialized = TicketSerializer(result, many=True)
         return Response({
