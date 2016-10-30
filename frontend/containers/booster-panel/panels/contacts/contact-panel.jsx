@@ -13,11 +13,13 @@ class ContactsPanel extends React.Component {
   }
   render() {
     /* components*/
-    const ContactTable = cc.get('components.boosterPanel.contactTable');
-    const Input        = cc.get('components.input');
+    const ContactTable  = cc.get('components.boosterPanel.contactTable');
+    const Input         = cc.get('components.input');
+    const ConfirmDialog = cc.get('components.boosterPanel.contactsPanel.dialog');
     /* rendering */
     return (
       <div>
+        <ConfirmDialog />
         <Row className="flex no-margin" style={{height: 100}}>
           <Col className="no-padding flex flex-column flex-end-y" xs={7} sm={7} md={7} lg={7}>
             <p>Contact list</p>

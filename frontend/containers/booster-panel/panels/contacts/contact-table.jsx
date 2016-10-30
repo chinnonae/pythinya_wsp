@@ -1,7 +1,13 @@
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import {Card} from 'material-ui/Card';
+const actions = cc.get('redux.actions');
 class ContactTable extends React.Component {
+  onClick(item) {
+    console.log('xxx');
+    this.props.actions.toggleConfirmDialog(true);
+  }
   render() {
+    var self = this;
     return (
       <Card>
         <Table selectable={false} className="hoverable">
@@ -16,7 +22,7 @@ class ContactTable extends React.Component {
             {
               _.map(this.props.reducer.boosterPanel.filteredContacts, function(item, i) {
                 return (
-                  <TableRow key={i} className="pointer">
+                  <TableRow onMouseUp={self.onClick.bind(self,item)} key={i} className="pointer">
                     <TableRowColumn style={{width: "45%"}}>{item.first_name + " " + item.last_name}</TableRowColumn>
                     <TableRowColumn>{"2 days ago"}</TableRowColumn>
                     <TableRowColumn>{item.telephone}</TableRowColumn>
@@ -31,4 +37,4 @@ class ContactTable extends React.Component {
   }
 }
 
-cc.register('components.boosterPanel.contactTable', connect(mapStateToProps)(ContactTable));
+cc.register('components.boosterPanel.contactTable', connect(mapStateToProps, mapDispatchToProps(actions))(ContactTable));

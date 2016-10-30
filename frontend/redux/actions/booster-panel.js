@@ -31,6 +31,14 @@ const actions = {
         ticket: res.result
       }
     };
+  },
+  toggleConfirmDialog: function(isToggle) {
+    return {
+      type: getConstant().TOGGLE_CONFIRM_DIALOG,
+      data: {
+        isToggle: isToggle
+      }
+    };
   }
 };
 
