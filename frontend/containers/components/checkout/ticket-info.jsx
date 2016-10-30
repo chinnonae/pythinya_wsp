@@ -3,8 +3,8 @@ class TicketInfoPanel extends React.Component {
   render() {
     return (
       <Table>
-        <TableHeader>
-          <TableRow style={"background-color: #bdbdbd;"}>
+        <TableHeader displaySelectAll={false}>
+          <TableRow>
             <TableHeaderColumn>Booster name</TableHeaderColumn>
             <TableHeaderColumn>Price</TableHeaderColumn>
             <TableHeaderColumn>Boosted times</TableHeaderColumn>
@@ -12,7 +12,7 @@ class TicketInfoPanel extends React.Component {
             <TableHeaderColumn>MMR</TableHeaderColumn>
           </TableRow>
         </TableHeader>
-        <TableBody>
+        <TableBody displayRowCheckbox={false}>
           <TableRow>
             <TableRowColumn>Adam</TableRowColumn>
             <TableRowColumn>2,000</TableRowColumn>
