@@ -6,18 +6,18 @@ class TicketInfoPanel extends React.Component {
         <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
           <TableRow>
             <TableHeaderColumn>Booster name</TableHeaderColumn>
-            <TableHeaderColumn>Price</TableHeaderColumn>
-            <TableHeaderColumn>Boosted times</TableHeaderColumn>
-            <TableHeaderColumn>Day used</TableHeaderColumn>
+            <TableHeaderColumn style={{width: "20%"}}>Price</TableHeaderColumn>
+            <TableHeaderColumn style={{width: "15%"}}>Boosted times</TableHeaderColumn>
+            <TableHeaderColumn style={{width: "15%"}}>Day used</TableHeaderColumn>
             <TableHeaderColumn>MMR</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody displayRowCheckbox={false}>
           <TableRow>
             <TableRowColumn>Adam</TableRowColumn>
-            <TableRowColumn>2,000</TableRowColumn>
-            <TableRowColumn>5</TableRowColumn>
-            <TableRowColumn>3</TableRowColumn>
+            <TableRowColumn style={{width: "20%"}}>2,000</TableRowColumn>
+            <TableRowColumn style={{width: "15%"}}>5</TableRowColumn>
+            <TableRowColumn style={{width: "15%"}}>3</TableRowColumn>
             <TableRowColumn>1,500-2,000</TableRowColumn>
           </TableRow>
         </TableBody>
