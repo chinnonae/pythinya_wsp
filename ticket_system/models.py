@@ -8,7 +8,7 @@ class Ticket(models.Model):
     min_mmr = models.PositiveIntegerField(_("minimum MMR"))
     max_mmr = models.PositiveIntegerField(_("maximum MMR"))
     booster = models.ForeignKey(User, on_delete=models.CASCADE, related_name='booster')
-    clients = models.ManyToManyField(User, blank=True, through='ClientList')
+    clients = models.ManyToManyField(User, blank=True, through='Clientship')
     day_used = models.PositiveIntegerField(_("day used to boost MMR"))
     status = models.IntegerField(choices=(
         (1, _("available")),
@@ -23,7 +23,7 @@ class Ticket(models.Model):
         return "<id: %d>MRR range: %d-%d, %s, %s" % (self.id, self.min_mmr, self.max_mmr, self.booster.email, self.get_status_display())
 
 
-class ClientList(models.Model):
+class Clientship(models.Model):
     client = models.ForeignKey(User, on_delete=models.PROTECT)
     ticket = models.ForeignKey(Ticket, on_delete=models.PROTECT)
     date_created = models.DateTimeField(_("Contact date"), auto_now_add=True)

@@ -1,5 +1,5 @@
 from ticket_system.serializers import TicketSerializer
-
+from ticket_system.models import Clientship
 
 class BoosterTicketAction:
 
@@ -50,8 +50,7 @@ class ClientTicketAction:
         return None, "purchase successful"
 
     def take_ticket(self):
-        self.ticket.clients.add(self.user)
-        self.ticket.save()
+        Clientship.objects.create(ticket=self.ticket, client=self.user)
 
         return None, "you have taken the ticket"
 
