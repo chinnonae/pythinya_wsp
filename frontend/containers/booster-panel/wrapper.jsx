@@ -10,7 +10,7 @@ class Wrapper extends React.Component {
   }
   onFilter() {
     var word = $('#customer-filter')[0].value;
-    this.props.actions.filterCustomer(word);
+    this.props.actions.filterCustomer(word); // filtering the customer list.
   }
   render() {
     /* components */

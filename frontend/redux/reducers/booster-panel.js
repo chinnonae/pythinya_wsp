@@ -5,16 +5,16 @@ var initialState = {
 };
 
 var reducer = (state, action) => {
-  state = typeof state === 'undefined' ? initialState : state;
-  const constant = cc.get('redux.constants');
-  const newState = _.clone(state);
+  state                         = typeof state === 'undefined' ? initialState : state;
+  const constant                = cc.get('redux.constants');
+  const newState                = _.clone(state);
   switch(action.type) {
     case constant.CONTACTLIST_CB:
-      newState.contacts = action.data.contacts;
+      newState.contacts         = action.data.contacts;
       newState.filteredContacts = action.data.contacts;
       return newState;
     case constant.HISTORY_CB:
-      newState.history = action.data.history;
+      newState.history          = action.data.history;
       return newState;
     case constant.FILTER_CUSTOMER_NAME:
       newState.filteredContacts = _.filter(state.contacts, function(contact){
