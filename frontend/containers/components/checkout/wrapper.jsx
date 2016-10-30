@@ -6,8 +6,8 @@ class Wrapper extends React.Component {
     var TicketInfoPanel = cc.get('components.checkout.ticketInfoPanel');
     var PaymentInfoPanel = cc.get('components.checkout.paymentInfoPanel');
     return (
-      <Grid className="flex flex-center flex-middle">
-        <Grid className="full-width padding-all">
+      <Grid className="flex flex-center flex-middle" style={{height: "calc(100vh - 64px)"}}>
+        <Grid className="full-width padding-all flat-card">
           <TicketInfoPanel />
           <PaymentInfoPanel />
           <Row>

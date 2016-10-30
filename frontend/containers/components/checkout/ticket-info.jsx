@@ -2,8 +2,8 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 class TicketInfoPanel extends React.Component {
   render() {
     return (
-      <Table>
-        <TableHeader displaySelectAll={false}>
+      <Table selectable={false}>
+        <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
           <TableRow>
             <TableHeaderColumn>Booster name</TableHeaderColumn>
             <TableHeaderColumn>Price</TableHeaderColumn>
