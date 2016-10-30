@@ -115,3 +115,11 @@ html,body {
 .link-button:hover, .link-button:visited, .link-button:active, .link-button:link {
   text-decoration: none;
 }
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-end-y {
+  justify-content: flex-end;
+}
