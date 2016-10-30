@@ -13,7 +13,8 @@ class Wrapper extends React.Component {
       element.addClass('blur-onblur');
     }
     var style = {
-      display: showLoader ? 'initial' : 'none'
+      display: showLoader ? 'initial' : 'none',
+      transition: '0.4s ease-in'
     };
 		return (
       <div style={style}>

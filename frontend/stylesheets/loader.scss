@@ -9,6 +9,7 @@ $blur: 6px;
 }
 
 .loader-wrapper, .blur-bg {
+  transition: 0.3s ease-in-out;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -18,5 +19,6 @@ $blur: 6px;
 }
 
 .blur-bg {
+  transition: 0.3s ease-in-out;
   background-color: rgba(0,0,0,0.7);
 }
