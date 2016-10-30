@@ -4,10 +4,10 @@ class ContactTable extends React.Component {
   render() {
     return (
       <Card>
-        <Table className="hoverable">
+        <Table selectable={false} className="hoverable">
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
-              <TableHeaderColumn>Customer name</TableHeaderColumn>
+              <TableHeaderColumn style={{width: "45%"}}>Customer name</TableHeaderColumn>
               <TableHeaderColumn>Date</TableHeaderColumn>
               <TableHeaderColumn>Phone</TableHeaderColumn>
             </TableRow>
@@ -17,7 +17,7 @@ class ContactTable extends React.Component {
               _.map(this.props.reducer.boosterPanel.contacts, function(item, i) {
                 return (
                   <TableRow key={i} className="pointer">
-                    <TableRowColumn>{item.first_name + " " + item.last_name}</TableRowColumn>
+                    <TableRowColumn style={{width: "45%"}}>{item.first_name + " " + item.last_name}</TableRowColumn>
                     <TableRowColumn>{"2 days ago"}</TableRowColumn>
                     <TableRowColumn>{item.telephone}</TableRowColumn>
                   </TableRow>

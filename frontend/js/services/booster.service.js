@@ -4,12 +4,6 @@ var service = {
 		var dummy = {
 			status: 200,
 			result: [{
-				"id": 1,
-				"email": "taweesoft@gmail.com",
-				"first_name": "Taweerat",
-				"last_name": "Chaiman",
-        "telephone": "0832529994"
-			}, {
 				"id": 2,
 				"email": "chin@gmail.com",
 				"first_name": "Chintithi",

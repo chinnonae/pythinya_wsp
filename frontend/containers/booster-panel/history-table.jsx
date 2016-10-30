@@ -4,10 +4,10 @@ class HistoryTable extends React.Component {
   render() {
     return (
       <Card>
-        <Table>
+        <Table selectable={false}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
-              <TableHeaderColumn>Customer name</TableHeaderColumn>
+              <TableHeaderColumn style={{width: "45%"}}>Customer name</TableHeaderColumn>
               <TableHeaderColumn>MMR</TableHeaderColumn>
               <TableHeaderColumn>Price</TableHeaderColumn>
             </TableRow>
@@ -17,7 +17,7 @@ class HistoryTable extends React.Component {
               _.map(this.props.reducer.boosterPanel.history, function(item, i) {
                 return (
                   <TableRow key={i}>
-                    <TableRowColumn>{item.first_name + " " + item.last_name}</TableRowColumn>
+                    <TableRowColumn style={{width: "45%"}}>{item.first_name + " " + item.last_name}</TableRowColumn>
                     <TableRowColumn>{item.min_mmr + '-' + item.max_mmr}</TableRowColumn>
                     <TableRowColumn>{item.price}</TableRowColumn>
                   </TableRow>
