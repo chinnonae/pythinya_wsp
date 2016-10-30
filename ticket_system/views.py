@@ -72,22 +72,6 @@ class TicketProgressView(APIView):
         }, status=200)
 
 
-class TicketReserveView(APIView):
-
-    def put(self, request, pk):
-        ticket = Ticket.objects.get(pk=pk)
-        client = request.user
-
-        ticket.client = client
-        ticket.status = 3
-        ticket.save()
-
-        return Response({
-            "message": "reserve successfully",
-            "status": 200
-        }, status=200)
-
-
 class TicketCancelView(APIView):
 
     def put(self, request, pk):
