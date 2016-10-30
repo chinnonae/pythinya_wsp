@@ -1,6 +1,6 @@
-tbody > tr {
+.hoverable > tbody > tr {
   transition: 0.3s ease-in;
 }
-tbody > tr:hover {
+.hoverable > tbody > tr:hover {
   background-color: rgba(179,229,252,0.15);
 }

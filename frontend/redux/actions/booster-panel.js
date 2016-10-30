@@ -6,6 +6,14 @@ const actions = {
         contacts: res.result
       }
     };
+  },
+  getHistoryCallback: function (res) {
+    return {
+      type: getConstant().HISTORY_CB,
+      data: {
+        history: res.result
+      }
+    };
   }
 };
 

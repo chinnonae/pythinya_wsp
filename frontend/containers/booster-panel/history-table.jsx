@@ -1,25 +1,25 @@
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import {Card} from 'material-ui/Card';
-class ContactTable extends React.Component {
+class HistoryTable extends React.Component {
   render() {
     return (
       <Card>
-        <Table className="hoverable">
+        <Table>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
               <TableHeaderColumn>Customer name</TableHeaderColumn>
-              <TableHeaderColumn>Date</TableHeaderColumn>
-              <TableHeaderColumn>Phone</TableHeaderColumn>
+              <TableHeaderColumn>MMR</TableHeaderColumn>
+              <TableHeaderColumn>Price</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
             {
-              _.map(this.props.reducer.boosterPanel.contacts, function(item, i) {
+              _.map(this.props.reducer.boosterPanel.history, function(item, i) {
                 return (
-                  <TableRow key={i} className="pointer">
+                  <TableRow key={i}>
                     <TableRowColumn>{item.first_name + " " + item.last_name}</TableRowColumn>
-                    <TableRowColumn>{"2 days ago"}</TableRowColumn>
-                    <TableRowColumn>{item.telephone}</TableRowColumn>
+                    <TableRowColumn>{item.min_mmr + '-' + item.max_mmr}</TableRowColumn>
+                    <TableRowColumn>{item.price}</TableRowColumn>
                   </TableRow>
                 );
               })
@@ -31,4 +31,4 @@ class ContactTable extends React.Component {
   }
 }
 
-cc.register('components.boosterPanel.contactTable', connect(mapStateToProps)(ContactTable));
+cc.register('components.boosterPanel.historyTable', connect(mapStateToProps)(HistoryTable));

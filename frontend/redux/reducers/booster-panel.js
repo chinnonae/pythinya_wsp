@@ -1,5 +1,6 @@
 var initialState = {
-  contacts: []
+  contacts: [],
+  history: []
 };
 
 var reducer = (state, action) => {
@@ -9,6 +10,9 @@ var reducer = (state, action) => {
   switch(action.type) {
     case constant.CONTACTLIST_CB:
       newState.contacts = action.data.contacts;
+      return newState;
+    case constant.HISTORY_CB:
+      newState.history = action.data.history;
       return newState;
     default:
       return state;
