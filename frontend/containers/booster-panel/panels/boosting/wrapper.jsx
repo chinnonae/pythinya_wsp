@@ -23,14 +23,14 @@ class Wrapper extends React.Component {
                 <p>{customerName}</p>
               </span>
             </Row>
-            <Row className="flex margin-bottom">
-              <Col className="flex flex-column text-center" xs={6} sm={6} md={6} lg={6}>
+            <Row id="boosting-mmr-wrapper" className="flex margin-bottom">
+              <Col className="flex flex-column text-center" xs={12} sm={6} md={6} lg={6}>
                 <h4>from MMR</h4>
                 <h2>{reducer.min_mmr}</h2>
                 <h4>to MMR</h4>
                 <h2>{reducer.max_mmr}</h2>
               </Col>
-              <Col className="flex flex-middle text-center" xs={6} sm={6} md={6} lg={6}>
+              <Col className="flex flex-middle flex-center text-center" xs={12} sm={6} md={6} lg={6}>
                 <div className="flex flex-column">
                   <span>Current MMR</span>
                   <Input label="Current MMR"/>
