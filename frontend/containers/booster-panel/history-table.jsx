@@ -12,7 +12,7 @@ class HistoryTable extends React.Component {
               <TableHeaderColumn>Price</TableHeaderColumn>
             </TableRow>
           </TableHeader>
-          <TableBody displayRowCheckbox={false}>
+          <TableBody stripedRows={true} displayRowCheckbox={false}>
             {
               _.map(this.props.reducer.boosterPanel.history, function(item, i) {
                 return (
