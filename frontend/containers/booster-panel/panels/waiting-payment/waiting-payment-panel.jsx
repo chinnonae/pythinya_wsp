@@ -1,8 +1,10 @@
 import {Card} from 'material-ui/Card';
 import {RaisedButton} from 'material-ui';
 import {Row,Col, Grid} from 'react-bootstrap';
+import {deepOrange300} from 'material-ui/styles/colors';
 const actions = cc.get('redux.actions');
 const boosterService = cc.get('services.booster');
+
 class WaitingPaymentPanel extends React.Component {
   constructor(props) {
     super(props);
@@ -20,20 +22,20 @@ class WaitingPaymentPanel extends React.Component {
             <p>Waiting for payment from &nbsp;</p>
             <p>{customerName}</p>
           </Row>
-          <Row className="relative flex">
+          <Row className="relative flex margin-bottom">
             <p>Customer name</p>
             <p className="pull-right">{customerName}</p>
           </Row>
-          <Row className="relative flex">
+          <Row className="relative flex margin-bottom">
             <p>MMR Range</p>
             <p className="pull-right">{mmrRange}</p>
           </Row>
-          <Row className="relative flex">
+          <Row className="relative flex margin-bottom">
             <p>Price</p>
             <p className="pull-right">{price}</p>
           </Row>
           <Row className='flex'>
-            <RaisedButton className="container-center" label="Cancel" />
+            <RaisedButton backgroundColor={deepOrange300} labelColor='white' className="container-center" label="Cancel" />
           </Row>
         </div>
       </Card>
