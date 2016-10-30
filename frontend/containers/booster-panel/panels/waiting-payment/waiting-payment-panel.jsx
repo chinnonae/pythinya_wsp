@@ -17,27 +17,30 @@ class WaitingPaymentPanel extends React.Component {
     var price = reducer.price + ' coins';
     return (
       <Card className="padding-all" style={{marginTop: 100}}>
-        <div style={{width: "60%"}} className="container-center">
-          <Row className="text-center flex flex-center margin-bottom">
-            <p>Waiting for payment from &nbsp;</p>
-            <p>{customerName}</p>
-          </Row>
-          <Row className="relative flex margin-bottom">
-            <p>Customer name</p>
-            <p className="pull-right">{customerName}</p>
-          </Row>
-          <Row className="relative flex margin-bottom">
-            <p>MMR Range</p>
-            <p className="pull-right">{mmrRange}</p>
-          </Row>
-          <Row className="relative flex margin-bottom">
-            <p>Price</p>
-            <p className="pull-right">{price}</p>
-          </Row>
-          <Row className='flex'>
-            <RaisedButton backgroundColor={deepOrange300} labelColor='white' className="container-center" label="Cancel" />
-          </Row>
-        </div>
+        <Grid className="full-width">
+          <Col smOffset={1} sm={10} md={8} mdOffset={2} xs={10} xsOffset={1} lg={8} lgOffset={2}>
+            <Row className="text-center flex flex-center margin-bottom">
+              <span className="display-box">Waiting for payment from &nbsp;
+                <p>{customerName}</p>
+              </span>
+            </Row>
+            <Row className="relative flex margin-bottom">
+              <p>Customer name</p>
+              <p className="pull-right">{customerName}</p>
+            </Row>
+            <Row className="relative flex margin-bottom">
+              <p>MMR Range</p>
+              <p className="pull-right">{mmrRange}</p>
+            </Row>
+            <Row className="relative flex margin-bottom">
+              <p>Price</p>
+              <p className="pull-right">{price}</p>
+            </Row>
+            <Row className='flex'>
+              <RaisedButton backgroundColor={deepOrange300} labelColor='white' className="container-center" label="Cancel" />
+            </Row>
+          </Col>
+        </Grid>
       </Card>
     );
   }
