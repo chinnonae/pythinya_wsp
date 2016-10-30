@@ -1,6 +1,7 @@
 import cookie from 'js-cookie';
 var auth = {
 	signin: function(username, password, callback) {
+    getWaitmeService().show();
 		$.ajax({
 				method: 'POST',
 				url: URL + '/api/user/signin/',
@@ -10,17 +11,20 @@ var auth = {
 				},
 			})
 			.done(function(res) {
+        getWaitmeService().hide();
 				if (typeof callback === 'function') {
 					callback(res);
 				}
 			})
 			.fail(function(res) {
+        getWaitmeService().hide();
 				if (typeof callback === 'function') {
 					callback(res);
 				}
 			});
 	},
 	signup: function(user, callback) {
+    getWaitmeService().show();
 		var data = {};
 		/* serializing data from form*/
 		_.map(user, function(item) {
@@ -32,11 +36,13 @@ var auth = {
 				data: data
 			})
 			.done(function(res) {
+        getWaitmeService().hide();
 				if (typeof callback === 'function') {
 					callback(res);
 				}
 			})
 			.fail(function(res) {
+        getWaitmeService().hide();
 				if (typeof callback === 'function') {
 					callback(res);
 				}
@@ -50,4 +56,7 @@ var auth = {
   }
 };
 
+function getWaitmeService() {
+  return cc.get('services.waitme');
+}
 cc.register('services.auth', auth);

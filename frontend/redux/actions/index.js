@@ -1,6 +1,7 @@
 import auth from './auth';
 import profile from './profile';
 import boosterPanel from './booster-panel';
-var actions = _.merge({},auth,profile, boosterPanel);
+import waitme from './waitme';
+var actions = _.merge({},auth, profile, waitme, boosterPanel);
 
 cc.register('redux.actions', actions);
