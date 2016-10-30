@@ -1,7 +1,8 @@
 var initialState = {
   contacts: [],
   history: [],
-  filteredContacts: []
+  filteredContacts: [],
+  ticket: null
 };
 
 var reducer = (state, action) => {
@@ -20,6 +21,9 @@ var reducer = (state, action) => {
       newState.filteredContacts = _.filter(state.contacts, function(contact){
         return (contact.first_name + " " + contact.last_name).toLowerCase().indexOf((action.data.word).toLowerCase()) >= 0;
       });
+      return newState;
+    case constant.CURRENT_TICKET_CB:
+      newState.ticket           = action.data.ticket;
       return newState;
     default:
       return state;

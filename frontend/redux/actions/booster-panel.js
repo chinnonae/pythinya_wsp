@@ -22,6 +22,14 @@ const actions = {
         word: word
       }
     };
+  },
+  getCurrentTicketCallback: function (res) {
+    return {
+      type: getConstant().CURRENT_TICKET_CB,
+      data: {
+        ticket: res.result
+      }
+    };
   }
 };
 
