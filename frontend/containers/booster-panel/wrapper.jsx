@@ -6,6 +6,11 @@ class Wrapper extends React.Component {
     super(props);
     boosterService.getContactList(this.props.actions.getContactsListCallback);
     boosterService.getHistory(this.props.actions.getHistoryCallback);
+    this.onFilter = this.onFilter.bind(this);
+  }
+  onFilter() {
+    var word = $('#customer-filter')[0].value;
+    this.props.actions.filterCustomer(word);
   }
   render() {
     /* components */
@@ -23,7 +28,7 @@ class Wrapper extends React.Component {
             </Col>
             <Col xs={5} sm={5} md={5} lg={5} className="flex flex-column flex-end-y no-padding">
               {/* <p className="no-margin text-center">Filter by customer name</p> */}
-              <Input label="Filter by Customer name"/>
+              <Input elementId="customer-filter" onChange={this.onFilter} label="Filter by Customer name"/>
             </Col>
           </Row>
           <Row>

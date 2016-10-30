@@ -14,7 +14,7 @@ class ContactTable extends React.Component {
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
             {
-              _.map(this.props.reducer.boosterPanel.contacts, function(item, i) {
+              _.map(this.props.reducer.boosterPanel.filteredContacts, function(item, i) {
                 return (
                   <TableRow key={i} className="pointer">
                     <TableRowColumn style={{width: "45%"}}>{item.first_name + " " + item.last_name}</TableRowColumn>

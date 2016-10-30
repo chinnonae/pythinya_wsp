@@ -1,6 +1,7 @@
 var initialState = {
   contacts: [],
-  history: []
+  history: [],
+  filteredContacts: []
 };
 
 var reducer = (state, action) => {
@@ -10,9 +11,15 @@ var reducer = (state, action) => {
   switch(action.type) {
     case constant.CONTACTLIST_CB:
       newState.contacts = action.data.contacts;
+      newState.filteredContacts = action.data.contacts;
       return newState;
     case constant.HISTORY_CB:
       newState.history = action.data.history;
+      return newState;
+    case constant.FILTER_CUSTOMER_NAME:
+      newState.filteredContacts = _.filter(state.contacts, function(contact){
+        return (contact.first_name + " " + contact.last_name).toLowerCase().indexOf((action.data.word).toLowerCase()) >= 0;
+      });
       return newState;
     default:
       return state;

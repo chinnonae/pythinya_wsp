@@ -14,6 +14,14 @@ const actions = {
         history: res.result
       }
     };
+  },
+  filterCustomer: function (word) {
+    return {
+      type: getConstant().FILTER_CUSTOMER_NAME,
+      data: {
+        word: word
+      }
+    };
   }
 };
 
