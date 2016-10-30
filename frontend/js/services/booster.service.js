@@ -7,22 +7,26 @@ var service = {
 				"id": 1,
 				"email": "taweesoft@gmail.com",
 				"first_name": "Taweerat",
-				"last_name": "Chaiman"
+				"last_name": "Chaiman",
+        "telephone": "0832529994"
 			}, {
 				"id": 2,
 				"email": "chin@gmail.com",
 				"first_name": "Chintithi",
-				"last_name": "Wisetsombat"
+				"last_name": "Wisetsombat",
+        "telephone": "0832568475"
 			}, {
 				"id": 3,
 				"email": "not@gmail.com",
 				"first_name": "Patinya",
-				"last_name": "Yongyai"
+				"last_name": "Yongyai",
+        "telephone": "0834548877"
 			}, {
 				"id": 4,
 				"email": "p@gmail.com",
 				"first_name": "Thongrapee",
-				"last_name": "Panyapatiphan"
+				"last_name": "Panyapatiphan",
+        "telephone": "0812345678"
 			}]
 		};
 		cb(dummy);
