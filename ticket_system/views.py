@@ -3,7 +3,7 @@ from rest_framework.response import Response
 
 from .models import Ticket
 from .serializers import TicketSerializer
-from .apis import BoosterTicketAction
+from .apis import BoosterTicketAction, ClientTicketAction
 
 
 class TicketView(APIView):
@@ -49,12 +49,12 @@ class TicketPurchaseView(APIView):
 
     def put(self, request, pk):
         ticket = Ticket.objects.get(pk=pk)
-        ticket.client = request.user
-        ticket.status = 2
-        ticket.save()
+        client_ticket_action = ClientTicketAction(request.user, ticket)
+
+        error, message = client_ticket_action.purchase_ticket()
 
         return Response({
-            "message": "purchase successful",
+            "message": message,
             "status": 200
         })
 
@@ -91,11 +91,11 @@ class TicketCompleteView(APIView):
 
     def put(self, request, pk):
         ticket = Ticket.objects.get(pk=pk)
+        booster_ticket_action = BoosterTicketAction(request.user, ticket)
 
-        ticket.status = 4
-        ticket.save()
+        error, message = booster_ticket_action.complete_ticket()
 
         return Response({
-            "message": "ticket status updated to done",
+            "message": message,
             "status": 200
         }, status=200)
