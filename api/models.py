@@ -18,6 +18,7 @@ class BoosterTicketAction:
         })
         ticket.is_valid()
         ticket.save()
+
         return None, ticket.data
 
     def complete_ticket(self):
@@ -29,7 +30,11 @@ class BoosterTicketAction:
     def update_ticket_mmr_progress(self, new_current_mmr):
         self.ticket.current_mmr = new_current_mmr
         self.ticket.save()
+
         return None, "current MMR is updated to %d" % new_current_mmr
+
+    def start_boosting(self, client):
+        return None
 
 
 class ClientTicketAction:
@@ -41,8 +46,41 @@ class ClientTicketAction:
     def purchase_ticket(self):
         self.ticket.clients.add(self.user)
         self.ticket.save()
+
         return None, "purchase successful"
 
+    def take_ticket(self):
+        self.ticket.clients.add(self.user)
+        self.ticket.save()
+
+        return None, "you have taken the ticket"
+
+    def cancel_ticket(self):
+
+        return None, "The ticket has been cancel"
 
 
+class UserService:
 
+    def __init__(self, user):
+        self.user = user
+
+    def profile(self):
+
+        return None
+
+    def boosting_ticket(self):
+
+        return None
+
+    def holding_ticket(self):
+
+        return None
+
+    def boosting_history(self):
+
+        return None
+
+    def client_contact(self):
+
+        return None
