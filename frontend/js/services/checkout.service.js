@@ -1,7 +1,7 @@
 import cookie from 'js-cookie';
 var checkout = {
-  var token = cookie.get('token');
   getTicket: function(ticketId, callback) {
+    var token = cookie.get('token');
 		$.ajax({
 				method: 'GET',
 				url: URL + '/api/ticket/' + ticketId
@@ -18,6 +18,7 @@ var checkout = {
 			});
 	},
   buyTicket: function(ticketId, callback) {
+    var token = cookie.get('token');
 		$.ajax({
 				method: 'PUT',
 				url: URL + '/api/ticket/' + ticketId +'/buy',
@@ -34,6 +35,7 @@ var checkout = {
 			});
 	},
   cancelTicket: function(ticketId, callback) {
+    var token = cookie.get('token');
 		$.ajax({
 				method: 'PUT',
 				url: URL + '/api/ticket/' + ticketId +'/cancel',

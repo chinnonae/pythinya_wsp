@@ -2,7 +2,7 @@ import {Row, Col} from 'react-bootstrap';
 class PaymentInfoPanel extends React.Component {
   render() {
     return (
-      <div>
+      <div className="padding-top padding-bottom">
         <Row>
           <Col xs={12} sm={10} md={10} lg={10} className="text-bold text-right">Price</Col>
           <Col xs={12} sm={2} md={2} lg={2} className="text-right">
