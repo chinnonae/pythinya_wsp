@@ -30,6 +30,7 @@ class BoosterTicketAction:
         self.ticket.save()
         return None, "current MMR is updated to %d" % new_current_mmr
 
+
 class ClientTicketAction:
 
     def __init__(self, user, ticket=None):
