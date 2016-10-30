@@ -38,7 +38,8 @@ class ClientTicketAction:
         self.ticket = ticket
 
     def purchase_ticket(self):
-        
+        self.ticket.clients.add(self.user)
+        self.ticket.save()
         return None, "purchase successful"
 
 
