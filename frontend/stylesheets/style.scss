@@ -135,3 +135,12 @@ html,body {
 .row {
   @extend .no-margin;
 }
+
+.relative {
+  position: relative;
+}
+
+.pull-right {
+  position: absolute;
+  right: 0;
+}

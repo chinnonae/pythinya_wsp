@@ -2,7 +2,9 @@ var initialState = {
   contacts: [],
   history: [],
   filteredContacts: [],
-  ticket: null
+  ticket: {
+    client: {}
+  }
 };
 
 var reducer = (state, action) => {

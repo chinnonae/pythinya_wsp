@@ -24,6 +24,7 @@ const actions = {
     };
   },
   getCurrentTicketCallback: function (res) {
+    console.log(res);
     return {
       type: getConstant().CURRENT_TICKET_CB,
       data: {

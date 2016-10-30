@@ -15,7 +15,8 @@ class Wrapper extends React.Component {
     return (
       <Grid className="full-width">
         <Col xs={12} sm={12} md={7} lg={8} className="padding-right">
-          <ContactsPanel />
+          {/* <ContactsPanel /> */}
+          <WaitingPaymentPanel />
         </Col>
         <Col xs={12} sm={12} md={5} lg={4} className="padding-left">
           <Row className="flex flex-column flex-end-y" style={{height: 100}}>
