@@ -16,8 +16,8 @@ class WaitingPaymentPanel extends React.Component {
     return (
       <Card className="padding-all" style={{marginTop: 100}}>
         <div style={{width: "60%"}} className="container-center">
-          <Row className="text-center">
-            <p>Waiting for payment from&nbsp;</p>
+          <Row className="text-center flex flex-center margin-bottom">
+            <p>Waiting for payment from &nbsp;</p>
             <p>{customerName}</p>
           </Row>
           <Row className="relative flex">
