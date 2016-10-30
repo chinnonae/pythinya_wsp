@@ -63,16 +63,12 @@ class TicketProgressView(APIView):
 
     def put(self, request, pk):
         ticket = Ticket.objects.get(pk=pk)
-        updated_current_mmr = int(request.data.get('current_mmr', None))
-        if updated_current_mmr is None:
-            return Response({
-                "message": "current_mmr is not found"
-            }, status=400)
+        booster_ticket_action = BoosterTicketAction(request.user, ticket)
+        new_current_mmr = request.data.get("current_mmr", None)
 
-        ticket.current_mmr = updated_current_mmr
-        ticket.save()
+        error, message = booster_ticket_action.update_ticket_mmr_progress(new_current_mmr)
         return Response({
-            "message": "current MMR is updated to %d." % updated_current_mmr
+            "message": message
         }, status=200)
 
 
