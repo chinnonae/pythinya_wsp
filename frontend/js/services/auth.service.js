@@ -1,4 +1,3 @@
-import cookie from 'js-cookie';
 var auth = {
 	signin: function(username, password, callback) {
     getWaitmeService().show();
