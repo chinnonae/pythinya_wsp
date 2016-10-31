@@ -12,20 +12,6 @@ var actions = cc.get('redux.actions');
 //Slider
 var Slider = require('react-slick');
 
-var SampleNextArrow = React.createClass({
-  render: function() {
-    return <div {...this.props} style={{display: 'block', background: 'red'}}></div>;
-  }
-});
-
-var SamplePrevArrow = React.createClass({
-  render: function() {
-    return (
-      <div {...this.props} style={{display: 'block', background: 'red'}}></div>
-    );
-  }
-});
-
 class Main extends React.Component {
 
   constructor(props) {
@@ -53,7 +39,7 @@ class Main extends React.Component {
       // prevArrow: <SamplePrevArrow />,
       infinite: true,
       autoplay: true,
-      speed: 2000,
+      speed: 1000,
       slidesToShow: 3,
       slidesToScroll: 1
     };
