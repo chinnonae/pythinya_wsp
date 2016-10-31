@@ -1,61 +1,55 @@
 var auth = {
 	signin: function(username, password, callback) {
     getWaitmeService().show();
-		$.ajax({
-				method: 'POST',
-				url: URL + '/api/user/signin/',
-				data: {
-					username: username,
-					password: password
-				},
-			})
-			.done(function(res) {
-        getWaitmeService().hide();
-				if (typeof callback === 'function') {
-					callback(res);
-				}
-			})
-			.fail(function(res) {
-        getWaitmeService().hide();
-				if (typeof callback === 'function') {
-					callback(res);
-				}
-			});
+    let http = getHttpService();
+    callback = typeof callback === 'function' ? callback : () => {};
+    var data = {
+      username: username,
+      password: password
+    };
+    http.getConstant(http.methods.POST, '/api/user/signin/', data, false)
+    .done(function(res) {
+      getWaitmeService().hide();
+      callback(res);
+    })
+    .fail(function(res) {
+      getWaitmeService().hide();
+      callback(res);
+    });
 	},
 	signup: function(user, callback) {
     getWaitmeService().show();
+    let http = getHttpService();
+    callback = typeof callback === 'function' ? callback : () => {};
 		var data = {};
 		/* serializing data from form*/
 		_.map(user, function(item) {
 			data[item.name] = item.value;
 		});
-		$.ajax({
-				method: 'POST',
-				url: URL + '/api/user/signup/',
-				data: data
-			})
-			.done(function(res) {
-        getWaitmeService().hide();
-				if (typeof callback === 'function') {
-					callback(res);
-				}
-			})
-			.fail(function(res) {
-        getWaitmeService().hide();
-				if (typeof callback === 'function') {
-					callback(res);
-				}
-			});
+    http.getConstant(http.methods.POST, '/api/user/signup/', data, false)
+    .done(function(res) {
+      getWaitmeService().hide();
+      callback(res);
+    })
+    .fail(function(res) {
+      getWaitmeService().hide();
+      callback(res);
+    });
 	},
   signout: function(callback) {
-    const cb = typeof callback === 'function' ? callback : () => {};
+    callback = typeof callback === 'function' ? callback : () => {};
     var profileService = cc.get('services.profile');
     profileService.clear();
-    cb();
+    callback();
   }
 };
 
 function getWaitmeService() {
   return cc.get('services.waitme');
 }
+
+function getHttpService() {
+  return cc.get('services.http');
+}
+
 cc.register('services.auth', auth);
