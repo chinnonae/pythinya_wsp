@@ -1,5 +1,7 @@
 from ticket_system.serializers import TicketSerializer
-from ticket_system.models import Clientship
+from ticket_system.models import Clientship, Ticket
+from user.serializers import UserSerializer
+
 
 class BoosterTicketAction:
 
@@ -34,6 +36,10 @@ class BoosterTicketAction:
         return None, "current MMR is updated to %d" % new_current_mmr
 
     def start_boosting(self, client):
+        cancelled_clients = Clientship.objects.all()\
+            .filter(ticket=self.ticket)\
+            .exclude(client=client)
+        delete_rows = cancelled_clients.delete()
 
         return None
 
@@ -68,21 +74,30 @@ class UserService:
         self.user = user
 
     def profile(self):
+        serialized = UserSerializer(self.user)
 
-        return None
+        return serialized.data
 
     def boosting_ticket(self):
+        boosting_ticket = Ticket.objects.filter(booster=self.user)\
+            .exclude(status=4).first()
+        serialized = TicketSerializer(boosting_ticket)
 
-        return None
+        return serialized.data
 
     def holding_ticket(self):
+        holding_ticket = Ticket.objects.filter(clients=self.user)\
+            .exclude(status=4).first()
+        serialized = TicketSerializer(holding_ticket)
 
-        return None
+        return serialized.data
 
     def boosting_history(self):
+        boosting_history = Ticket.objects.filter(booster=self.user, status=4)\
+            .order_by('-id')
+        serialized = TicketSerializer(boosting_history, many=True)
 
-        return None
+        return serialized.data
 
     def client_contact(self):
-
         return None
