@@ -9,6 +9,22 @@ import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 var authService = cc.get('services.auth');
 //list
 var actions = cc.get('redux.actions');
+//Slider
+var Slider = require('react-slick');
+
+var SampleNextArrow = React.createClass({
+  render: function() {
+    return <div {...this.props} style={{display: 'block', background: 'red'}}></div>;
+  }
+});
+
+var SamplePrevArrow = React.createClass({
+  render: function() {
+    return (
+      <div {...this.props} style={{display: 'block', background: 'red'}}></div>
+    );
+  }
+});
 
 class Main extends React.Component {
 
@@ -30,6 +46,17 @@ class Main extends React.Component {
     var error = !this.props.reducer.auth.isSuccess;
     var emailLabel = "E-mail";
     emailLabel += error ? _.template(' (${message})')({message: this.props.reducer.auth.message}) : '';
+    var Carousel = cc.get("components.carousel");
+    var settings = {
+      // dots: true,
+      // nextArrow: <SampleNextArrow />,
+      // prevArrow: <SamplePrevArrow />,
+      infinite: true,
+      autoplay: true,
+      speed: 2000,
+      slidesToShow: 3,
+      slidesToScroll: 1
+    };
     /* rendering */
     return (
       <Grid id="signup-panel" className="flex flex-center full-width " style={{height: "calc(100vh - 64px)"}}>
@@ -64,6 +91,16 @@ class Main extends React.Component {
               </Col>
             </div>
           </Row>
+          {/* <Row className="flex"> */}
+          <div className="container full-width">
+            <Slider {...settings}>
+              <div><Image className="box-size" src="/assets/kanoon.jpg"></Image></div>
+              <div><Image className="box-size" src="/assets/nonae.jpg"></Image></div>
+              <div><Image className="box-size" src="/assets/not.jpg"></Image></div>
+              <div><Image className="box-size" src="/assets/p.jpg"></Image></div>
+            </Slider>
+          </div>
+          {/* </Row> */}
         </Grid>
       </Grid>
     );

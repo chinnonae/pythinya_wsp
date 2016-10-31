@@ -17,8 +17,12 @@ class Wrapper extends React.Component {
 	render() {
     var Signin = cc.get('components.signin');
     var Signup = cc.get('components.signup');
+
     waitmeService.subscribe(this.store);
 		var Main = cc.get('components.main');
+
+    var Carousel = cc.get('components.carousel');
+
 		return (
 			<Provider store={this.store}>
 				<Router onUpdate={this.loadJS.bind(this)} history={browserHistory}>
@@ -26,6 +30,7 @@ class Wrapper extends React.Component {
 						<IndexRoute component={Main}/>
 						<Route path='signin' component={Signin}/>
 						<Route path='signup' component={Signup}/>
+            <Route path='carousel' component={Carousel}/>
 					</Route>
 				</Router>
 			</Provider>
