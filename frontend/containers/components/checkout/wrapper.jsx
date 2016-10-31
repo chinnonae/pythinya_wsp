@@ -1,5 +1,11 @@
 import {Grid} from 'react-bootstrap';
+const checkoutService = cc.get('services.checkout');
+const actions = cc.get('redux.actions');
 class Wrapper extends React.Component {
+  constructor(props) {
+    super(props);
+    checkoutService.getTicket(1,this.props.actions.getTicketCallback); // TODO: Change ticketId to the real one from profile
+  }
   render() {
     var TicketInfoPanel = cc.get('components.checkout.ticketInfoPanel');
     var PaymentInfoPanel = cc.get('components.checkout.paymentInfoPanel');
@@ -16,4 +22,4 @@ class Wrapper extends React.Component {
   }
 }
 
-cc.register('components.checkout.wrapper', Wrapper);
+cc.register('components.checkout.wrapper', connect(mapStateToProps,mapDispatchToProps(actions))(Wrapper));
