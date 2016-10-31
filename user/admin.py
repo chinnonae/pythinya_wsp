@@ -6,6 +6,7 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 from .models import User
 
+
 class UserCreationForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
@@ -22,7 +23,6 @@ class UserCreationForm(forms.ModelForm):
 
         return password2
 
-
     def save(self, commit=True):
         user = super(UserCreationForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
@@ -37,10 +37,10 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'password', 'first_name', 'last_name', 'is_active', 'is_admin')
+        fields = ('email', 'password', 'first_name', 'last_name', 'is_admin')
 
-        def clean_password(self):
-            return self.initial["password"]
+    def clean_password(self):
+        return self.initial["password"]
 
 
 class UserAdmin(BaseUserAdmin):
@@ -57,7 +57,7 @@ class UserAdmin(BaseUserAdmin):
 
     add_fieldsets = (
         (None, {
-            'classes': ('wide,'),
+            'classes': ('wide',),
             'fields': ('email', 'first_name', 'last_name', 'password1', 'password2')}
         ),
     )

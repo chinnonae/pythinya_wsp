@@ -34,6 +34,7 @@ class BoosterTicketAction:
         return None, "current MMR is updated to %d" % new_current_mmr
 
     def start_boosting(self, client):
+
         return None
 
 
@@ -55,6 +56,8 @@ class ClientTicketAction:
         return None, "you have taken the ticket"
 
     def cancel_ticket(self):
+        clientship = Clientship.objects.all().filter(client=self.user, ticket=self.ticket)
+        clientship.delete()
 
         return None, "The ticket has been cancel"
 
