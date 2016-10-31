@@ -18,6 +18,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(_('active'), default=True)
     is_admin = models.BooleanField(_('staff'), default=False)
     telephone = models.CharField(_('telephone'), max_length=10)
+    is_booster = models.BooleanField(_('booster'), default=False)
 
     objects = UserManager()
 
