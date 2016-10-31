@@ -152,9 +152,11 @@ var service = {
       }
     })
     .done(function(res) {
+      window.location = '/booster_panel';
       cb(res);
     })
     .fail(function(res) {
+      window.location = '/booster_panel';
       console.log(res);
     });
   }
