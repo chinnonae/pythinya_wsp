@@ -28,6 +28,9 @@ var service = {
 	},
   clear: function() {
     profile = null;
+  },
+  getToken: function() {
+    return cookie.get('token');
   }
 };
 
