@@ -4,7 +4,7 @@ class PaymentActionPanel extends React.Component {
   render() {
     return (
       <div>
-        <Row className="padding-bottom text-right">
+        <Row className="padding-bottom padding-top margin-bottom text-right">
           <Col xs={12} sm={10} md={10} lg={10}></Col>
           <Col xs={12} sm={2} md={2} lg={2}>
           <RaisedButton label="Pay" primary={true} className="full-width"/>
