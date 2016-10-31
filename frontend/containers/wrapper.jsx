@@ -1,5 +1,5 @@
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import {Router, Route, browserHistory} from 'react-router';
+import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import App from './app.jsx';
@@ -18,10 +18,12 @@ class Wrapper extends React.Component {
     var Signin = cc.get('components.signin');
     var Signup = cc.get('components.signup');
     waitmeService.subscribe(this.store);
+		var Main = cc.get('components.main');
 		return (
 			<Provider store={this.store}>
 				<Router onUpdate={this.loadJS.bind(this)} history={browserHistory}>
 					<Route path='/' component={App}>
+						<IndexRoute component={Main}/>
 						<Route path='signin' component={Signin}/>
 						<Route path='signup' component={Signup}/>
 					</Route>
