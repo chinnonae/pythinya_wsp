@@ -5,6 +5,9 @@ var initialState = {
   ticket: {
     client: {}
   },
+  dialog: {
+    item: null
+  },
   showConfirmDialog: false
 };
 
@@ -30,6 +33,7 @@ var reducer = (state, action) => {
       return newState;
     case constant.TOGGLE_CONFIRM_DIALOG:
       newState.showConfirmDialog = action.data.isToggle;
+      newState.dialog.item = action.data.item;
       return newState;
     default:
       return state;

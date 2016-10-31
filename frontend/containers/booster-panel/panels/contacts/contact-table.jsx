@@ -3,8 +3,7 @@ import {Card} from 'material-ui/Card';
 const actions = cc.get('redux.actions');
 class ContactTable extends React.Component {
   onClick(item) {
-    console.log('xxx');
-    this.props.actions.toggleConfirmDialog(true);
+    this.props.actions.toggleConfirmDialog(true,item);
   }
   render() {
     var self = this;

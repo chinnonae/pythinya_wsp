@@ -23,7 +23,7 @@ class Wrapper extends React.Component {
                 <p>{customerName}</p>
               </span>
             </Row>
-            <Row id="boosting-mmr-wrapper" className="flex margin-bottom">
+            <Row className="flex margin-bottom flex-mobile">
               <Col className="flex flex-column text-center" xs={12} sm={6} md={6} lg={6}>
                 <h4>from MMR</h4>
                 <h2>{reducer.min_mmr}</h2>

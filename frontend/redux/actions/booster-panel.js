@@ -24,7 +24,6 @@ const actions = {
     };
   },
   getCurrentTicketCallback: function (res) {
-    console.log(res);
     return {
       type: getConstant().CURRENT_TICKET_CB,
       data: {
@@ -32,12 +31,18 @@ const actions = {
       }
     };
   },
-  toggleConfirmDialog: function(isToggle) {
+  toggleConfirmDialog: function(isToggle,item) {
     return {
       type: getConstant().TOGGLE_CONFIRM_DIALOG,
       data: {
-        isToggle: isToggle
+        isToggle: isToggle,
+        item: item
       }
+    };
+  },
+  startBoostingCallback: function(res) {
+    return {
+      type: getConstant().START_BOOSTING_CB
     };
   }
 };

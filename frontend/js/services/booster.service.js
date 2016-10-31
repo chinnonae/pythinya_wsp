@@ -86,12 +86,10 @@ var service = {
 		cb(dummy);
 		return; // remove this!!!
 		$.ajax({
-				methos: 'GET',
+				method: 'GET',
 				url: URL + '/api/ticket/history',
 				headers: {
-					'Authorization': _.template('token ${token}')({
-						token: cookie.get('token')
-					})
+					'Authorization': 'token ' + getProfile().getToken()
 				}
 			})
 			.done(function(res) {
@@ -131,12 +129,10 @@ var service = {
     cb(dummy);
     return; // remove this!!!
 		$.ajax({
-				methos: 'GET',
+				method: 'GET',
 				url: URL + '/api/ticket/' + id,
 				headers: {
-					'Authorization': _.template('token ${token}')({
-						token: cookie.get('token')
-					})
+					'Authorization': 'token ' + getProfile().getToken()
 				}
 			})
 			.done(function(res) {
@@ -145,7 +141,27 @@ var service = {
 			.fail(function(res) {
 				console.log(res);
 			});
-	}
+	},
+  startBoosting: function(id, callback) {
+		const cb = typeof callback === 'function' ? callback : () => {};
+    $.ajax({
+      method: 'PUT',
+      url: URL + '/api/ticket/' + id + '/start',
+      headers: {
+        'Authorization': 'token ' + getProfile().getToken()
+      }
+    })
+    .done(function(res) {
+      cb(res);
+    })
+    .fail(function(res) {
+      console.log(res);
+    });
+  }
+};
+
+const getProfile = () => {
+  return cc.get('services.profile');
 };
 
 cc.register('services.booster', service);
