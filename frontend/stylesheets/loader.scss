@@ -1,0 +1,24 @@
+$blur: 6px;
+.blur-onblur{
+  transition: 0.2s ease-in-out;
+  -webkit-filter: blur($blur);
+  -moz-filter: blur($blur);
+  -o-filter: blur($blur);
+  -ms-filter: blur($blur);
+  filter: blur($blur);
+}
+
+.loader-wrapper, .blur-bg {
+  transition: 0.3s ease-in-out;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 2000;
+}
+
+.blur-bg {
+  transition: 0.3s ease-in-out;
+  background-color: rgba(0,0,0,0.7);
+}

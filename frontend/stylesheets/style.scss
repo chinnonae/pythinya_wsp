@@ -99,3 +99,19 @@ html,body {
 .full-width {
   width: 100%;
 }
+
+.link-button {
+  position: relative;
+  padding-left: 16px;
+  padding-right: 16px;
+  vertical-align: middle;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 14px;
+  display: block;
+  text-decoration: none;
+}
+.link-button:hover, .link-button:visited, .link-button:active, .link-button:link {
+  text-decoration: none;
+}
