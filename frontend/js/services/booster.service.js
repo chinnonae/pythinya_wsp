@@ -136,10 +136,14 @@ var service = {
       console.log(res);
     });
   },
-  createTicket: function(min_mmr, max_mmr, day_used, price, callback) {
+  createTicket: function(rawData, callback) {
     callback = typeof callback === 'function' ? callback : () => {};
     let http = getHttp();
-    http.getConstant(http.methods.POST, '/api/ticket/')
+    let data = {};
+    _.map(rawData, function(item) {
+      data[item.name] = item.value;
+    });
+    http.getConstant(http.methods.POST, '/api/ticket/', data)
     .done(function(res) {
       callback(res);
     })

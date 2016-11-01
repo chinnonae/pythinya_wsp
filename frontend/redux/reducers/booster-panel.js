@@ -35,6 +35,8 @@ var reducer = (state, action) => {
       newState.showConfirmDialog = action.data.isToggle;
       newState.dialog.item = action.data.item;
       return newState;
+    case constant.CREATE_TICKET_CB:
+      return newState;
     default:
       return state;
   }

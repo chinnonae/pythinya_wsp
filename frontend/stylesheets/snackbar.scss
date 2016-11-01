@@ -29,6 +29,9 @@ $snackbar-height-mobile: 390px;
   transform: translateY(calc(100vh - #{$snackbar-height-desktop}));
 }
 
+.snackbar-wrapper-show > .dark-wrapper {
+  opacity: 1;
+}
 .snackbar-wrapper {
   visibility: hidden;
   position: absolute;
@@ -38,9 +41,18 @@ $snackbar-height-mobile: 390px;
   right: 0;
   opacity: 0;
   transition: 0.3s;
-  background-color: rgba(0,0,0,0.5);
 }
 
+.dark-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: 0.3s;
+  background-color: rgba(0,0,0,0.5);
+}
 .snackbar-wrapper-show {
   opacity: 1;
   visibility: visible;

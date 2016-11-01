@@ -44,6 +44,12 @@ const actions = {
     return {
       type: getConstant().START_BOOSTING_CB
     };
+  },
+  createTicketCallback: function(res) {
+    return {
+      type: getConstant().CREATE_TICKET_CB,
+      data: res
+    };
   }
 };
 
