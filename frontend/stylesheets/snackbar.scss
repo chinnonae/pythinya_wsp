@@ -15,7 +15,7 @@ $snackbar-height-mobile: 390px;
   height: $snackbar-height-desktop;
   width: 100%;
   opacity: 0;
-  transition: visibility 0.3s, opacity 0.3s linear, 0.3s ease-in-out;
+  transition: visibility 0s, opacity 0.3s linear, 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   transform: translateY(100vh);
 }
 
