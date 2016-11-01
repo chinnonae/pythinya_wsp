@@ -1,4 +1,5 @@
 import {Row, Col} from 'react-bootstrap';
+import {FlatButton} from 'material-ui';
 class SnackBar extends React.Component {
   close() {
     let element = $('.snackbar-wrapper');
@@ -34,6 +35,9 @@ class SnackBar extends React.Component {
 									</Row>
 								</Col>
 							</Row>
+              <Row className='relative margin-top'>
+                <FlatButton className="pull-right" label="Done" primary={true}/>
+              </Row>
 						</div>
 					</Col>
 				</div>
