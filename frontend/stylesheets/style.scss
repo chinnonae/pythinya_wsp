@@ -123,3 +123,36 @@ html,body {
 .link-button:hover, .link-button:visited, .link-button:active, .link-button:link {
   text-decoration: none;
 }
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-end-y {
+  justify-content: flex-end;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.no-padding {
+  padding: 0px;
+}
+
+.row {
+  @extend .no-margin;
+}
+
+.relative {
+  position: relative;
+}
+
+.pull-right {
+  position: absolute;
+  right: 0;
+}
+
+.display-box {
+  display: -webkit-box !important;
+}

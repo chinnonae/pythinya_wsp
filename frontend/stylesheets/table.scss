@@ -1,0 +1,11 @@
+.hoverable > tbody > tr {
+  transition: 0.3s ease-in;
+}
+.hoverable > tbody > tr:hover {
+  background-color: rgba(179,229,252,0.15);
+}
+
+tbody > tr > td {
+  text-overflow: inherit !important;
+  white-space: normal !important; 
+}
