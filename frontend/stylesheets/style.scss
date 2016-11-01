@@ -72,6 +72,14 @@ html,body {
   margin-bottom: 15px;
 }
 
+.margin-right {
+  margin-right: 15px;
+}
+
+.margin-left {
+  margin-left: 15px;
+}
+
 .padding-all {
   padding: 15px;
 }
@@ -145,6 +153,10 @@ html,body {
   right: 0;
 }
 
+.pull-top {
+  position: absolute;
+  top: 0;
+}
 .display-box {
   display: -webkit-box !important;
 }
