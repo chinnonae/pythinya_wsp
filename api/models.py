@@ -10,7 +10,12 @@ class BoosterTicketAction:
         self.ticket = ticket
 
     def create_ticket(self, min_mmr, max_mmr, day_used, price):
-        ticket = TicketSerializer(data={
+        if not self.user.is_booster:
+            return None, "You are not a booster."
+        if UserService(self.user).boosting_ticket() is not None:
+            return None, "You cannot create more ticket while there is incomplete ticket."
+
+        ticket_serializer = TicketSerializer(data={
             "min_mmr": min_mmr,
             "max_mmr": max_mmr,
             "day_used": day_used,
@@ -18,30 +23,60 @@ class BoosterTicketAction:
             "status": 1,
             "booster": self.user.id
         })
-        ticket.is_valid()
-        ticket.save()
+        if not ticket_serializer.is_valid():
+            return None, "The data is invalid."
 
-        return None, ticket.data
+        ticket_instance = ticket_serializer.save()
+
+        return ticket_instance, None
 
     def complete_ticket(self):
+        if self.user.id != self.ticket.booster.id:
+            return None, "You are not the owner."
+        if self.ticket.status == 1:
+            return None, "You have not selected your client."
+        if self.ticket.status == 3:
+            return None, "Your client have not paid you."
+        if self.ticket.status == 4:
+            return None, "The ticket was completed."
+
         self.ticket.status = 4
         self.ticket.save()
 
-        return None, "ticket status updated to done"
+        return self.ticket
 
     def update_ticket_mmr_progress(self, new_current_mmr):
+        if self.user.id != self.ticket.booster.id:
+            return None, "You are not the owner."
+        if self.ticket.status == 1:
+            return None, "You have not selected your client."
+        if self.ticket.status == 3:
+            return None, "Your client have not paid you."
+        if self.ticket.status == 4:
+            return None, "The ticket was completed."
+
         self.ticket.current_mmr = new_current_mmr
         self.ticket.save()
 
-        return None, "current MMR is updated to %d" % new_current_mmr
+        return self.ticket
 
     def start_boosting(self, client):
-        cancelled_clients = Clientship.objects.all()\
-            .filter(ticket=self.ticket)\
-            .exclude(client=client)
-        delete_rows = cancelled_clients.delete()
+        if self.user.id != self.ticket.booster.id:
+            return None, "You are not the owner."
+        if self.ticket.status == 2:
+            return None, "You already started boosting."
+        if self.ticket.status == 3:
+            return None, ""
+        if self.ticket.status == 4:
+            return None, "The ticket was completed."
 
-        return None
+        # delete all clients except the chosen
+        self.ticket.clients.through.objcets.filter(ticket=self.ticket).exclude(client=client).delete()
+        # set ticket status to waiting for payment
+        self.ticket.status = 3
+        self.ticket.save()
+
+        return self.ticket
 
 
 class ClientTicketAction:
@@ -51,21 +86,36 @@ class ClientTicketAction:
         self.ticket = ticket
 
     def purchase_ticket(self):
-        self.ticket.clients.add(self.user)
+        if self.user.id == self.ticket.booster.id:
+            return None, "You cannot buy your own ticket."
+        if self.ticket.status == 1:
+            return None, "Booster haven't chosen a client."
+        if self.ticket.status == 2:
+            return None, "The ticket was already bought."
+        if self.ticket.status == 4:
+            return None, "The ticket was completed."
+        if self.ticket.clients.first().id != self.user.id:
+            return None, "The booster didn't choose you to boost your MMR."
+
+        self.ticket.status = 2
         self.ticket.save()
 
-        return None, "purchase successful"
+        return self.ticket
 
     def take_ticket(self):
-        Clientship.objects.create(ticket=self.ticket, client=self.user)
+        if self.user.id == self.ticket.booster.id:
+            return None, "You cannot take your own ticket."
+        if self.ticket.status != 1:
+            return None, "The ticket is unavailable."
+        if self.ticket.clients.filter(pk=self.user.id).first() is not None:
+            return None, "You already took the ticket."
 
-        return None, "you have taken the ticket"
+        clientship = self.ticket.clients.through.objects.create(client=self.user, ticket=self.ticket)
+
+        return clientship
 
     def cancel_ticket(self):
-        clientship = Clientship.objects.all().filter(client=self.user, ticket=self.ticket)
-        clientship.delete()
-
-        return None, "The ticket has been cancel"
+        pass
 
 
 class UserService:
@@ -74,30 +124,30 @@ class UserService:
         self.user = user
 
     def profile(self):
-        serialized = UserSerializer(self.user)
 
-        return serialized.data
+        return self.user
 
     def boosting_ticket(self):
         boosting_ticket = Ticket.objects.filter(booster=self.user)\
-            .exclude(status=4).first()
-        serialized = TicketSerializer(boosting_ticket)
+            .exclude(status=4)\
+            .first()
 
-        return serialized.data
+        return boosting_ticket
 
     def holding_ticket(self):
         holding_ticket = Ticket.objects.filter(clients=self.user)\
-            .exclude(status=4).first()
-        serialized = TicketSerializer(holding_ticket)
+            .exclude(status=4)\
+            .first()
 
-        return serialized.data
+        return holding_ticket
 
     def boosting_history(self):
-        boosting_history = Ticket.objects.filter(booster=self.user, status=4)\
-            .order_by('-id')
-        serialized = TicketSerializer(boosting_history, many=True)
+        completed_tickets = Ticket.objects.filter(booster=self.user)\
+            .filter(status=4)
 
-        return serialized.data
+        return completed_tickets
 
-    def client_contact(self):
-        return None
+    def current_client_contact(self):
+        boosting_ticket = self.boosting_ticket()
+
+        return boosting_ticket.clients.all()
