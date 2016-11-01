@@ -1,5 +1,5 @@
 let service = {
-  getConstant: function(method, url, data, requireToken = true) {
+  getConstant: function(method, url, data = {}, requireToken = true) {
     const profile = cc.get('services.profile');
     var Authorization = requireToken ? { 'Authorization': 'token ' + profile.getToken() } : {};
     return $.ajax({
