@@ -6,3 +6,4 @@ import './table.scss';
 import './animated-loader.scss';
 import './loader.scss';
 import './media-query.scss';
+import './snackbar.scss';

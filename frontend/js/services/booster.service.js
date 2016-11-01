@@ -135,6 +135,17 @@ var service = {
     .fail(function(res) {
       console.log(res);
     });
+  },
+  createTicket: function(min_mmr, max_mmr, day_used, price, callback) {
+    callback = typeof callback === 'function' ? callback : () => {};
+    let http = getHttp();
+    http.getConstant(http.methods.POST, '/api/ticket/')
+    .done(function(res) {
+      callback(res);
+    })
+    .fail(function(res) {
+      console.log(res);
+    });
   }
 };
 
