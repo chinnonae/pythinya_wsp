@@ -1,4 +1,4 @@
-import {Card, CardHeader} from 'material-ui/Card';
+import {Card} from 'material-ui/Card';
 import LinearProgress from 'material-ui/LinearProgress';
 class ProgressInfoPanel extends React.Component {
   render () {
