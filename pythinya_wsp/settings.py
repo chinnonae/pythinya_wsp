@@ -88,16 +88,6 @@ DATABASES = {
     }
 }
 
-if 'test' in sys.argv:
-    DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pythinya_test',
-        'USER': 'postgres'
-    }
-
-    from django.core.management import call_command
-    call_command('syncdb', migrate=True)
-
 AUTH_USER_MODEL = 'user.User'
 
 # Password validation
