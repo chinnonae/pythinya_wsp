@@ -1,6 +1,6 @@
 var service = {
 	getContactList: function(callback) {
-		const cb = typeof callback === 'function' ? callback : () => {};
+    callback = typeof callback === 'function' ? callback : () => {};
 		var dummy = {
 			status: 200,
 			result: [{
@@ -23,26 +23,19 @@ var service = {
 				"telephone": "0812345678"
 			}]
 		};
-		cb(dummy);
+		callback(dummy);
 		return; // remove this!!!
-		$.ajax({
-				methos: 'GET',
-				url: URL + '/api/ticket/contacts',
-				headers: {
-					'Authorization': _.template('token ${token}')({
-						token: cookie.get('token')
-					})
-				}
-			})
-			.done(function(res) {
-				cb(res);
-			})
-			.fail(function(res) {
-				console.log(res);
-			});
+    let http = getHttp();
+    http.getConstant(http.methods.GET, '/api/ticket/contacts/')
+    .done(function(res) {
+      callback(res);
+    })
+    .fail(function(res) {
+      console.log(res);
+    });
 	},
 	getHistory: function(callback) {
-		const cb = typeof callback === 'function' ? callback : () => {};
+		callback = typeof callback === 'function' ? callback : () => {};
 		var dummy = {
 			status: 200,
 			result: [{
@@ -83,24 +76,19 @@ var service = {
 				"telephone": "0812345678"
 			}]
 		};
-		cb(dummy);
+		callback(dummy);
 		return; // remove this!!!
-		$.ajax({
-				method: 'GET',
-				url: URL + '/api/ticket/history',
-				headers: {
-					'Authorization': 'token ' + getProfile().getToken()
-				}
-			})
-			.done(function(res) {
-				cb(res);
-			})
-			.fail(function(res) {
-				console.log(res);
-			});
+    let http = getHttp();
+    http.getConstant(http.methods.GET, '/api/ticket/history/')
+    .done(function(res) {
+      callback(res);
+    })
+    .fail(function(res) {
+      console.log(res);
+    });
 	},
 	getCurrentTicket: function(id, callback) {
-		const cb = typeof callback === 'function' ? callback : () => {};
+		callback = typeof callback === 'function' ? callback : () => {};
 		var dummy = {
 			"status": 200,
       "result": {
@@ -126,33 +114,23 @@ var service = {
   			"day_used": 5
       }
 		};
-    cb(dummy);
+    callback(dummy);
     return; // remove this!!!
-		$.ajax({
-				method: 'GET',
-				url: URL + '/api/ticket/' + id,
-				headers: {
-					'Authorization': 'token ' + getProfile().getToken()
-				}
-			})
-			.done(function(res) {
-				cb(res);
-			})
-			.fail(function(res) {
-				console.log(res);
-			});
+    let http = getHttp();
+    http.getConstant(http.methods.GET, '/api/ticket/' + id)
+    .done(function(res) {
+      callback(res);
+    })
+    .fail(function(res) {
+      console.log(res);
+    });
 	},
   startBoosting: function(id, callback) {
-		const cb = typeof callback === 'function' ? callback : () => {};
-    $.ajax({
-      method: 'PUT',
-      url: URL + '/api/ticket/' + id + '/start',
-      headers: {
-        'Authorization': 'token ' + getProfile().getToken()
-      }
-    })
+		callback = typeof callback === 'function' ? callback : () => {};
+    let http = getHttp();
+    http.getConstant(http.methods.PUT, '/api/ticket/' + id + '/start')
     .done(function(res) {
-      cb(res);
+      callback(res);
     })
     .fail(function(res) {
       console.log(res);
@@ -162,6 +140,10 @@ var service = {
 
 const getProfile = () => {
   return cc.get('services.profile');
+};
+
+const getHttp = () => {
+  return cc.get('services.http');
 };
 
 cc.register('services.booster', service);
