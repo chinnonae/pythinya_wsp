@@ -19,18 +19,18 @@ class SnackBar extends React.Component {
 								<Col className="container-center" xs={11} sm={10} md={10} lg={10}>
 									<Row>
 										<Col xs={12} sm={12} md={6} lg={6}>
-											<Input label="Min MMR" elementId="min_mmr"/>
+											<Input type="number" label="Min MMR" elementId="min_mmr"/>
 										</Col>
 										<Col xs={12} sm={12} md={6} lg={6}>
-											<Input label="Max MMR" elementId="max_mmr"/>
+											<Input type="number" label="Max MMR" elementId="max_mmr"/>
 										</Col>
 									</Row>
 									<Row>
 										<Col xs={12} sm={12} md={6} lg={6}>
-											<Input label="Price" elementId="price"/>
+											<Input type="number" label="Price" elementId="price"/>
 										</Col>
 										<Col xs={12} sm={12} md={6} lg={6}>
-											<Input label="Day used" elementId="day_used"/>
+											<Input type="number" label="Day used" elementId="day_used"/>
 										</Col>
 									</Row>
 								</Col>

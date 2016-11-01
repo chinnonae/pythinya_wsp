@@ -36,9 +36,12 @@ $snackbar-height-mobile: 390px;
   bottom: 0;
   left: 0;
   right: 0;
+  opacity: 0;
+  transition: 0.3s;
   background-color: rgba(0,0,0,0.5);
 }
 
 .snackbar-wrapper-show {
+  opacity: 1;
   visibility: visible;
 }
