@@ -1,3 +1,9 @@
+const errorField = {
+  max_mmr: false,
+  min_mmr: false,
+  price: false,
+  day_used: false
+};
 var initialState = {
   contacts: [],
   history: [],
@@ -8,13 +14,26 @@ var initialState = {
   dialog: {
     item: null
   },
+  createTicketDialog: {
+    isSuccess: true,
+    errorField: errorField,
+    message: ""
+  },
   showConfirmDialog: false
 };
 
 var reducer = (state, action) => {
+  const errorField = {
+    max_mmr: false,
+    min_mmr: false,
+    price: false,
+    day_used: false
+  };
   state                          = typeof state === 'undefined' ? initialState : state;
   const constant                 = cc.get('redux.constants');
-  const newState                 = _.clone(state);
+  const newState                 = _.clone(state, true);
+  newState.errorField            = errorField;
+  console.log(newState.createTicketDialog.errorField);
   switch(action.type) {
     case constant.CONTACTLIST_CB:
       newState.contacts          = action.data.contacts;
@@ -36,6 +55,17 @@ var reducer = (state, action) => {
       newState.dialog.item = action.data.item;
       return newState;
     case constant.CREATE_TICKET_CB:
+      if (action.data.status === BAD_REQUEST) {
+        newState.createTicketDialog.isSuccess = false;
+        console.log(newState.createTicketDialog.errorField);
+        console.log(action.data.field);
+        let fields = _.clone(errorField, true);
+        _.map(action.data.field, function(field) {
+          fields[field] = true;
+        });
+        newState.createTicketDialog.errorField = fields;
+        newState.createTicketDialog.message = action.data.message;
+      }
       return newState;
     default:
       return state;

@@ -141,8 +141,37 @@ var service = {
     let http = getHttp();
     let data = {};
     _.map(rawData, function(item) {
-      data[item.name] = item.value;
+      data[item.name] = parseInt(item.value);
     });
+    if(data.max_mmr <= data.min_mmr) { // error
+      callback({
+        status: BAD_REQUEST,
+        field: ['max_mmr', 'min_mmr'],
+        message: "Maximum MMR must more than Minimum MMR"
+      });
+      return;
+    }else if(data.day_used <= 0) {
+      callback({
+        status: BAD_REQUEST,
+        field: ['day_used'],
+        message: 'Minimum day used is 1'
+      });
+      return;
+    }else if(data.max_mmr < 0 || data.min_mmr < 0) {
+      callback({
+        status: BAD_REQUEST,
+        field: ['max_mmr', 'min_mmr'],
+        message: "MMR must be positive number"
+      });
+      return;
+    }else if(data.price < 0) {
+      callback({
+        status: BAD_REQUEST,
+        field: ['price'],
+        message: "Price must be positive number"
+      });
+      return;
+    }
     http.getConstant(http.methods.POST, '/api/ticket/', data)
     .done(function(res) {
       callback(res);
