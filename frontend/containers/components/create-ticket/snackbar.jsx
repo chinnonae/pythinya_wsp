@@ -9,7 +9,7 @@ class SnackBar extends React.Component {
 		/* Components */
 		let Input = cc.get('components.input');
 		return (
-			<div className="snackbar-wrapper">
+			<div onClick={this.close.bind(this)} className="snackbar-wrapper">
 				<div className="snackbar-container flex">
 					<Col xs={12} sm={12} md={6} lg={6} className="container-center no-padding" style={{height: "100%"}}>
 						<div className="snackbar padding-all">
