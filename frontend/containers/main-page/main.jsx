@@ -22,8 +22,8 @@ class Main extends React.Component {
       infinite: true,
       autoplay: true,
       speed: 1000,
-      slidesToShow: 3,//screen.width <= 768 ? 3 : 1
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      responsive: [ { breakpoint: 500, settings: { slidesToShow: 1 } }, { breakpoint: 1377, settings: { slidesToShow: 2 } }, { breakpoint: 1920, settings: { slidesToShow: 3 } }, { breakpoint: 5000, settings: { slidesToShow: 4 } }, { breakpoint: 100000, settings: 'unslick' } ]
     };
     /* rendering */
     return (
