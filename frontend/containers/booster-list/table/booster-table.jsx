@@ -12,11 +12,11 @@ class BoosterTable extends React.Component {
         <Table selectable={false} className="hoverable">
           <TableHeader displaySelectAll={false} adjustForCheckbox={false} style={{backgroundColor: "#e0e0e0"}}>
             <TableRow>
-              <TableHeaderColumn style={{width: "35%"}}><h4 style={{color: "#000000"}}>Booster name</h4></TableHeaderColumn>
-              <TableHeaderColumn><h4 style={{color: "#000000"}}>Price</h4></TableHeaderColumn>
-              <TableHeaderColumn><h4 style={{color: "#000000"}}>Boosted times</h4></TableHeaderColumn>
-              <TableHeaderColumn><h4 style={{color: "#000000"}}>Day used</h4></TableHeaderColumn>
-              <TableHeaderColumn><h4 style={{color: "#000000"}}>MMR</h4></TableHeaderColumn>
+              <TableHeaderColumn style={{width: "35%"}}>Booster name</TableHeaderColumn>
+              <TableHeaderColumn>Price</TableHeaderColumn>
+              <TableHeaderColumn>Boosted times</TableHeaderColumn>
+              <TableHeaderColumn>Day used</TableHeaderColumn>
+              <TableHeaderColumn>MMR</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
@@ -24,11 +24,11 @@ class BoosterTable extends React.Component {
               _.map(this.props.reducer.clientPanel.tickets, function(item, i) {
                 return (
                   <TableRow onMouseUp={self.onClick.bind(self,item)} key={i} className="pointer">
-                    <TableRowColumn style={{width: "35%"}}><h4>{item.booster.first_name + " " + item.booster.last_name}</h4></TableRowColumn>
-                    <TableRowColumn><h4>{item.price}</h4></TableRowColumn>
-                    <TableRowColumn><h4>{"4"}</h4></TableRowColumn>
-                    <TableRowColumn><h4>{item.day_used}</h4></TableRowColumn>
-                    <TableRowColumn><h4>{item.min_mmr + "-" + item.max_mmr}</h4></TableRowColumn>
+                    <TableRowColumn style={{width: "35%"}}>{item.booster.first_name + " " + item.booster.last_name}</TableRowColumn>
+                    <TableRowColumn>{item.price}</TableRowColumn>
+                    <TableRowColumn>{"4"}</TableRowColumn>
+                    <TableRowColumn>{item.day_used}</TableRowColumn>
+                    <TableRowColumn>{item.min_mmr + "-" + item.max_mmr}</TableRowColumn>
                   </TableRow>
                 );
               })

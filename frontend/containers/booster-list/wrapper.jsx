@@ -14,6 +14,7 @@ class BoosterList extends React.Component {
     var Input = cc.get('components.input');
     var self = this;
     var BoosterTable = cc.get('components.boosterList.boosterTable');
+    let Dialog = cc.get('components.clientPanel.buyDialog');
     /* rendering */
     return (
 
@@ -22,8 +23,8 @@ class BoosterList extends React.Component {
         <Col xs={12} sm={12} md={12} lg={8}>
           <div className="container-center">
             {/* //component top left-side */}
-            <Col xs={12} sm={5} md={5} lg={5}>
-              <div className="flex flex-center"><h3>Filter by MMR</h3></div>
+            <Col xs={12} sm={5} md={5} lg={5} className="no-padding">
+              <div className="flex flex-center">Filter by MMR</div>
               <Col xs={6} sm={6} md={6} lg={6}>
                 <Input name="start_mmr" label="Start(1500)" elementId="startMMR"></Input>
               </Col>
@@ -32,9 +33,9 @@ class BoosterList extends React.Component {
               </Col>
             </Col>
             {/* //component top right-side */}
-            <Col xs={12} sm={7} md={7} lg={7}>
+            <Col xs={12} sm={7} md={7} lg={7} className="no-padding">
               <Col xs={12} sm={8} md={8} lg={8}>
-                <div className="flex flex-center"><h3>Filter by Booster name</h3></div>
+                <div className="flex flex-center">Filter by Booster name</div>
               </Col>
               <div>
                 <Col xs={12} sm={8} md={8} lg={8}>
@@ -57,6 +58,7 @@ class BoosterList extends React.Component {
         <Col xs={0} sm={0} md={0} lg={4}>
 
         </Col>
+        <Dialog />
         {/* //end component booster list */}
       </div>
     );

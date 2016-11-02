@@ -8,7 +8,7 @@ class Wrapper extends React.Component {
     this.buy = this.buy.bind(this);
   }
   close() {
-    this.props.actions.toggleConfirmDialog(false);
+    this.props.actions.toggleConfirmBuyDialog(false);
   }
   buy() {
     let id = this.props.reducer.clientPanel.buyDialog.ticket.id;
