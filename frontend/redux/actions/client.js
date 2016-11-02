@@ -11,6 +11,12 @@ var actions = {
       data: data,
       isShow: isShow
     };
+  },
+  getTicketCallback: function(res) {
+    return {
+      type: getConstant().GET_TICKET_CB,
+      data: res.result
+    };
   }
 };
 

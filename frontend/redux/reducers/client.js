@@ -1,4 +1,5 @@
 let initialState = {
+  tickets: [],
   buyDialog: {
     isShow: false,
     ticket: null
@@ -15,6 +16,9 @@ const reducer = (state, action) => {
     case constant.TOGGLE_BUY_TICKET_CONFIRM_DIALOG:
       newState.buyDialog.isShow = action.isShow;
       newState.buyDialog.ticket = action.data;
+      return newState;
+    case constant.GET_TICKET_CB:
+      newState.tickets = action.data;
       return newState;
     default:
       return state;

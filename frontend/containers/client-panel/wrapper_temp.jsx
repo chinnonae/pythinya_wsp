@@ -1,9 +1,11 @@
 import {RaisedButton} from 'material-ui';
 const actions = cc.get('redux.actions');
+const ticketService = cc.get('services.ticket');
 class Wrapper extends React.Component {
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
+    ticketService.getTickets(this.props.actions.getTicketCallback);
   }
   toggle() {
     var tempData = {
