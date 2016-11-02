@@ -2,6 +2,7 @@ import auth from './auth';
 import profile from './profile';
 import boosterPanel from './booster-panel';
 import waitme from './waitme';
-var actions = _.merge({},auth, profile, waitme, boosterPanel);
+import clientPanel from './client';
+var actions = _.merge({},auth, profile, waitme, boosterPanel, clientPanel);
 
 cc.register('redux.actions', actions);
