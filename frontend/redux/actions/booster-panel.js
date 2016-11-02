@@ -50,7 +50,12 @@ const actions = {
       type: getConstant().CREATE_TICKET_CB,
       data: res
     };
-  }
+  },
+  doneBoostingCallback: function(res) {
+    return {
+      type: getConstant().DONE_BOOSTING_CB
+    };
+  },
 };
 
 function getConstant() {

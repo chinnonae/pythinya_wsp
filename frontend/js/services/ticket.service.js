@@ -2,7 +2,7 @@ var service = {
   buyTicket: function(ticketId, callback) {
     callback = typeof callback === 'function' ? callback : () => {};
     var http = getHttp();
-    http.getConstant(http.methods.POST, '/api/ticket/' + ticketId + '/pick')
+    http.getConstant(http.methods.PUT, '/api/ticket/' + ticketId + '/pick')
     .done(function(res) {
       callback(res);
     })

@@ -47,13 +47,12 @@ class Main extends React.Component {
     return (
       <Grid id="signup-panel" className="flex flex-center full-width " style={{height: "calc(100vh - 64px)"}}>
         <Grid className="padding-all full-width">
-          <Row className="flex" >
-            <div className="container">
-              <Col lg={7}>
-                <Image src="/assets/dota2logo.png" className="full-width full-height" />
+          <Row className="flex flex-mobile" >
+              <Col md={8} lg={8} className="dummy-container">
+                {/* <Image src="/assets/dota2logo.png" className="full-width full-height" /> */}
               </Col>
 
-              <Col xs={12} sm={12} md={12} lg={5} className="color-signup">
+              <Col xs={12} sm={12} md={4} lg={4} className="color-signup">
                 <div className="flat-card padding-left padding-right padding-bottom">
                   <form id="signup-form" onSubmit={this.onSubmit}>
                     <Row className="flex padding-all">
@@ -75,17 +74,16 @@ class Main extends React.Component {
                   </form>
                 </div>
               </Col>
-            </div>
           </Row>
           {/* <Row className="flex"> */}
-          <div className="container full-width">
+          {/* <div className="container full-width">
             <Slider {...settings}>
               <div><Image className="box-size" src="/assets/kanoon.jpg"></Image></div>
               <div><Image className="box-size" src="/assets/nonae.jpg"></Image></div>
               <div><Image className="box-size" src="/assets/not.jpg"></Image></div>
               <div><Image className="box-size" src="/assets/p.jpg"></Image></div>
             </Slider>
-          </div>
+          </div> */}
           {/* </Row> */}
         </Grid>
       </Grid>

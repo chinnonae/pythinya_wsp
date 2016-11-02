@@ -10,6 +10,10 @@ class Wrapper extends React.Component {
     // boosterService.getCurrentTicket(1, this.props.actions.getCurrentTicketCallback);
     this.props.actions.getCurrentTicketCallback(this.props.ticket);
   }
+  done() {
+    let id = this.props.reducer.boosterPanel.ticket.id;
+    boosterService.doneBoosting(id, this.props.actions.doneBoostingCallback);
+  }
   render() {
     /* components */
     const Input = cc.get('components.input');
@@ -40,7 +44,7 @@ class Wrapper extends React.Component {
               </Col>
             </Row>
             <Row className='flex'>
-              <RaisedButton className="container-center" buttonStyle={{width: 200}} primary={true} label="Done" />
+              <RaisedButton onTouchTap={this.done.bind(this)} className="container-center" buttonStyle={{width: 200}} primary={true} label="Done" />
             </Row>
           </Col>
         </Grid>

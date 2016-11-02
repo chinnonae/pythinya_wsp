@@ -21,39 +21,37 @@ class BoosterList extends React.Component {
     var BoosterTable = cc.get('components.boosterList.boosterTable');
     let Dialog = cc.get('components.clientPanel.buyDialog');
     let SnackBar = cc.get('components.createTicket.snackbar');
+    const HistoryTable = cc.get('components.boosterPanel.historyTable');
     /* rendering */
     return (
 
-      <div className="flex flex-center">
+      <div className="margin-top">
         {/* start component top */}
-        <Col xs={12} sm={12} md={12} lg={8}>
-          <div className="container-center">
+        <Col xs={12} sm={12} md={7} lg={8}>
             {/* //component top left-side */}
-            <Col xs={12} sm={5} md={5} lg={5} className="no-padding">
-              <div className="flex flex-center">Filter by MMR</div>
-              <Col xs={6} sm={6} md={6} lg={6}>
-                <Input name="start_mmr" label="Start(1500)" elementId="startMMR"></Input>
+            <Row style={{height: 100}} className="flex flex-mobile">
+              <Col xs={12} sm={5} md={5} lg={5} className="no-padding flex flex-column flex-end-y">
+                <div>
+                  <div className="flex flex-center">Filter by MMR</div>
+                  <Col xs={6} sm={6} md={6} lg={6}>
+                    <Input name="start_mmr" label="Start(1500)" elementId="startMMR"></Input>
+                  </Col>
+                  <Col xs={6} sm={6} md={6} lg={6}>
+                    <Input name="end_mmr" label="End(2500)" elementId="endMMR"></Input>
+                  </Col>
+                </div>
               </Col>
-              <Col xs={6} sm={6} md={6} lg={6}>
-                <Input name="end_mmr" label="End(2500)" elementId="endMMR"></Input>
-              </Col>
-            </Col>
-            {/* //component top right-side */}
-            <Col xs={12} sm={7} md={7} lg={7} className="no-padding">
-              <Col xs={12} sm={8} md={8} lg={8}>
-                <div className="flex flex-center">Filter by Booster name</div>
-              </Col>
-              <div>
-                <Col xs={12} sm={8} md={8} lg={8}>
-                  <Input name="booster_name" label="Booster name" elementId="boosterName"></Input>
+              {/* //component top right-side */}
+              <Col xs={12} sm={7} md={7} lg={7} className="no-padding flex">
+                <Col xs={8} sm={8} md={7} lg={7} className="flex flex-column flex-end-y">
+                  {/* <div className="flex flex-center">Filter by Booster name</div> */}
+                  <Input name="booster_name" label="Filter by booster name" elementId="boosterName"></Input>
                 </Col>
-                <Col xsOffset={4} xs={8} smOffset={0} sm={4} mdOffset={0} md={4} lg={4}>
-                  <br></br>
-                  <RaisedButton onTouchTap={this.showSnackbar} label="New Ticket" primary={true}/>
+                <Col xs={4} sm={4} md={5} lg={5} style={{paddingBottom: 10}} className="flex flex-column flex-end-y">
+                  <div><RaisedButton onTouchTap={this.showSnackbar} label="New Ticket" primary={true}/></div>
                 </Col>
-              </div>
-            </Col>
-          </div>
+              </Col>
+            </Row>
           {/* //end component top */}
           {/* //start component booster list */}
           <Col xs={12} sm={12} md={12} lg={12}>
@@ -61,8 +59,13 @@ class BoosterList extends React.Component {
           </Col>
         </Col>
         {/* end component booster list */}
-        <Col xs={0} sm={0} md={0} lg={4}>
-
+        <Col xs={12} sm={12} md={5} lg={4}>
+          <Row className="flex flex-column flex-end-y" style={{height: 100}}>
+            <p className="text-center">History</p>
+          </Row>
+          <Row>
+            <HistoryTable />
+          </Row>
         </Col>
         <Dialog />
         <SnackBar />

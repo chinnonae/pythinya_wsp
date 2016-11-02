@@ -165,6 +165,14 @@ html,body {
   position: absolute;
   top: 0;
 }
+.pull-bottom {
+  position:absolute;
+  bottom: 0;
+}
 .display-box {
   display: -webkit-box !important;
+}
+
+.dummy-container {
+  background-color: #F5F5F5;
 }

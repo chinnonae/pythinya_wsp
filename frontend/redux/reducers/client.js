@@ -12,6 +12,7 @@ const reducer = (state, action) => {
   const newState = _.clone(state, true);
   switch(action.type) {
     case constant.BUY_TICKET_CB:
+      location.reload();
       return newState;
     case constant.TOGGLE_BUY_TICKET_CONFIRM_DIALOG:
       newState.buyDialog.isShow = action.isShow;

@@ -30,7 +30,7 @@ class Wrapper extends React.Component {
 			<Provider store={this.store}>
 				<Router onUpdate={this.loadJS.bind(this)} history={browserHistory}>
 					<Route path='/' component={App}>
-						<IndexRoute component={Main}/>
+						<IndexRoute onEnter={isAuth} component={Main}/>
 						<Route path='signin' component={Signin}/>
 						<Route path='signup' component={Signup}/>
 						<Route path='client' component={BoosterList}/>
@@ -44,12 +44,23 @@ class Wrapper extends React.Component {
 	}
 }
 
+const isAuth =(nextState, replace, callback) => {
+  let cb = (res) => {
+    if(res !== null) { // not sign in
+      replace('/client');
+    }
+    callback();
+  };
+  let profile = cc.get('services.profile').getProfile(cb);
+};
 const requirePermission = (nextState, replace, callback) => {
   let cb = (res) => {
     if(res === null) { // not sign in
       replace('/signin');
     }else if(!res.user.is_booster) {
       replace('/');
+    }else if(!res.boosting_ticket) {
+      replace('/client');
     }
     callback();
   };

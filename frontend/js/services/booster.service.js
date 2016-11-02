@@ -138,6 +138,18 @@ var service = {
       console.log(res);
     });
   },
+  doneBoosting: function(id, callback) {
+		callback = typeof callback === 'function' ? callback : () => {};
+    let http = getHttp();
+    http.getConstant(http.methods.PUT, '/api/ticket/' + id + '/complete')
+    .done(function(res) {
+      window.location = '/client';
+      callback(res);
+    })
+    .fail(function(res) {
+      console.log(res);
+    });
+  },
   createTicket: function(rawData, callback) {
     callback = typeof callback === 'function' ? callback : () => {};
     let http = getHttp();
