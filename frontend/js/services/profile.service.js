@@ -3,11 +3,6 @@ var service = {
 		const token = cookie.get('token');
     const profile = cookie.get('profile');
     callback = typeof callback === 'function' ? callback : () => {};
-    // if (profile && token) {
-    //   let obj = JSON.parse(profile);
-    //   callback(obj);
-    //   return obj;
-    // }
 		if (token) {
       let http = getHttp();
       http.getConstant(http.methods.GET, '/api/user/profile/')
@@ -20,6 +15,10 @@ var service = {
       });
 		}else {
       callback(null);
+    }
+    if (profile && token) {
+      let obj = JSON.parse(profile);
+      return obj;
     }
 	},
   clear: function() {

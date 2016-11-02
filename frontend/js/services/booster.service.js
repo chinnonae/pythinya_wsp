@@ -134,7 +134,6 @@ var service = {
       callback(res);
     })
     .fail(function(res) {
-      window.location = '/booster_panel';
       console.log(res);
     });
   },

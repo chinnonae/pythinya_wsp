@@ -1,5 +1,9 @@
 var initialState = {
-  showLoader : false
+  showLoader : false,
+  alertDialog: {
+    isShow: false,
+    message: ''
+  }
 };
 
 const reducer = (state, action) => {
@@ -9,6 +13,10 @@ const reducer = (state, action) => {
   switch(action.type) {
     case constant.SHOW_LOADER:
       newState.showLoader = action.data.show;
+      return newState;
+    case constant.SHOW_ALERT_DIALOG:
+      newState.alertDialog.isShow = action.data.isShow;
+      newState.alertDialog.message = action.data.message;
       return newState;
     default:
       return state;

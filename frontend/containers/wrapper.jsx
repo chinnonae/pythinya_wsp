@@ -4,12 +4,15 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import App from './app.jsx';
 const waitmeService = cc.get('services.waitme');
+const actions = cc.get('redux.actions');
 injectTapEventPlugin();
+let store;
 class Wrapper extends React.Component {
 	constructor(props) {
 		super(props);
     const reducers = cc.get('redux.reducers');
     this.store = createStore(reducers);
+    store = this.store;
 	}
   loadJS() {
     $('input').phAnim(); //call animated-input everytime that dom updated
@@ -55,11 +58,13 @@ const isAuth =(nextState, replace, callback) => {
 };
 const requirePermission = (nextState, replace, callback) => {
   let cb = (res) => {
+    console.log(res);
     if(res === null) { // not sign in
       replace('/signin');
     }else if(!res.user.is_booster) {
       replace('/');
     }else if(!res.boosting_ticket) {
+      store.dispatch(actions.showAlertDialog(true, 'You have to create ticket first.'));
       replace('/client');
     }
     callback();
