@@ -6,6 +6,7 @@ class Wrapper extends React.Component {
     super(props);
     this.toggle = this.toggle.bind(this);
     ticketService.getTickets(this.props.actions.getTicketCallback);
+    this.props.reducer.clientPanel.tickets;
   }
   toggle() {
     var tempData = {

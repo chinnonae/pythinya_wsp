@@ -3,7 +3,12 @@ import {TextField, RaisedButton, Divider} from 'material-ui';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import {Card} from 'material-ui/Card';
 var actions = cc.get('redux.actions');
+const ticketService = cc.get('services.ticket');
 class BoosterList extends React.Component {
+  constructor(props) {
+    super(props);
+    ticketService.getTickets(this.props.actions.getTicketCallback);
+  }
   render() {
     /* component*/
     var Input = cc.get('components.input');
@@ -59,4 +64,4 @@ class BoosterList extends React.Component {
 }
 
 
-cc.register('components.booster_list', connect(mapStateToProps)(BoosterList));
+cc.register('components.booster_list', connect(mapStateToProps,mapDispatchToProps(actions))(BoosterList));
