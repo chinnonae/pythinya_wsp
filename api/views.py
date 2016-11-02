@@ -44,7 +44,7 @@ class TicketView(APIView):
                 "status": 400
             }, status=400)
         return Response({
-            "ticket": TicketSerializer(ticket),
+            "ticket": TicketSerializer(ticket).data,
             "status": 200
         })
 
@@ -191,10 +191,17 @@ class UserView(APIView):
                 "message": "User does not exist",
                 "status": 400
             }, status=400)
+
+        boosting_ticket = user_service.boosting_ticket()
+        holding_ticket = user_service.boosting_ticket()
+        if boosting_ticket is not None:
+            boosting_ticket = TicketSerializer(boosting_ticket).data
+        if holding_ticket is not None:
+            holding_ticket = TicketSerializer(holding_ticket).data
         return Response({
             "user": user_service.profile(),
-            "boosting_ticket": user_service.boosting_ticket(),
-            "holding_ticket": user_service.holding_ticket(),
+            "boosting_ticket": boosting_ticket,
+            "holding_ticket": holding_ticket,
             "status": 200
         })
 
@@ -202,7 +209,8 @@ class UserView(APIView):
 class ChooseClientView(APIView):
 
     def put(self, request, pk, client_id):
-        booster_ticket_action = BoosterTicketAction(request.user)
+        ticket = Ticket.objects.filter(pk=pk).first()
+        booster_ticket_action = BoosterTicketAction(request.user, ticket)
         client = User.objects.filter(pk=client_id).first()
 
         result, message = booster_ticket_action.start_boosting(client)

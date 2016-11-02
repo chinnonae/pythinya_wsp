@@ -43,11 +43,11 @@ class BoosterTicketAction:
         self.ticket.status = 4
         self.ticket.save()
 
-        return self.ticket
+        return self.ticket, None
 
     def update_ticket_mmr_progress(self, new_current_mmr):
-        if type(new_current_mmr) is not int or new_current_mmr.isdecimal():
-            return None, "The MMR value is not valid"
+        # if (type(new_current_mmr) is not int) or new_current_mmr.isdecimal():
+        #     return None, "The MMR value is not valid"
         if self.user.id != self.ticket.booster.id:
             return None, "You are not the owner."
         if self.ticket.status == 1:
@@ -76,7 +76,7 @@ class BoosterTicketAction:
             return None, "The ticket was completed."
 
         # delete all clients except the chosen
-        self.ticket.clients.through.objcets.filter(ticket=self.ticket).exclude(client=client).delete()
+        self.ticket.clients.through.objects.filter(ticket=self.ticket).exclude(client=client).delete()
         # set ticket status to waiting for payment
         self.ticket.status = 3
         self.ticket.save()
@@ -163,5 +163,5 @@ class UserService:
         if not serialized_user.is_valid():
             return None, "Some field is not valid", serialized_user.errors
 
-        user_instance = UserSerializer.create(serialized_user.validated_data)
+        user_instance = serialized_user.create(serialized_user.validated_data)
         return user_instance, "Register successful", None
