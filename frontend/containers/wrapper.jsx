@@ -18,6 +18,7 @@ class Wrapper extends React.Component {
     var Signin = cc.get('components.signin');
     var Signup = cc.get('components.signup');
     var BoosterPanel = cc.get('components.boosterPanel');
+    var TopUpPanel = cc.get('components.topup.wrapper');
     waitmeService.subscribe(this.store);
 		return (
 			<Provider store={this.store}>
@@ -26,6 +27,7 @@ class Wrapper extends React.Component {
 						<Route path='signin' component={Signin} />
 						<Route path='signup' component={Signup} />
             <Route path='booster_panel' component={BoosterPanel} />
+            <Route path='topup' component={TopUpPanel} />
 					</Route>
 				</Router>
 			</Provider>
