@@ -20,7 +20,6 @@ class Wrapper extends React.Component {
 	render() {
     var Signin = cc.get('components.signin');
     var Signup = cc.get('components.signup');
-
     var BoosterPanel = cc.get('components.boosterPanel');
     var ClientPanel = cc.get('components.clientPanel.wrapperTemp');
     let CreateTicket = cc.get('components.createTicket');
@@ -28,6 +27,7 @@ class Wrapper extends React.Component {
 		var Main = cc.get('components.main');
 		var BoosterList = cc.get('components.booster_list');
     var Carousel = cc.get('components.carousel');
+    var Checkout = cc.get('components.checkout.wrapper');
 
 		return (
 			<Provider store={this.store}>
@@ -37,9 +37,8 @@ class Wrapper extends React.Component {
 						<Route path='signin' component={Signin}/>
 						<Route path='signup' component={Signup}/>
 						<Route path='client' component={BoosterList}/>
-            <Route path='carousel' component={Carousel}/>
             <Route path='booster_panel' onEnter={requirePermission} component={BoosterPanel} />
-            <Route path='create_ticket' component={CreateTicket} />
+            <Route path='checkout' component={Checkout}/>
 					</Route>
 				</Router>
 			</Provider>

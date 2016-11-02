@@ -1,7 +1,6 @@
 import {Card, Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui';
 const TicketInfoTable = (props) => {
   var ticket = props.ticket;
-   // TODO: implement boosted time
   return (
     <Card>
       <Table selectable={false}>
