@@ -33,7 +33,6 @@ var reducer = (state, action) => {
   const constant                 = cc.get('redux.constants');
   const newState                 = _.clone(state, true);
   newState.errorField            = errorField;
-  console.log(newState.createTicketDialog.errorField);
   switch(action.type) {
     case constant.CONTACTLIST_CB:
       newState.contacts          = action.data.contacts;
@@ -55,16 +54,17 @@ var reducer = (state, action) => {
       newState.dialog.item = action.data.item;
       return newState;
     case constant.CREATE_TICKET_CB:
+      console.log(action.data);
       if (action.data.status === BAD_REQUEST) {
         newState.createTicketDialog.isSuccess = false;
-        console.log(newState.createTicketDialog.errorField);
-        console.log(action.data.field);
         let fields = _.clone(errorField, true);
         _.map(action.data.field, function(field) {
           fields[field] = true;
         });
         newState.createTicketDialog.errorField = fields;
         newState.createTicketDialog.message = action.data.message;
+      }else{
+        location.reload();
       }
       return newState;
     default:
