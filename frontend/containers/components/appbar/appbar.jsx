@@ -12,10 +12,23 @@ class Appbar extends React.Component {
   }
   render() {
     var view;
+    let boosterPanelView;
     if(this.props.reducer.profile) { // If user has been logged in
+      if(this.props.reducer.profile.user.is_booster) {
+        boosterPanelView = (
+          <FlatButton>
+            <Link className="link-button" style={{color: "white"}} to={'/booster_panel'}>Booster Panel</Link>
+          </FlatButton>
+        );
+      }
       var name = serializeName(this.props.reducer.profile.user);
       view = (
-        <FlatButton onClick={this.signout.bind(this)} style={{color: "white"}} label={name} />
+        <div>
+          {boosterPanelView}
+          <FlatButton onClick={this.signout.bind(this)} style={{color: "white"}}>
+            <Link className="link-button" style={{color: "white"}} >{name}</Link>
+          </FlatButton>
+        </div>
       );
     } else { //otherwise show sign in and sign up button.
       view = (
