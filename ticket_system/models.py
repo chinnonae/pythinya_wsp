@@ -27,3 +27,6 @@ class Clientship(models.Model):
     client = models.ForeignKey(User, on_delete=models.PROTECT)
     ticket = models.ForeignKey(Ticket, on_delete=models.PROTECT)
     date_created = models.DateTimeField(_("Contact date"), auto_now_add=True)
+
+    def __str__(self):
+        return "client: %s, ticket: %s" % (self.client, self.ticket)
