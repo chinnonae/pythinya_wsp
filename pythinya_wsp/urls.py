@@ -16,14 +16,10 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-apipatterns = [
-    url(r'^user/', include('user.urls')),
-    url(r'^ticket/', include('ticket_system.urls'))
-]
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^api/', include(apipatterns)),
+    url(r'^api/', include('api.urls')),
 ]
 
 
