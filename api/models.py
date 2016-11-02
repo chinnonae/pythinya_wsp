@@ -46,6 +46,8 @@ class BoosterTicketAction:
         return self.ticket
 
     def update_ticket_mmr_progress(self, new_current_mmr):
+        if type(new_current_mmr) is not int or new_current_mmr.isdecimal():
+            return None, "The MMR value is not valid"
         if self.user.id != self.ticket.booster.id:
             return None, "You are not the owner."
         if self.ticket.status == 1:
@@ -55,12 +57,15 @@ class BoosterTicketAction:
         if self.ticket.status == 4:
             return None, "The ticket was completed."
 
+        new_current_mmr = int(new_current_mmr)
         self.ticket.current_mmr = new_current_mmr
         self.ticket.save()
 
-        return self.ticket
+        return self.ticket, "Current MMR is updated to %d" % new_current_mmr
 
     def start_boosting(self, client):
+        if client is None:
+            return None, "User not exist"
         if self.user.id != self.ticket.booster.id:
             return None, "You are not the owner."
         if self.ticket.status == 2:
@@ -76,7 +81,7 @@ class BoosterTicketAction:
         self.ticket.status = 3
         self.ticket.save()
 
-        return self.ticket
+        return self.ticket, "You pick %s to boost his/her MMR." % client.get_full_name()
 
 
 class ClientTicketAction:
@@ -100,19 +105,19 @@ class ClientTicketAction:
         self.ticket.status = 2
         self.ticket.save()
 
-        return self.ticket
+        return self.ticket, "purchase successful."
 
-    def take_ticket(self):
+    def pick_ticket(self):
         if self.user.id == self.ticket.booster.id:
-            return None, "You cannot take your own ticket."
+            return None, "You cannot pick your own ticket."
         if self.ticket.status != 1:
             return None, "The ticket is unavailable."
         if self.ticket.clients.filter(pk=self.user.id).first() is not None:
-            return None, "You already took the ticket."
+            return None, "You already picked the ticket."
 
         clientship = self.ticket.clients.through.objects.create(client=self.user, ticket=self.ticket)
 
-        return clientship
+        return clientship, "You pick the ticket."
 
     def cancel_ticket(self):
         pass
@@ -120,12 +125,12 @@ class ClientTicketAction:
 
 class UserService:
 
-    def __init__(self, user):
+    def __init__(self, user=None):
         self.user = user
 
     def profile(self):
 
-        return self.user
+        return UserSerializer(self.user).data
 
     def boosting_ticket(self):
         boosting_ticket = Ticket.objects.filter(booster=self.user)\
@@ -151,3 +156,12 @@ class UserService:
         boosting_ticket = self.boosting_ticket()
 
         return boosting_ticket.clients.all()
+
+    def register(self, **info):
+        serialized_user = UserSerializer(data=info)
+
+        if not serialized_user.is_valid():
+            return None, "Some field is not valid", serialized_user.errors
+
+        user_instance = UserSerializer.create(serialized_user.validated_data)
+        return user_instance, "Register successful", None
