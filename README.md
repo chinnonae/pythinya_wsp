@@ -68,3 +68,11 @@ Note:
 #### Get started
   1. `npm start`
   2. Go to `http://localhost:8080`
+  
+  
+-----------------------------------------------------------
+#### To use mocked up database
+
+1. Drop and create database
+2. Migrate
+3. python manage.py loaddata dump.json
