@@ -7,7 +7,12 @@ const ticketService = cc.get('services.ticket');
 class BoosterList extends React.Component {
   constructor(props) {
     super(props);
+    this.showSnackbar = this.showSnackbar.bind(this);
     ticketService.getTickets(this.props.actions.getTicketCallback);
+  }
+  showSnackbar() {
+    let element = $('.snackbar-wrapper');
+    element.addClass('snackbar-wrapper-show');
   }
   render() {
     /* component*/
@@ -15,6 +20,7 @@ class BoosterList extends React.Component {
     var self = this;
     var BoosterTable = cc.get('components.boosterList.boosterTable');
     let Dialog = cc.get('components.clientPanel.buyDialog');
+    let SnackBar = cc.get('components.createTicket.snackbar');
     /* rendering */
     return (
 
@@ -43,7 +49,7 @@ class BoosterList extends React.Component {
                 </Col>
                 <Col xsOffset={4} xs={8} smOffset={0} sm={4} mdOffset={0} md={4} lg={4}>
                   <br></br>
-                  <RaisedButton type="submit" label="New Ticket" primary={true}/>
+                  <RaisedButton onTouchTap={this.showSnackbar} label="New Ticket" primary={true}/>
                 </Col>
               </div>
             </Col>
@@ -59,6 +65,7 @@ class BoosterList extends React.Component {
 
         </Col>
         <Dialog />
+        <SnackBar />
         {/* //end component booster list */}
       </div>
     );

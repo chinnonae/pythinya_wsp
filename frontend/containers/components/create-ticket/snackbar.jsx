@@ -31,7 +31,7 @@ class SnackBar extends React.Component {
 			<div className="snackbar-wrapper">
         <div onClick={this.close.bind(this)} className="dark-wrapper"></div>
 				<div className="snackbar-container flex">
-            <Col xs={12} sm={12} md={6} lg={6} className="container-center no-padding" style={{height: "100%"}}>
+            <Col xs={12} sm={6} md={6} lg={6} className="container-center no-padding" style={{height: "100%"}}>
               <div className="snackbar padding-all">
               <form id="create-ticket-form" onSubmit={this.onSubmit}>
                 <b className={titleClassName}>{title}</b>
@@ -39,18 +39,18 @@ class SnackBar extends React.Component {
                 <Row className="flex margin-top">
                   <Col className="container-center" xs={11} sm={10} md={10} lg={10}>
                     <Row>
-                      <Col xs={12} sm={12} md={6} lg={6}>
+                      <Col xs={12} sm={6} md={6} lg={6}>
                         <Input error={errorField.min_mmr} type="number" label="Min MMR" elementId="min_mmr" name="min_mmr"/>
                       </Col>
-                      <Col xs={12} sm={12} md={6} lg={6}>
+                      <Col xs={12} sm={6} md={6} lg={6}>
                         <Input error={errorField.max_mmr} type="number" label="Max MMR" elementId="max_mmr" name="max_mmr"/>
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={12} sm={12} md={6} lg={6}>
+                      <Col xs={12} sm={6} md={6} lg={6}>
                         <Input error={errorField.price} type="number" label="Price" elementId="price" name="price"/>
                       </Col>
-                      <Col xs={12} sm={12} md={6} lg={6}>
+                      <Col xs={12} sm={6} md={6} lg={6}>
                         <Input error={errorField.day_used} type="number" label="Day used" elementId="day_used" name="day_used"/>
                       </Col>
                     </Row>
