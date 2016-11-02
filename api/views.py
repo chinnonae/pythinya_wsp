@@ -193,10 +193,10 @@ class UserView(APIView):
             }, status=400)
 
         boosting_ticket = user_service.boosting_ticket()
-        holding_ticket = user_service.boosting_ticket()
+        holding_ticket = user_service.holding_ticket()
         if boosting_ticket is not None:
             boosting_ticket = TicketSerializer(boosting_ticket).data
-        holding_ticket = TicketSerializer(holding_ticket).data
+        holding_ticket = TicketSerializer(holding_ticket, many=True).data
         return Response({
             "user": user_service.profile(),
             "boosting_ticket": boosting_ticket,
