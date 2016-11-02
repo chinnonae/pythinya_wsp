@@ -2,28 +2,21 @@ var profile = null;
 var service = {
 	getProfile: function(callback) {
 		const token = cookie.get('token');
-    const cb = typeof callback === 'function' ? callback : () => {};
+    callback = typeof callback === 'function' ? callback : () => {};
     if (profile && token) {
-      cb(profile);
+      callback(profile);
       return;
     }
 		if (token) {
-			$.ajax({
-					method: 'GET',
-					url: URL + '/api/user/profile/',
-					headers: {
-						'Authorization': _.template('token ${token}')({
-							token: token
-						})
-					}
-				})
-				.done(function(res) {
-          profile = res;
-					cb(res);
-				})
-        .fail(function(res) {
-          console.log(res);
-        });
+      let http = getHttp();
+      http.getConstant(http.methods.GET, '/api/user/profile/')
+      .done(function(res) {
+        profile = res;
+        callback(res);
+      })
+      .fail(function(res) {
+        console.log(res);
+      });
 		}
 	},
   clear: function() {
@@ -32,6 +25,10 @@ var service = {
   getToken: function() {
     return cookie.get('token');
   }
+};
+
+const getHttp = () => {
+  return cc.get('services.http');
 };
 
 cc.register('services.profile', service);
