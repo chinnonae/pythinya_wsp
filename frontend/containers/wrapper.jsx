@@ -20,6 +20,7 @@ class Wrapper extends React.Component {
 
     var BoosterPanel = cc.get('components.boosterPanel');
     var ClientPanel = cc.get('components.clientPanel.wrapperTemp');
+    let CreateTicket = cc.get('components.createTicket');
     waitmeService.subscribe(this.store);
 		var Main = cc.get('components.main');
 		var BoosterList = cc.get('components.booster_list');
@@ -29,14 +30,13 @@ class Wrapper extends React.Component {
 			<Provider store={this.store}>
 				<Router onUpdate={this.loadJS.bind(this)} history={browserHistory}>
 					<Route path='/' component={App}>
-
 						<IndexRoute component={Main}/>
 						<Route path='signin' component={Signin}/>
 						<Route path='signup' component={Signup}/>
 						<Route path='client' component={BoosterList}/>
             <Route path='carousel' component={Carousel}/>
             <Route path='booster_panel' onEnter={requirePermission} component={BoosterPanel} />
-            {/* <Route path='client' component={ClientPanel} /> */}
+            <Route path='create_ticket' component={CreateTicket} />
 					</Route>
 				</Router>
 			</Provider>

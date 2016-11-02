@@ -1,7 +1,6 @@
 var store = null;
 const service = {
 	show: function() {
-    console.log(getAction());
     store.dispatch(getAction().showLoader());
 	},
 	hide: function() {
