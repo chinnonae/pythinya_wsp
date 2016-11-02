@@ -125,10 +125,10 @@ var service = {
       console.log(res);
     });
 	},
-  startBoosting: function(id, callback) {
+  startBoosting: function(ticketId, clientId, callback) {
 		callback = typeof callback === 'function' ? callback : () => {};
     let http = getHttp();
-    http.getConstant(http.methods.PUT, '/api/ticket/' + id + '/start')
+    http.getConstant(http.methods.PUT, '/api/ticket/' + ticketId + '/choose-client/' + clientId)
     .done(function(res) {
       window.location = '/booster_panel';
       callback(res);

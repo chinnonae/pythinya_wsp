@@ -12,7 +12,9 @@ class ConfirmDialog extends React.Component {
     this.props.actions.toggleConfirmDialog(false);
   }
   startBoosting() {
-    boosterService.startBoosting(1,this.props.actions.startBoostingCallback);
+    let ticketId = this.props.reducer.profile.boosting_ticket.id;
+    let clientId = this.props.reducer.boosterPanel.dialog.item.id;
+    boosterService.startBoosting(ticketId, clientId,this.props.actions.startBoostingCallback);
   }
   render() {
     /* components */
