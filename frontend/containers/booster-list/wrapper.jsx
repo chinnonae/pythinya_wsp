@@ -4,6 +4,7 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 import {Card} from 'material-ui/Card';
 var actions = cc.get('redux.actions');
 const ticketService = cc.get('services.ticket');
+const profileService = cc.get('services.profile');
 class BoosterList extends React.Component {
   constructor(props) {
     super(props);
@@ -22,6 +23,10 @@ class BoosterList extends React.Component {
     let Dialog = cc.get('components.clientPanel.buyDialog');
     let SnackBar = cc.get('components.createTicket.snackbar');
     const HistoryTable = cc.get('components.boosterPanel.historyTable');
+    let newTicketView;
+    if(profileService.getProfile().user.is_booster) {
+      newTicketView = <RaisedButton onTouchTap={this.showSnackbar} label="New Ticket" primary={true}/>;
+    }
     /* rendering */
     return (
 
@@ -48,7 +53,7 @@ class BoosterList extends React.Component {
                   <Input name="booster_name" label="Filter by booster name" elementId="boosterName"></Input>
                 </Col>
                 <Col xs={4} sm={4} md={5} lg={5} style={{paddingBottom: 10}} className="flex flex-column flex-end-y">
-                  <div><RaisedButton onTouchTap={this.showSnackbar} label="New Ticket" primary={true}/></div>
+                  <div>{newTicketView}</div>
                 </Col>
               </Col>
             </Row>
