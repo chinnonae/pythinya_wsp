@@ -7,7 +7,7 @@ from ticket_system.serializers import TicketSerializer
 from user.serializers import UserSerializer
 from user.models import User
 
-from .models import BoosterTicketAction, ClientTicketAction
+from .models import BoosterTicketAction, ClientTicketAction, UserService
 
 
 class TicketView(APIView):
@@ -31,18 +31,34 @@ class TicketView(APIView):
 
     def post(self, request):
         booster_ticket_action = BoosterTicketAction(request.user)
-        ticket_data = booster_ticket_action.create_ticket(
+        ticket, message = booster_ticket_action.create_ticket(
             request.data.get("min_mmr", None),
             request.data.get("max_mmr", None),
             request.data.get("day_used", None),
             request.data.get("price", None)
         )
-        return Response(ticket_data)
+
+        if ticket is None:
+            return Response({
+                "message": message,
+                "status": 400
+            }, status=400)
+        return Response({
+            "ticket": TicketSerializer(ticket),
+            "status": 200
+        })
 
 
 class TicketDetailView(APIView):
 
     def get(self, request, pk):
+        ticket = Ticket.objects.filter(pk=pk).first()
+
+        if ticket is None:
+            return Response({
+                "message": "Ticket you request does not exist.",
+                "status": 400
+            }, status=400)
         return Response({
             "ticket": TicketSerializer(Ticket.objects.get(pk=pk)).data,
             "status": 200
@@ -55,10 +71,34 @@ class TicketPurchaseView(APIView):
         ticket = Ticket.objects.get(pk=pk)
         client_ticket_action = ClientTicketAction(request.user, ticket)
 
-        error, message = client_ticket_action.purchase_ticket()
+        result, message = client_ticket_action.purchase_ticket()
 
+        if result is None:
+            return Response({
+                "message": message,
+                "status": 400
+            }, status=400)
         return Response({
             "message": message,
+            "status": 200
+        })
+
+
+class TicketPickView(APIView):
+
+    def put(self, request, pk):
+        ticket = Ticket.objects.get(pk=pk)
+        client_ticket_action = ClientTicketAction(request.user, ticket)
+
+        result, message = client_ticket_action.pick_ticket()
+
+        if result is None:
+            return Response({
+                "message": message,
+                "status": 400
+            }, status=400)
+        return Response({
+            "massage": message,
             "status": 200
         })
 
@@ -70,9 +110,16 @@ class TicketProgressView(APIView):
         booster_ticket_action = BoosterTicketAction(request.user, ticket)
         new_current_mmr = request.data.get("current_mmr", None)
 
-        error, message = booster_ticket_action.update_ticket_mmr_progress(new_current_mmr)
+        result, message = booster_ticket_action.update_ticket_mmr_progress(new_current_mmr)
+
+        if result is None:
+            return Response({
+                "message": message,
+                "status": 400
+            })
         return Response({
-            "message": message
+            "message": message,
+            "status": 200
         }, status=200)
 
 
@@ -97,8 +144,13 @@ class TicketCompleteView(APIView):
         ticket = Ticket.objects.get(pk=pk)
         booster_ticket_action = BoosterTicketAction(request.user, ticket)
 
-        error, message = booster_ticket_action.complete_ticket()
+        result, message = booster_ticket_action.complete_ticket()
 
+        if result is None:
+            return Response({
+                "message": message,
+                "status": 400
+            }, status=400)
         return Response({
             "message": message,
             "status": 200
@@ -109,40 +161,58 @@ class Register(APIView):
     permission_classes = (AllowAny,)
 
     def post(self, request, format=None):
-        user = UserSerializer(data=request.data)
-        user.is_valid()
+        user_service = UserService()
 
-        try:
-            created = user.create(user.validated_data)
-        except KeyError as err:
-            if("email" in err.args):
-                return Response({
-                    "message": "The email has been used",
-                    "status": 400
-                })
-        return Response(
-            {
-                "token": str(created.auth_token),
-                "status": 200
-            },
-            status=200,
-        )
+        result, message, error_field = user_service.register(**request.data)
+        if result is None:
+            return Response({
+                "message": message,
+                "error_field": error_field,
+                "status": 400
+            }, status=400)
+        return Response({
+            "message": message,
+            "token": str(result.auth_token),
+            "status": 200
+        }, status=200)
 
 
 class UserView(APIView):
 
     def get(self, request, pk):
         if pk:
-            user = User.objects.get(pk=pk)
+            user = User.objects.filter(pk=pk).first()
         else:
             user = request.user
+        user_service = UserService(user)
 
-        serialized = UserSerializer(user)
+        if user is None:
+            return Response({
+                "message": "User does not exist",
+                "status": 400
+            }, status=400)
+        return Response({
+            "user": user_service.profile(),
+            "boosting_ticket": user_service.boosting_ticket(),
+            "holding_ticket": user_service.holding_ticket(),
+            "status": 200
+        })
 
-        return Response(
-            {
-                "user": serialized.data,
-                "status": 200
-            },
-            status=200
-        )
+
+class ChooseClientView(APIView):
+
+    def put(self, request, pk, client_id):
+        booster_ticket_action = BoosterTicketAction(request.user)
+        client = User.objects.filter(pk=client_id).first()
+
+        result, message = booster_ticket_action.start_boosting(client)
+
+        if result is None:
+            return Response({
+                "message": message,
+                "status": 400
+            })
+        return Response({
+            "message": message,
+            "status": 200
+        })

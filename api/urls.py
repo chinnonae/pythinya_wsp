@@ -16,7 +16,9 @@ ticket_url = [
     url(r'^(?P<pk>[0-9]+)/buy$', views.TicketPurchaseView.as_view()),
     url(r'^(?P<pk>[0-9]+)/progress$', views.TicketProgressView.as_view()),
     url(r'^(?P<pk>[0-9]+)/cancel$', views.TicketCancelView.as_view()),
-    url(r'^(?P<pk>[0-9]+)/complete$', views.TicketCompleteView.as_view())
+    url(r'^(?P<pk>[0-9]+)/complete$', views.TicketCompleteView.as_view()),
+    url(r'^(?P<pk>[0-9]+)/take$', views.TicketPickView.as_view()),
+    url(r'^(?P<pk>[0-9]+)/choose-client/(?P<client_id>[0-9]+)$', views.ChooseClientView.as_view())
 ]
 
 urlpatterns = [
