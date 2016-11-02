@@ -21,15 +21,15 @@ class BoosterTable extends React.Component {
           </TableHeader>
           {/* <TableBody displayRowCheckbox={false}>
             {
-              _.map(this.props.reducer.boosterPanel.filteredContacts, function(item, i) {
-                return (
-                  <TableRow onMouseUp={self.onClick.bind(self,item)} key={i} className="pointer">
-                    <TableRowColumn style={{width: "45%"}}>{item.first_name + " " + item.last_name}</TableRowColumn>
-                    <TableRowColumn>{"2 days ago"}</TableRowColumn>
-                    <TableRowColumn>{item.telephone}</TableRowColumn>
-                  </TableRow>
-                );
-              })
+            _.map(this.props.reducer.boosterPanel.filteredContacts, function(item, i) {
+            return (
+            <TableRow onMouseUp={self.onClick.bind(self,item)} key={i} className="pointer">
+            <TableRowColumn style={{width: "45%"}}>{item.first_name + " " + item.last_name}</TableRowColumn>
+            <TableRowColumn>{"2 days ago"}</TableRowColumn>
+            <TableRowColumn>{item.telephone}</TableRowColumn>
+            </TableRow>
+            );
+            })
             }
           </TableBody> */}
         </Table>

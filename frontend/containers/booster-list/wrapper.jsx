@@ -28,14 +28,14 @@ class BoosterList extends React.Component {
             </Col>
             {/* //component top right-side */}
             <Col xs={12} sm={7} md={7} lg={7}>
-              <Col xs={12} sm={8} md={8} lg={9}>
+              <Col xs={12} sm={8} md={8} lg={8}>
                 <div className="flex flex-center"><h3>Filter by Booster name</h3></div>
               </Col>
               <div>
-                <Col xs={12} sm={8} md={8} lg={9}>
+                <Col xs={12} sm={8} md={8} lg={8}>
                   <Input name="booster_name" label="Booster name" elementId="boosterName"></Input>
                 </Col>
-                <Col xsOffset={4} xs={8} smOffset={0} sm={4} mdOffset={0} md={4} lg={3}>
+                <Col xsOffset={4} xs={8} smOffset={0} sm={4} mdOffset={0} md={4} lg={4}>
                   <br></br>
                   <RaisedButton type="submit" label="New Ticket" primary={true}/>
                 </Col>
