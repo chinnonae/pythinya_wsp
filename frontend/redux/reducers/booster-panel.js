@@ -54,7 +54,6 @@ var reducer = (state, action) => {
       newState.dialog.item = action.data.item;
       return newState;
     case constant.CREATE_TICKET_CB:
-      console.log(action.data);
       if (action.data.status === BAD_REQUEST) {
         newState.createTicketDialog.isSuccess = false;
         let fields = _.clone(errorField, true);
