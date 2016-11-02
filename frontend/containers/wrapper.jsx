@@ -1,5 +1,5 @@
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import {Router, Route, browserHistory} from 'react-router';
+import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import App from './app.jsx';
@@ -17,15 +17,26 @@ class Wrapper extends React.Component {
 	render() {
     var Signin = cc.get('components.signin');
     var Signup = cc.get('components.signup');
+
     var BoosterPanel = cc.get('components.boosterPanel');
+    var ClientPanel = cc.get('components.clientPanel.wrapperTemp');
     waitmeService.subscribe(this.store);
+		var Main = cc.get('components.main');
+		var BoosterList = cc.get('components.booster_list');
+    var Carousel = cc.get('components.carousel');
+
 		return (
 			<Provider store={this.store}>
 				<Router onUpdate={this.loadJS.bind(this)} history={browserHistory}>
 					<Route path='/' component={App}>
-						<Route path='signin' component={Signin} />
-						<Route path='signup' component={Signup} />
+
+						<IndexRoute component={Main}/>
+						<Route path='signin' component={Signin}/>
+						<Route path='signup' component={Signup}/>
+						<Route path='client' component={BoosterList}/>
+            <Route path='carousel' component={Carousel}/>
             <Route path='booster_panel' onEnter={requirePermission} component={BoosterPanel} />
+            {/* <Route path='client' component={ClientPanel} /> */}
 					</Route>
 				</Router>
 			</Provider>

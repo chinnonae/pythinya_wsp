@@ -84,8 +84,16 @@ html,body {
   align-items: center;
 }
 
+.flex-start {
+  align-items: flex-start;
+}
+
 .full-width {
   width: 100% !important;
+}
+
+.full-height {
+  height: 100%;
 }
 
 .text-center {
