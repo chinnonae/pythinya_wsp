@@ -29,7 +29,7 @@ Note:
   2. `npm install`
 
 
-#### Convention
+#### Conventions
   1. All components (.jsx,..) are stored in `containers` folder.
   2. All services (.js,...) are stored in `js/services` folder.
   3. All libraries are stored in `js` folder.
@@ -39,6 +39,7 @@ Note:
     - shared-components
     - auth-form
   7. No more `require`. We are providing Component Collecting Service.
+  8. All image files are store in `assets` folder. Usage : `src="/assets/logo.svg"`.
 
 #### Component Collecting Service.
 
@@ -59,7 +60,11 @@ Note:
 
   `No more require(...) from path.`
 
-
+#### How to redirect to another route
+  We use `React Router` which provides `Link` component for us.</br>
+  Use `<Link to='/main'>Main</Link>` instead of `<a href='/main'>Main</a>`</br>
+  Reference: https://github.com/ReactTraining/react-router
+  
 #### Get started
   1. `npm start`
   2. Go to `http://localhost:8080`
