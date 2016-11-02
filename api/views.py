@@ -196,8 +196,7 @@ class UserView(APIView):
         holding_ticket = user_service.boosting_ticket()
         if boosting_ticket is not None:
             boosting_ticket = TicketSerializer(boosting_ticket).data
-        if holding_ticket is not None:
-            holding_ticket = TicketSerializer(holding_ticket).data
+        holding_ticket = TicketSerializer(holding_ticket).data
         return Response({
             "user": user_service.profile(),
             "boosting_ticket": boosting_ticket,
@@ -222,5 +221,19 @@ class ChooseClientView(APIView):
             })
         return Response({
             "message": message,
+            "status": 200
+        })
+
+
+class TicketHistoryView(APIView):
+
+    def get(self, request):
+        user = request.user
+        user_service = UserService(user)
+
+        ticket_history = UserService.boosting_history()
+
+        return Response({
+            "tickets": TicketSerializer(ticket_history, many=True).data,
             "status": 200
         })
