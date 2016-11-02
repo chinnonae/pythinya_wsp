@@ -25,12 +25,24 @@ class Wrapper extends React.Component {
 					<Route path='/' component={App}>
 						<Route path='signin' component={Signin} />
 						<Route path='signup' component={Signup} />
-            <Route path='booster_panel' component={BoosterPanel} />
+            <Route path='booster_panel' onEnter={requirePermission} component={BoosterPanel} />
 					</Route>
 				</Router>
 			</Provider>
 		);
 	}
 }
+
+const requirePermission = (nextState, replace, callback) => {
+  let cb = (res) => {
+    if(res === null) { // not sign in
+      replace('/signin');
+    }else if(!res.user.is_booster) {
+      replace('/');
+    }
+    callback();
+  };
+  let profile = cc.get('services.profile').getProfile(cb);
+};
 
 cc.register('root', Wrapper);

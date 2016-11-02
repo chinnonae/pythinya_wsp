@@ -17,7 +17,9 @@ var service = {
       .fail(function(res) {
         console.log(res);
       });
-		}
+		}else {
+      callback(null);
+    }
 	},
   clear: function() {
     profile = null;
