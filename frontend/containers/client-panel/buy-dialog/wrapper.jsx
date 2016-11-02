@@ -9,10 +9,14 @@ class Wrapper extends React.Component {
     this.props.actions.toggleConfirmDialog(false);
   }
   render() {
+    /* Components */
+    let TicketInfoTable = cc.get('components.ticketInfoTable');
+    /* rendering */
     var reducer = this.props.reducer.clientPanel;
     return (
       <Dialog title="Ticket" open={reducer.buyDialog.isShow} onRequestClose={this.close}>
         <p>Do you want to buy this ticket?</p>
+        <TicketInfoTable ticket={reducer.buyDialog.ticket}/>
       </Dialog>
     );
   }
