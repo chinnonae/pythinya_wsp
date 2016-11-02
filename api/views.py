@@ -224,3 +224,17 @@ class ChooseClientView(APIView):
             "message": message,
             "status": 200
         })
+
+
+class TicketHistoryView(APIView):
+
+    def get(self, request):
+        user = request.user
+        user_service = UserService(user)
+
+        ticket_history = UserService.boosting_history()
+
+        return Response({
+            "tickets": TicketSerializer(ticket_history, many=True).data,
+            "status": 200
+        })
