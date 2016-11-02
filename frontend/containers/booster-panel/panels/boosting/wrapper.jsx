@@ -7,13 +7,14 @@ const boosterService = cc.get('services.booster');
 class Wrapper extends React.Component {
   constructor(props) {
     super(props);
-    boosterService.getCurrentTicket(1, this.props.actions.getCurrentTicketCallback);
+    // boosterService.getCurrentTicket(1, this.props.actions.getCurrentTicketCallback);
+    this.props.actions.getCurrentTicketCallback(this.props.ticket);
   }
   render() {
     /* components */
     const Input = cc.get('components.input');
     const reducer = this.props.reducer.boosterPanel.ticket;
-    const customerName = reducer.client.first_name + " " + reducer.client.last_name;
+    const customerName = reducer.clients[0].first_name + " " + reducer.clients[0].last_name;
     return (
       <Card className="padding-all" style={{marginTop: 100}}>
         <Grid className="full-width">

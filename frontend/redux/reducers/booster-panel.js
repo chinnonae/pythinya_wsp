@@ -3,7 +3,7 @@ var initialState = {
   history: [],
   filteredContacts: [],
   ticket: {
-    client: {}
+    clients: [{}]
   },
   dialog: {
     item: null

@@ -8,11 +8,12 @@ const boosterService = cc.get('services.booster');
 class WaitingPaymentPanel extends React.Component {
   constructor(props) {
     super(props);
-    boosterService.getCurrentTicket(1, this.props.actions.getCurrentTicketCallback);
+    // boosterService.getCurrentTicket(1, this.props.actions.getCurrentTicketCallback);
+    this.props.actions.getCurrentTicketCallback(this.props.ticket);
   }
   render() {
     var reducer = this.props.reducer.boosterPanel.ticket;
-    var customerName = reducer.client.first_name + " " + reducer.client.last_name;
+    var customerName = reducer.clients[0].first_name + " " + reducer.clients[0].last_name;
     var mmrRange = reducer.min_mmr + '-' + reducer.max_mmr;
     var price = reducer.price + ' coins';
     return (

@@ -4,7 +4,8 @@ const boosterService   = cc.get('services.booster');
 class ContactsPanel extends React.Component {
   constructor(props) {
     super(props);
-    boosterService.getContactList(this.props.actions.getContactsListCallback);
+    // boosterService.getContactList(this.props.actions.getContactsListCallback);
+    this.props.actions.getContactsListCallback(this.props.clients);
     this.onFilter = this.onFilter.bind(this);
   }
   onFilter() {

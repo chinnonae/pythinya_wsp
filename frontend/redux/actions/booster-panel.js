@@ -3,7 +3,7 @@ const actions = {
     return {
       type: getConstant().CONTACTLIST_CB,
       data: {
-        contacts: res.result
+        contacts: res
       }
     };
   },
@@ -27,7 +27,7 @@ const actions = {
     return {
       type: getConstant().CURRENT_TICKET_CB,
       data: {
-        ticket: res.result
+        ticket: res
       }
     };
   },
