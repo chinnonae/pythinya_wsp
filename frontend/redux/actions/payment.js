@@ -1,16 +1,16 @@
 const action = {
-  getTicketCallback: function(res) {
+  getPickedTicketCallback: function(res) {
     return {
-      type: getConstant().GET_TICKET_CB,
+      type: getConstant().GET_PICKED_TICKET_CB,
       data: {
-        ticket: res.ticket,
-        hasEnoughBalance: res.ticket.price <= 4000 // TODO: REMOVE THIS!!! use the real balance from profile
+        ticket: res,
+        hasEnoughBalance: res.price <= 4000 // TODO: REMOVE THIS!!! use the real balance from profile
       }
     };
   },
-  buyTicketCallback: function(res) {
+  payPickedTicketCallback: function(res) {
     return {
-      type: getConstant().BUY_TICKET_CB
+      type: getConstant().PAY_PICKED_TICKET_CB
     };
   }
 };

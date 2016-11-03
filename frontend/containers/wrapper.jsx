@@ -36,15 +36,44 @@ class Wrapper extends React.Component {
 						<IndexRoute onEnter={isAuth} component={Main}/>
 						<Route path='signin' component={Signin}/>
 						<Route path='signup' component={Signup}/>
-						<Route path='client' component={BoosterList}/>
+						<Route path='client' onEnter={isPicked} component={BoosterList}/>
             <Route path='booster_panel' onEnter={requirePermission} component={BoosterPanel} />
-            <Route path='checkout' component={Checkout}/>
+            <Route path='checkout' onEnter={isPickedCheckout} component={Checkout}/>
 					</Route>
 				</Router>
 			</Provider>
 		);
 	}
 }
+
+const isPickedCheckout = (nextState, replace, callback) => {
+  let cb = (res) => {
+    console.log(res);
+    if(res === null) { // not sign in
+      replace('/signin');
+    }else if((res.holding_ticket).length > 0) {
+      store.dispatch(actions.getPickedTicketCallback(res.holding_ticket[0]));
+    }else {
+      replace('/client');
+    }
+    callback();
+  };
+  let profile = cc.get('services.profile').getProfile(cb);
+};
+
+const isPicked = (nextState, replace, callback) => {
+  let cb = (res) => {
+    console.log(res);
+    if(res === null) { // not sign in
+      replace('/signin');
+    }else if((res.holding_ticket).length > 0) {
+      store.dispatch(actions.getPickedTicketCallback(res.holding_ticket[0]));
+      replace('/checkout');
+    }
+    callback();
+  };
+  let profile = cc.get('services.profile').getProfile(cb);
+};
 
 const isAuth =(nextState, replace, callback) => {
   let cb = (res) => {

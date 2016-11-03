@@ -17,7 +17,7 @@ var checkout = {
 				callback(res);
 			});
 	},
-  buyTicket: function(ticketId, callback) {
+  payTicket: function(ticketId, callback) {
     var token = cookie.get('token');
     callback = typeof callback === 'function' ? callback : () => {};
 		$.ajax({
@@ -31,7 +31,7 @@ var checkout = {
 				callback(res);
 			})
 			.fail(function(res) {
-				callback(res);
+				// callback(res);
 			});
 	},
   cancelTicket: function(ticketId, callback) {
