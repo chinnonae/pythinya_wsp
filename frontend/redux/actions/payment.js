@@ -12,6 +12,11 @@ const action = {
     return {
       type: getConstant().PAY_PICKED_TICKET_CB
     };
+  },
+  cancelPickedTicketCallback: function(res) {
+    return {
+      type: getConstant().CANCEL_PICKED_TICKET_CB
+    };
   }
 };
 

@@ -17,6 +17,9 @@ const reducer = (state, action) => {
       return newState;
     case constant.BUY_PICKED_TICKET_CB:
       return newState;
+    case constant.CANCEL_PICKED_TICKET_CB:
+      window.location = '/client';
+      return newState;
     default:
       return state;
   }

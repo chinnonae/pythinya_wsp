@@ -22,15 +22,15 @@ class PaymentInfoPanel extends React.Component {
           <Col xs={6} sm={4} md={2} lg={2} className="text-right">
             <b>Your balance</b>
           </Col>
-          <Col xs={6} sm={4} md={2} lg={2} className="text-right">3000 - { ticket.price } Coins</Col>
+          <Col xs={6} sm={4} md={2} lg={2} className="text-right">4000 - { ticket.price } Coins</Col>
         </Row>
         <Row>
           <Col xs={6} sm={10} md={10} lg={10}></Col>
-          <Col xs={6} sm={2} md={2} lg={2} className="text-right">= 1000 Coins</Col>
+          <Col xs={6} sm={2} md={2} lg={2} className="text-right">{'= ' + (4000 - parseInt(ticket.price))+ 'Coins'}</Col>
         </Row>
       </div>
     );
   }
 }
 
-cc.register('components.checkout.paymentInfoPanel', connect(mapStateToProps, mapDispatchToProps(actions))(PaymentInfoPanel))
+cc.register('components.checkout.paymentInfoPanel', connect(mapStateToProps, mapDispatchToProps(actions))(PaymentInfoPanel));
