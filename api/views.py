@@ -1,3 +1,5 @@
+from django.utils.translation import ugettext as _
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
@@ -160,10 +162,12 @@ class TicketCompleteView(APIView):
 class Register(APIView):
     permission_classes = (AllowAny,)
 
+
     def post(self, request, format=None):
         user_service = UserService()
+        temp_dict = dict(request.data.items())
+        result, message, error_field = user_service.register(**temp_dict)
 
-        result, message, error_field = user_service.register(**request.data)
         if result is None:
             return Response({
                 "message": message,
