@@ -142,6 +142,7 @@ class UserService:
     def holding_ticket(self):
         holding_ticket = Ticket.objects.filter(clients=self.user)\
             .exclude(status=4)\
+            .exclude(status=1)
 
         return holding_ticket
 
