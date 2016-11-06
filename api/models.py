@@ -43,6 +43,9 @@ class BoosterTicketAction:
         self.ticket.status = 4
         self.ticket.save()
 
+        self.user.boosted_time += 1
+        self.user.save()
+
         return self.ticket, None
 
     def update_ticket_mmr_progress(self, new_current_mmr):
@@ -142,6 +145,7 @@ class UserService:
     def holding_ticket(self):
         holding_ticket = Ticket.objects.filter(clients=self.user)\
             .exclude(status=4)\
+            .exclude(status=1)
 
         return holding_ticket
 
