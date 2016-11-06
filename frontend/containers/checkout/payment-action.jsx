@@ -46,4 +46,4 @@ class PaymentActionPanel extends React.Component {
   }
 }
 
-cc.register('components.checkout.paymentActionPanel', connect(mapStateToProps, mapDispatchToProps(actions))(PaymentActionPanel))
+cc.register('components.checkout.paymentActionPanel', connect(mapStateToProps, mapDispatchToProps(actions))(PaymentActionPanel));
