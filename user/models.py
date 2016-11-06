@@ -20,6 +20,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     telephone = models.CharField(_('telephone'), max_length=10)
     is_booster = models.BooleanField(_('booster'), default=False)
     boosted_time = models.PositiveIntegerField(_("boosted time"), default=0)
+    coin = models.PositiveIntegerField(_("coin"), default=0)
 
     objects = UserManager()
 
