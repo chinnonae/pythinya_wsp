@@ -9,7 +9,7 @@ class AlertDialog extends React.Component {
     let message = this.props.reducer.app.alertDialog.message;
     let actionButton = [<FlatButton label="OK" primary={true} onTouchTap={this.close.bind(this)} />];
     return (
-      <Dialog title="Message" actions={actionButton} open={open} modal={true} onRequestClose={this.close.bind(this)}>
+      <Dialog title="Message" actions={actionButton} open={open} onRequestClose={this.close.bind(this)}>
         { message }
       </Dialog>
     );

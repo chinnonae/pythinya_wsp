@@ -26,7 +26,7 @@ class PaymentInfoPanel extends React.Component {
         </Row>
         <Row>
           <Col xs={6} sm={10} md={10} lg={10}></Col>
-          <Col xs={6} sm={2} md={2} lg={2} className="text-right">{'= ' + (4000 - parseInt(ticket.price))+ 'Coins'}</Col>
+          <Col xs={6} sm={2} md={2} lg={2} className="text-right">{'= ' + (4000 - parseInt(ticket.price))+ ' Coins'}</Col>
         </Row>
       </div>
     );
