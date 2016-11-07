@@ -5,7 +5,7 @@ var authService = cc.get('services.auth');
 class Appbar extends React.Component {
   componentDidMount() {
     /* call get profile after first render*/
-    profileService.getProfile(this.props.actions.profileCallback);
+    profileService.fetchProfile().then((res) => { this.props.actions.profileCallback(res); });
   }
   signout() {
     authService.signout(this.props.actions.signoutCallback);
@@ -13,7 +13,8 @@ class Appbar extends React.Component {
   render() {
     var view;
     let boosterPanelView;
-    if(this.props.reducer.profile) { // If user has been logged in
+    console.log(this.props.reducer.profile);
+    if(this.props.reducer.profile.isAuth) { // If user has been logged in
       if(this.props.reducer.profile.user.is_booster) {
         boosterPanelView = (
           <FlatButton>

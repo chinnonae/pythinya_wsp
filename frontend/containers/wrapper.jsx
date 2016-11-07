@@ -51,7 +51,8 @@ class Wrapper extends React.Component {
 }
 
 const isPickedCheckout = (nextState, replace, callback) => {
-  let cb = (res) => {
+  cc.get('services.profile').fetchProfile()
+  .then((res) => {
     console.log(res);
     if(res === null) { // not sign in
       replace('/signin');
@@ -61,12 +62,12 @@ const isPickedCheckout = (nextState, replace, callback) => {
       replace('/client');
     }
     callback();
-  };
-  let profile = cc.get('services.profile').getProfile(cb);
+  });
 };
 
 const isPicked = (nextState, replace, callback) => {
-  let cb = (res) => {
+  cc.get('services.profile').fetchProfile()
+  .then((res) => {
     console.log(res);
     if(res === null) { // not sign in
       replace('/signin');
@@ -75,21 +76,21 @@ const isPicked = (nextState, replace, callback) => {
       replace('/checkout');
     }
     callback();
-  };
-  let profile = cc.get('services.profile').getProfile(cb);
+  });
 };
 
 const isAuth =(nextState, replace, callback) => {
-  let cb = (res) => {
+  cc.get('services.profile').fetchProfile()
+  .then((res) => {
     if(res !== null) { // not sign in
       replace('/client');
     }
     callback();
-  };
-  let profile = cc.get('services.profile').getProfile(cb);
+  });
 };
 const requirePermission = (nextState, replace, callback) => {
-  let cb = (res) => {
+  cc.get('services.profile').fetchProfile()
+  .then((res) => {
     console.log(res);
     if(res === null) { // not sign in
       replace('/signin');
@@ -100,8 +101,7 @@ const requirePermission = (nextState, replace, callback) => {
       replace('/client');
     }
     callback();
-  };
-  let profile = cc.get('services.profile').getProfile(cb);
+  });
 };
 
 cc.register('root', Wrapper);

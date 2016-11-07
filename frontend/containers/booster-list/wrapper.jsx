@@ -24,7 +24,8 @@ class BoosterList extends React.Component {
     let SnackBar = cc.get('components.createTicket.snackbar');
     const HistoryTable = cc.get('components.boosterPanel.historyTable');
     let newTicketView;
-    if(profileService.getProfile().user.is_booster) {
+    let profile = profileService.getProfile();
+    if(profile.user.is_booster) {
       newTicketView = <RaisedButton onTouchTap={this.showSnackbar} label="New Ticket" primary={true}/>;
     }
     /* rendering */

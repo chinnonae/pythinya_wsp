@@ -1,25 +1,29 @@
+var myProfile = null;
 var service = {
-	getProfile: function(callback) {
+	fetchProfile: function() {
 		const token = cookie.get('token');
     const profile = cookie.get('profile');
-    callback = typeof callback === 'function' ? callback : () => {};
-		if (token) {
-      let http = getHttp();
-      http.getConstant(http.methods.GET, '/api/user/profile/')
-      .done(function(res) {
-        cookie.set('profile', res);
-        callback(res);
-      })
-      .fail(function(res) {
-        console.log(res);
-      });
-		}else {
-      callback(null);
-    }
-    if (profile && token) {
-      let obj = JSON.parse(profile);
-      return obj;
-    }
+    // callback = typeof callback === 'function' ? callback : () => {};
+    return new Promise((resolve, reject) => {
+  		if (token) {
+        let http = getHttp();
+        http.getConstant(http.methods.GET, '/api/user/profile/')
+        .done(function(res) {
+          cookie.set('profile', res);
+          myProfile = res;
+          resolve(res);
+        })
+        .fail(function(res) {
+          reject(res);
+        });
+  		}else {
+        resolve(null);
+      }
+      if (profile && token) {
+        let obj = JSON.parse(profile);
+        resolve(obj);
+      }
+    });
 	},
   clear: function() {
     cookie.remove('profile');
@@ -27,6 +31,11 @@ var service = {
   },
   getToken: function() {
     return cookie.get('token');
+  },
+  getProfile: function() {
+    const profile = cookie.get('profile');
+    let obj = JSON.parse(profile);
+    return obj;
   }
 };
 
