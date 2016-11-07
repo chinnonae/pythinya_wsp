@@ -106,9 +106,14 @@ class ClientTicketAction:
             return None, "The ticket was completed."
         if self.ticket.clients.first().id != self.user.id:
             return None, "The booster didn't choose you to boost your MMR."
+        if self.user.coin < self.ticket.price:
+            return None, "You don't have enough coin to buy this ticket."
 
         self.ticket.status = 2
         self.ticket.save()
+
+        self.user.coin -= self.ticket.price
+        self.user.save()
 
         return self.ticket, "purchase successful."
 

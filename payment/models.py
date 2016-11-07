@@ -10,4 +10,4 @@ topup_rate_status_choice = (
 class TopupRate(models.Model):
     baht = models.PositiveIntegerField()
     coin = models.PositiveIntegerField()
-    status = models.PositiveSmallIntegerField(default=0, choice=topup_rate_status_choice)
+    status = models.PositiveSmallIntegerField(default=0, choices=topup_rate_status_choice)
