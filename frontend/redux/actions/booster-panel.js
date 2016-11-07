@@ -56,6 +56,11 @@ const actions = {
       type: getConstant().DONE_BOOSTING_CB
     };
   },
+  cancelBoostingCallback: function(res) {
+    return {
+      type: getConstant().CANCEL_BOOSTING_CB
+    };
+  }
 };
 
 function getConstant() {

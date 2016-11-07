@@ -10,6 +10,11 @@ class WaitingPaymentPanel extends React.Component {
     super(props);
     // boosterService.getCurrentTicket(1, this.props.actions.getCurrentTicketCallback);
     this.props.actions.getCurrentTicketCallback(this.props.ticket);
+    this.cancel = this.cancel.bind(this);
+  }
+  cancel() {
+    let id = this.props.reducer.boosterPanel.ticket.id;
+    boosterService.cancelBoosting(id, this.props.actions.cancelBoostingCallback);
   }
   render() {
     var reducer = this.props.reducer.boosterPanel.ticket;
@@ -38,7 +43,7 @@ class WaitingPaymentPanel extends React.Component {
               <p className="pull-right">{price}</p>
             </Row>
             <Row className='flex'>
-              <RaisedButton backgroundColor={deepOrange300} labelColor='white' className="container-center" label="Cancel" />
+              <RaisedButton backgroundColor={deepOrange300} onClick={this.cancel} labelColor='white' className="container-center" label="Cancel" />
             </Row>
           </Col>
         </Grid>
