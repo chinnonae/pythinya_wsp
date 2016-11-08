@@ -86,6 +86,17 @@ class BoosterTicketAction:
 
         return self.ticket, "You pick %s to boost his/her MMR." % client.get_full_name()
 
+    def remove_ticket(self):
+        if self.user.id != self.ticket.booster:
+            return None, "You do not own this ticket."
+
+        user_ticket_action = UserTicketAction(self.user, self.ticket)
+        user_ticket_action.booster_cancel_ticket()
+
+        total_deleted_row, table_deleted_row = self.ticket.delete()
+
+        return table_deleted_row, "Ticket has been removed."
+
 
 class ClientTicketAction:
 
@@ -122,8 +133,49 @@ class ClientTicketAction:
 
         return clientship, "You pick the ticket."
 
+
+class UserTicketAction:
+
+    def __init__(self, user, ticket):
+        self.user = user
+        self.ticket = ticket
+
     def cancel_ticket(self):
-        pass
+        if self.ticket.clients.filter(pk=self.user.id).first() is None and self.ticket.booster != self.user.id:
+            return None, "You already cancelled this ticket, or you never pick this ticket."
+        if self.ticket.status == 4:
+            return None, "This ticket is completed."
+
+        if self.ticket.booster == self.user.id:
+            return self.booster_cancel_ticket()
+        return self.client_cancel_ticket()
+
+    def booster_cancel_ticket(self):
+        if self.ticket.booster.status == 1:
+            return None, "You cannot cancel a ticket while it is still available."
+
+        if self.ticket.booster.status == 2:
+            # give coin back to user
+            pass
+
+        # delete all ticket's clients
+        Clientship.objects.filter(ticket=self.ticket).delete()
+
+        self.ticket.status = 1
+        self.ticket.save()
+
+        return self.ticket, "The service is cancelled."
+
+    def client_cancel_ticket(self):
+        if self.ticket.clients.filter(pk=self.user.id).first is None:
+            return None, "You did not pick this ticket."
+
+        if self.ticket.status == 3:
+            # reduce user coin by 10 percent of ticket price
+            pass
+
+        delete_info = Clientship.objects.get(ticket=self.ticket, client=self.user).delete()
+        return delete_info, "The ticket is cancelled."
 
 
 class UserService:
@@ -166,5 +218,5 @@ class UserService:
         if not serialized_user.is_valid():
             return None, "Some field is not valid", serialized_user.errors
 
-        user_instance = serialized_user.create(serialized_user.validated_data)
-        return user_instance, "Register successful", None
+        self.user = serialized_user.create(serialized_user.validated_data)
+        return self.user, "Register successful", None
