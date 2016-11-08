@@ -11,7 +11,7 @@ from user.models import User
 from payment.serializers import TopupRateSerializer
 from payment.models import TopupRate
 
-from .models import BoosterTicketAction, ClientTicketAction, UserService, UserPaymentAction, PaymentService
+from .models import BoosterTicketAction, ClientTicketAction, UserService, UserPaymentAction, PaymentService, UserTicketAction
 
 
 class TicketView(APIView):
@@ -127,21 +127,6 @@ class TicketProgressView(APIView):
         }, status=200)
 
 
-class TicketCancelView(APIView):
-
-    def put(self, request, pk):
-        ticket = Ticket.objects.get(pk=pk)
-
-        ticket.client = None
-        ticket.status = 1
-        ticket.save()
-
-        return Response({
-            "message": "cancel ticket successfully",
-            "status": 200
-        }, status=200)
-
-
 class TicketCompleteView(APIView):
 
     def put(self, request, pk):
@@ -163,7 +148,6 @@ class TicketCompleteView(APIView):
 
 class Register(APIView):
     permission_classes = (AllowAny,)
-
 
     def post(self, request, format=None):
         user_service = UserService()
@@ -241,6 +225,44 @@ class TicketHistoryView(APIView):
 
         return Response({
             "tickets": TicketSerializer(ticket_history, many=True).data,
+            "status": 200
+        })
+
+
+class TicketCancelView(APIView):
+
+    def put(self, request, pk):
+        ticket = Ticket.objects.get(pk)
+        user_ticket_action = UserTicketAction(request.user, ticket)
+
+        result, message = user_ticket_action.cancel_ticket()
+
+        if result is None:
+            return Response({
+                "message": message,
+                "status": 400
+            }, status=400)
+        return Response({
+            "message": message,
+            "status": 200
+        })
+
+
+class TicketRemoveView(APIView):
+
+    def delete(self, request, pk):
+        ticket = Ticket.objects.get(pk)
+        booster_ticket_action = BoosterTicketAction(request.user, ticket)
+
+        result, message = booster_ticket_action.remove_ticket()
+
+        if result is None:
+            return Response({
+                "message": message,
+                "status": 400
+            }, status=400)
+        return Response({
+            "message": message,
             "status": 200
         })
 
