@@ -1,3 +1,5 @@
+from django.utils.translation import ugettext as _
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
@@ -6,8 +8,10 @@ from ticket_system.models import Ticket
 from ticket_system.serializers import TicketSerializer
 from user.serializers import UserSerializer
 from user.models import User
+from payment.serializers import TopupRateSerializer
+from payment.models import TopupRate
 
-from .models import BoosterTicketAction, ClientTicketAction, UserService
+from .models import BoosterTicketAction, ClientTicketAction, UserService, UserPaymentAction, PaymentService
 
 
 class TicketView(APIView):
@@ -160,10 +164,12 @@ class TicketCompleteView(APIView):
 class Register(APIView):
     permission_classes = (AllowAny,)
 
+
     def post(self, request, format=None):
         user_service = UserService()
+        temp_dict = dict(request.data.items())
+        result, message, error_field = user_service.register(**temp_dict)
 
-        result, message, error_field = user_service.register(**request.data)
         if result is None:
             return Response({
                 "message": message,
@@ -193,10 +199,10 @@ class UserView(APIView):
             }, status=400)
 
         boosting_ticket = user_service.boosting_ticket()
-        holding_ticket = user_service.boosting_ticket()
+        holding_ticket = user_service.holding_ticket()
         if boosting_ticket is not None:
             boosting_ticket = TicketSerializer(boosting_ticket).data
-        holding_ticket = TicketSerializer(holding_ticket).data
+        holding_ticket = TicketSerializer(holding_ticket, many=True).data
         return Response({
             "user": user_service.profile(),
             "boosting_ticket": boosting_ticket,
@@ -237,3 +243,40 @@ class TicketHistoryView(APIView):
             "tickets": TicketSerializer(ticket_history, many=True).data,
             "status": 200
         })
+
+
+class TopupListView(APIView):
+
+    def get(self, request):
+        payment_service = PaymentService()
+        available_topups = payment_service.topup_list()
+        serialized = TopupRateSerializer(available_topups, many=True)
+
+        return Response({
+            "packages": serialized.data,
+            "status": 200
+        })
+
+
+class TopupView(APIView):
+
+    def get(self, request, pk):
+        topup_rate = TopupRate.objects.get(pk)
+        serialized = TopupRateSerializer(topup_rate)
+
+        return Response({
+            "package": serialized.data,
+            "status": 200
+        })
+
+    def post(self, request, pk):
+        user_payment_action = UserPaymentAction(request.user)
+
+        topup_rate = TopupRate.objects.get(pk=pk)
+        user_payment_action.topup(topup_rate)
+
+        return Response({
+            "message": "Successful",
+            "status": 200
+        })
+

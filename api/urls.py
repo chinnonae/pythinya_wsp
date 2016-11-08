@@ -22,6 +22,11 @@ ticket_url = [
     url(r'^(?P<pk>[0-9]+)/choose-client/(?P<client_id>[0-9]+)$', views.ChooseClientView.as_view())
 ]
 
+payment_url = [
+    url(r'^topup$', views.TopupListView.as_view()),
+    url(r'^topup/(?P<pk>[0-9]+)$', views.TopupView.as_view())
+]
+
 urlpatterns = [
     url(r'^user/', include(user_url)),
     url(r'^ticket/', include(ticket_url))

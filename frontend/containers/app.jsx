@@ -3,16 +3,20 @@ import muiTheme from './theme';
 class App extends React.Component {
   render() {
     /* Components */
-    var Appbar = cc.get('components.appbar');
+    const Appbar = cc.get('components.appbar');
+    const Loader = cc.get('components.loader');
     /* rendering */
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
-          <Appbar />
-          {this.props.children}
+          <Loader />
+          <div className="blur">
+            <Appbar />
+            {this.props.children}
+          </div>
         </div>
       </MuiThemeProvider>
     );
   }
 }
-export default App;
+export default connect(mapStateToProps)(App);

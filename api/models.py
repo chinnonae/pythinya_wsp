@@ -1,6 +1,8 @@
 from ticket_system.serializers import TicketSerializer
 from ticket_system.models import Clientship, Ticket
 from user.serializers import UserSerializer
+from payment.models import TopupRate
+from payment.serializers import TopupRateSerializer
 
 
 class BoosterTicketAction:
@@ -115,9 +117,14 @@ class ClientTicketAction:
             return None, "The ticket was completed."
         if self.ticket.clients.first().id != self.user.id:
             return None, "The booster didn't choose you to boost your MMR."
+        if self.user.coin < self.ticket.price:
+            return None, "You don't have enough coin to buy this ticket."
 
         self.ticket.status = 2
         self.ticket.save()
+
+        self.user.coin -= self.ticket.price
+        self.user.save()
 
         return self.ticket, "purchase successful."
 
@@ -220,3 +227,23 @@ class UserService:
 
         self.user = serialized_user.create(serialized_user.validated_data)
         return self.user, "Register successful", None
+
+
+class PaymentService:
+
+    def topup_list(self):
+        available_topups = TopupRate.objects.filter(status=0)
+
+        return available_topups, None
+
+
+class UserPaymentAction:
+
+    def __init__(self, user):
+        self.user = user
+
+    def topup(self, topup_rate):
+        self.user.coin += topup_rate.coin
+        self.user.save()
+
+        return self.user

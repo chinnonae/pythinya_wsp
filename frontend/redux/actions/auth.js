@@ -3,7 +3,7 @@ var action = {
 	signinCallback: function(res) {
 		var isSuccess = typeof res.token !== 'undefined';
     if(isSuccess) {
-      saveToken(res.token);
+      cookie.set('token', res.token);
       window.location = "/";
     }
 		return {
@@ -17,7 +17,7 @@ var action = {
 		var isSuccess = res.status === SUCCESS;
 		var message = "";
 		if (isSuccess) {
-      saveToken(res.token);
+      cookie.set('token', res.token);
       window.location = "/";
 		} else {
 			message = res.message;
@@ -29,14 +29,19 @@ var action = {
 				message: message
 			}
 		};
-	}
+	},
+  signoutCallback: function() {
+    cookie.remove('token');
+    window.location = '/';
+    return {
+      type: getConstant().SIGNOUT
+    };
+  }
 };
 
 function getConstant() {
 	return cc.get('redux.constants');
 }
 
-function saveToken(token) {
-  cookie.set('token', token);
-}
+export default action;
 cc.register('redux.actions.auth', action);
