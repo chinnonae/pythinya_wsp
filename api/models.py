@@ -4,6 +4,8 @@ from user.serializers import UserSerializer
 from payment.models import TopupRate
 from payment.serializers import TopupRateSerializer
 
+import math
+
 
 class BoosterTicketAction:
 
@@ -162,8 +164,9 @@ class UserTicketAction:
             return None, "You cannot cancel a ticket while it is still available."
 
         if self.ticket.booster.status == 2:
-            # give coin back to user
-            pass
+            client = self.ticket.clients.all().first()
+            client.coin += self.ticket.price
+            client.save()
 
         # delete all ticket's clients
         Clientship.objects.filter(ticket=self.ticket).delete()
@@ -178,8 +181,8 @@ class UserTicketAction:
             return None, "You did not pick this ticket."
 
         if self.ticket.status == 3:
-            # reduce user coin by 10 percent of ticket price
-            pass
+            self.user.coin -= math.ceil(0.10 * self.ticket.price)
+            self.user.save()
 
         delete_info = Clientship.objects.get(ticket=self.ticket, client=self.user).delete()
         return delete_info, "The ticket is cancelled."
