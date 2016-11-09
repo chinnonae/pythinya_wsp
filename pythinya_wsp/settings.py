@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'user.apps.UserConfig',
     'ticket_system.apps.TicketSystemConfig',
+    'payment.apps.PaymentConfig',
     'api.apps.ApiConfig',
     'django.contrib.admin',
     'django.contrib.auth',

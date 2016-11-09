@@ -13,7 +13,7 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'first_name', 'last_name', 'telephone', 'is_booster')
+        fields = ('email', 'first_name', 'last_name', 'telephone', 'is_booster', 'coin')
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -37,7 +37,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'password', 'first_name', 'last_name', 'is_admin', 'telephone', 'is_booster')
+        fields = ('email', 'password', 'first_name', 'last_name', 'is_admin', 'telephone', 'is_booster', 'coin')
 
     def clean_password(self):
         return self.initial["password"]
@@ -50,7 +50,7 @@ class UserAdmin(BaseUserAdmin):
     list_display = ('email', 'first_name', 'last_name', 'is_admin')
     list_filter = ('is_admin',)
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
+        (None, {'fields': ('email', 'password', 'coin')}),
         ('Personal info', {'fields': ('first_name', 'last_name', 'telephone')}),
         ('Permissions', {'fields': ('is_admin', 'is_booster')}),
     )
@@ -58,7 +58,7 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'first_name', 'last_name', 'password1', 'password2', 'telephone', 'is_booster')}
+            'fields': ('email', 'first_name', 'last_name', 'password1', 'password2', 'telephone', 'is_booster', 'coin')}
         ),
     )
     search_fields = ('email',)
