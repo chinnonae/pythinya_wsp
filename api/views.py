@@ -195,6 +195,17 @@ class UserView(APIView):
         })
 
 
+class UserInterestedTicketView(APIView):
+
+    def get(self, request):
+        interested_ticket = Ticket.objcets.filter(clients=request.user, status=1)
+
+        return Response({
+            "tickets": TicketSerializer(interested_ticket, many=True),
+            "status": 200
+        })
+
+
 class ChooseClientView(APIView):
 
     def put(self, request, pk, client_id):
@@ -301,4 +312,3 @@ class TopupView(APIView):
             "message": "Successful",
             "status": 200
         })
-
