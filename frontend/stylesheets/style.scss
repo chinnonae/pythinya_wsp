@@ -72,6 +72,14 @@ html,body {
   margin-bottom: 15px;
 }
 
+.margin-right {
+  margin-right: 15px;
+}
+
+.margin-left {
+  margin-left: 15px;
+}
+
 .padding-all {
   padding: 15px;
 }
@@ -84,8 +92,16 @@ html,body {
   align-items: center;
 }
 
+.flex-start {
+  align-items: flex-start;
+}
+
 .full-width {
   width: 100% !important;
+}
+
+.full-height {
+  height: 100%;
 }
 
 .text-center {
@@ -110,10 +126,12 @@ html,body {
   font-weight: 500;
   font-size: 14px;
   display: block;
+  color: white;
   text-decoration: none;
 }
 .link-button:hover, .link-button:visited, .link-button:active, .link-button:link {
   text-decoration: none;
+  color: white;
 }
 
 .flex-column {
@@ -145,6 +163,18 @@ html,body {
   right: 0;
 }
 
+.pull-top {
+  position: absolute;
+  top: 0;
+}
+.pull-bottom {
+  position:absolute;
+  bottom: 0;
+}
 .display-box {
   display: -webkit-box !important;
+}
+
+.dummy-container {
+  background-color: #F5F5F5;
 }

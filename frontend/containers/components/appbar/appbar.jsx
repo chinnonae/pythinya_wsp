@@ -5,17 +5,33 @@ var authService = cc.get('services.auth');
 class Appbar extends React.Component {
   componentDidMount() {
     /* call get profile after first render*/
-    profileService.getProfile(this.props.actions.profileCallback);
+    profileService.fetchProfile().then((res) => { this.props.actions.profileCallback(res); });
   }
   signout() {
     authService.signout(this.props.actions.signoutCallback);
   }
   render() {
     var view;
-    if(this.props.reducer.profile) { // If user has been logged in
+    let boosterPanelView;
+    if(this.props.reducer.profile.isAuth) { // If user has been logged in
+      if(this.props.reducer.profile.user.is_booster) {
+        boosterPanelView = (
+          <FlatButton>
+            <Link className="link-button" style={{color: "white"}} to={'/booster_panel'}>Booster Panel</Link>
+          </FlatButton>
+        );
+      }
       var name = serializeName(this.props.reducer.profile.user);
       view = (
-        <FlatButton onClick={this.signout.bind(this)} style={{color: "white"}} label={name} />
+        <div>
+          <FlatButton>
+            <Link className="link-button" style={{color: "white"}} to={'/client'}>Tickets</Link>
+          </FlatButton>
+          {boosterPanelView}
+          <FlatButton onClick={this.signout.bind(this)} style={{color: "white"}}>
+            <Link className="link-button" style={{color: "white"}} >{name}</Link>
+          </FlatButton>
+        </div>
       );
     } else { //otherwise show sign in and sign up button.
       view = (

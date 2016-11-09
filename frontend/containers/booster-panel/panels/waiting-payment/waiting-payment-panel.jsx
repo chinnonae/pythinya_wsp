@@ -8,13 +8,21 @@ const boosterService = cc.get('services.booster');
 class WaitingPaymentPanel extends React.Component {
   constructor(props) {
     super(props);
-    boosterService.getCurrentTicket(1, this.props.actions.getCurrentTicketCallback);
+    // boosterService.getCurrentTicket(1, this.props.actions.getCurrentTicketCallback);
+    // this.props.actions.getCurrentTicketCallback(this.props.ticket);
+    this.cancel = this.cancel.bind(this);
+    this.profile = this.props.reducer.profile;
+  }
+  cancel() {
+    let id = this.profile.boosting_ticket.id;
+    boosterService.cancelBoosting(id, this.props.actions.cancelBoostingCallback);
   }
   render() {
-    var reducer = this.props.reducer.boosterPanel.ticket;
-    var customerName = reducer.client.first_name + " " + reducer.client.last_name;
-    var mmrRange = reducer.min_mmr + '-' + reducer.max_mmr;
-    var price = reducer.price + ' coins';
+    let boostingTicket = this.profile.boosting_ticket;
+    console.log(this.props.reducer);
+    var customerName = boostingTicket.clients[0].first_name + " " + boostingTicket.clients[0].last_name;
+    var mmrRange = boostingTicket.min_mmr + '-' + boostingTicket.max_mmr;
+    var price = boostingTicket.price + ' coins';
     return (
       <Card className="padding-all" style={{marginTop: 100}}>
         <Grid className="full-width">
@@ -37,7 +45,7 @@ class WaitingPaymentPanel extends React.Component {
               <p className="pull-right">{price}</p>
             </Row>
             <Row className='flex'>
-              <RaisedButton backgroundColor={deepOrange300} labelColor='white' className="container-center" label="Cancel" />
+              <RaisedButton backgroundColor={deepOrange300} onClick={this.cancel} labelColor='white' className="container-center" label="Cancel" />
             </Row>
           </Col>
         </Grid>

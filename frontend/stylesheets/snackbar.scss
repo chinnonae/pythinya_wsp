@@ -1,0 +1,59 @@
+$snackbar-height-desktop: 250px;
+$snackbar-height-mobile: 390px;
+
+@media (max-width: 768px) {
+  .snackbar-container {
+    height: $snackbar-height-mobile !important;
+  }
+  .snackbar-wrapper-show > .snackbar-container {
+    opacity: 1;
+    transform: translateY(calc(100vh - #{$snackbar-height-mobile})) !important;
+  }
+}
+.snackbar-container {
+  position: fixed;
+  height: $snackbar-height-desktop;
+  width: 100%;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s linear, 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: translateY(100vh);
+}
+
+.snackbar {
+  background-color: white;
+  height: 100%;
+}
+
+.snackbar-wrapper-show > .snackbar-container {
+  opacity: 1;
+  transform: translateY(calc(100vh - #{$snackbar-height-desktop}));
+}
+
+.snackbar-wrapper-show > .dark-wrapper {
+  opacity: 1;
+}
+.snackbar-wrapper {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.dark-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: 0.3s;
+  background-color: rgba(0,0,0,0.5);
+}
+.snackbar-wrapper-show {
+  opacity: 1;
+  visibility: visible;
+}

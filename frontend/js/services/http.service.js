@@ -5,7 +5,7 @@ let service = {
     return $.ajax({
       method: method,
       url: URL + url,
-      headers: Authorization,
+      headers: _.merge(Authorization),
       data: data
     });
   },
