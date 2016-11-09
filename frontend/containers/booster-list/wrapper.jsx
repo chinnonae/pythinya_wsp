@@ -5,11 +5,13 @@ import {Card} from 'material-ui/Card';
 var actions = cc.get('redux.actions');
 const ticketService = cc.get('services.ticket');
 const profileService = cc.get('services.profile');
+const boosterService = cc.get('services.booster');
 class BoosterList extends React.Component {
   constructor(props) {
     super(props);
     this.showSnackbar = this.showSnackbar.bind(this);
     ticketService.getTickets(this.props.actions.getTicketCallback);
+    boosterService.getHistory(this.props.actions.getHistoryCallback);
   }
   showSnackbar() {
     let element = $('.snackbar-wrapper');
@@ -69,9 +71,9 @@ class BoosterList extends React.Component {
           <Row className="flex flex-column flex-end-y" style={{height: 100}}>
             <p className="text-center">History</p>
           </Row>
-          <Row>
+          <Col xs={12} sm={12} md={12} lg={12}>
             <HistoryTable />
-          </Row>
+          </Col>
         </Col>
         <Dialog />
         <SnackBar />

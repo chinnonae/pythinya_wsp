@@ -198,10 +198,10 @@ class UserView(APIView):
 class UserInterestedTicketView(APIView):
 
     def get(self, request):
-        interested_ticket = Ticket.objcets.filter(clients=request.user, status=1)
+        interested_ticket = Ticket.objects.filter(clients=request.user, status=1)
 
         return Response({
-            "tickets": TicketSerializer(interested_ticket, many=True),
+            "tickets": TicketSerializer(interested_ticket, many=True).data,
             "status": 200
         })
 

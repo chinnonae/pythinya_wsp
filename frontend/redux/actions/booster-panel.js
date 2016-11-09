@@ -11,7 +11,7 @@ const actions = {
     return {
       type: getConstant().HISTORY_CB,
       data: {
-        history: res.result
+        history: res.tickets
       }
     };
   },

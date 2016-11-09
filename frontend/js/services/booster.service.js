@@ -13,8 +13,9 @@ var service = {
 	getHistory: function(callback) {
 		callback = typeof callback === 'function' ? callback : () => {};
     let http = getHttp();
-    http.getConstant(http.methods.GET, '/api/ticket/history/')
+    http.getConstant(http.methods.GET, '/api/user/profile/interested-ticket')
     .done(function(res) {
+      console.log(res);
       callback(res);
     })
     .fail(function(res) {
