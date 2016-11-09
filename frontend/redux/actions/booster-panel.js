@@ -46,6 +46,7 @@ const actions = {
     };
   },
   createTicketCallback: function(res) {
+    console.log(res);
     return {
       type: getConstant().CREATE_TICKET_CB,
       data: res

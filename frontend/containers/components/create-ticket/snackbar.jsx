@@ -11,7 +11,7 @@ class SnackBar extends React.Component {
     e.preventDefault();
     let form = $('#create-ticket-form');
     let rawData = form.serializeArray();
-    boosterService.createTicket(rawData, this.props.actions.createTicketCallback);
+    boosterService.createTicket(rawData, this.props.actions.createTicketCallback, this.props.actions.showAlertDialog);
   }
   close() {
     let element = $('.snackbar-wrapper');

@@ -67,7 +67,7 @@ var service = {
       console.log(res);
     });
   },
-  createTicket: function(rawData, callback) {
+  createTicket: function(rawData, callback, errorCallback) {
     callback = typeof callback === 'function' ? callback : () => {};
     let http = getHttp();
     let data = {};
@@ -108,6 +108,8 @@ var service = {
       callback(res);
     })
     .fail(function(res) {
+      let error = JSON.parse(res.responseText);
+      errorCallback(true, error.message);
       console.log(res);
     });
   }
