@@ -6,13 +6,14 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 from .models import User
 
+
 class UserCreationForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ('email', 'first_name', 'last_name')
+        fields = ('email', 'first_name', 'last_name', 'telephone', 'is_booster', 'coin')
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -21,7 +22,6 @@ class UserCreationForm(forms.ModelForm):
             raise forms.ValidationError("Passwords don't match")
 
         return password2
-
 
     def save(self, commit=True):
         user = super(UserCreationForm, self).save(commit=False)
@@ -37,10 +37,10 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'password', 'first_name', 'last_name', 'is_active', 'is_admin')
+        fields = ('email', 'password', 'first_name', 'last_name', 'is_admin', 'telephone', 'is_booster', 'coin')
 
-        def clean_password(self):
-            return self.initial["password"]
+    def clean_password(self):
+        return self.initial["password"]
 
 
 class UserAdmin(BaseUserAdmin):
@@ -50,15 +50,15 @@ class UserAdmin(BaseUserAdmin):
     list_display = ('email', 'first_name', 'last_name', 'is_admin')
     list_filter = ('is_admin',)
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('date_of_birth',)}),
-        ('Permissions', {'fields': ('is_adimn',)}),
+        (None, {'fields': ('email', 'password', 'coin')}),
+        ('Personal info', {'fields': ('first_name', 'last_name', 'telephone')}),
+        ('Permissions', {'fields': ('is_admin', 'is_booster')}),
     )
 
     add_fieldsets = (
         (None, {
-            'classess': ('wide,'),
-            'fields': ('email', 'date_of_birth', 'password1', 'password2')}
+            'classes': ('wide',),
+            'fields': ('email', 'first_name', 'last_name', 'password1', 'password2', 'telephone', 'is_booster', 'coin')}
         ),
     )
     search_fields = ('email',)
