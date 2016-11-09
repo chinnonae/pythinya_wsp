@@ -8,6 +8,7 @@ user_url = [
     url(r'^signin/$', auth_view.obtain_auth_token),
     url(r'^signup/$', views.Register.as_view()),
     url(r'^(?P<pk>[0-9]+/)|()profile/$', views.UserView.as_view())
+    url(r'^profile/interested-ticket', views.UserInterestedTicketView.as_view())
 ]
 
 ticket_url = [
