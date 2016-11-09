@@ -201,7 +201,7 @@ class UserInterestedTicketView(APIView):
         interested_ticket = Ticket.objcets.filter(clients=request.user, status=1)
 
         return Response({
-            "tickets": TicketSerializer(interested_ticket, many=True)
+            "tickets": TicketSerializer(interested_ticket, many=True),
             "status": 200
         })
 
@@ -312,4 +312,3 @@ class TopupView(APIView):
             "message": "Successful",
             "status": 200
         })
-
