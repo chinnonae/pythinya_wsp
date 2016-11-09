@@ -25,6 +25,7 @@ class Wrapper extends React.Component {
     let CreateTicket = cc.get('components.createTicket');
     var PackageListPanel = cc.get('components.topup.packageListPanel');
     var PackagePaymentPanel = cc.get('components.topup.packagePaymentPanel');
+    var BoosterInfo = cc.get('components.booster-info.wrapper');
     waitmeService.subscribe(this.store);
 		var Main = cc.get('components.main');
 		var BoosterList = cc.get('components.booster_list');
@@ -43,6 +44,7 @@ class Wrapper extends React.Component {
             <Route path='checkout' onEnter={isPickedCheckout} component={Checkout}/>
             <Route path='topup' component={PackageListPanel}></Route>
             <Route path='topup/:packageId' component={PackagePaymentPanel} />
+            <Route path='booster_info' component={BoosterInfo} />
 					</Route>
 				</Router>
 			</Provider>
