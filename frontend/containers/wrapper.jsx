@@ -34,7 +34,7 @@ class Wrapper extends React.Component {
 		return (
 			<Provider store={this.store}>
 				<Router onUpdate={this.loadJS.bind(this)} history={browserHistory}>
-					<Route path='/' component={App}>
+					<Route path='/' onEnter={loadProfile} component={App}>
 						<IndexRoute onEnter={isAuth} component={Main}/>
 						<Route path='signin' component={Signin}/>
 						<Route path='signup' component={Signup}/>
@@ -50,10 +50,19 @@ class Wrapper extends React.Component {
 	}
 }
 
+const loadProfile = (nextState, replace, callback) => {
+  cc.get('services.profile').fetchProfile()
+  .then((res) => {
+    console.log('loading profile');
+    console.log(res);
+    store.dispatch(actions.profileCallback(res));
+    callback();
+  });
+};
+
 const isPickedCheckout = (nextState, replace, callback) => {
   cc.get('services.profile').fetchProfile()
   .then((res) => {
-    console.log(res);
     if(res === null) { // not sign in
       replace('/signin');
     }else if((res.holding_ticket).length > 0) {
@@ -68,7 +77,6 @@ const isPickedCheckout = (nextState, replace, callback) => {
 const isPicked = (nextState, replace, callback) => {
   cc.get('services.profile').fetchProfile()
   .then((res) => {
-    console.log(res);
     if(res === null) { // not sign in
       replace('/signin');
     }else if((res.holding_ticket).length > 0) {
@@ -91,7 +99,6 @@ const isAuth =(nextState, replace, callback) => {
 const requirePermission = (nextState, replace, callback) => {
   cc.get('services.profile').fetchProfile()
   .then((res) => {
-    console.log(res);
     if(res === null) { // not sign in
       replace('/signin');
     }else if(!res.user.is_booster) {

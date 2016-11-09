@@ -7,18 +7,20 @@ const boosterService = cc.get('services.booster');
 class Wrapper extends React.Component {
   constructor(props) {
     super(props);
+    this.profile = this.props.reducer.profile;
+    this.actions = this.props.actions;
     // boosterService.getCurrentTicket(1, this.props.actions.getCurrentTicketCallback);
-    this.props.actions.getCurrentTicketCallback(this.props.ticket);
+    // this.props.actions.getCurrentTicketCallback(this.props.ticket);
   }
   done() {
-    let id = this.props.reducer.boosterPanel.ticket.id;
-    boosterService.doneBoosting(id, this.props.actions.doneBoostingCallback);
+    let id = this.profile.boosting_ticket.id;
+    boosterService.doneBoosting(id, this.actions.doneBoostingCallback);
   }
   render() {
     /* components */
+    let boostingTicket = this.profile.boosting_ticket;
     const Input = cc.get('components.input');
-    const reducer = this.props.reducer.boosterPanel.ticket;
-    const customerName = reducer.clients[0].first_name + " " + reducer.clients[0].last_name;
+    const customerName = boostingTicket.clients[0].first_name + " " + boostingTicket.clients[0].last_name;
     return (
       <Card className="padding-all" style={{marginTop: 100}}>
         <Grid className="full-width">

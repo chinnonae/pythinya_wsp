@@ -3,7 +3,6 @@ var service = {
 	fetchProfile: function() {
 		const token = cookie.get('token');
     const profile = cookie.get('profile');
-    // callback = typeof callback === 'function' ? callback : () => {};
     return new Promise((resolve, reject) => {
   		if (token) {
         let http = getHttp();
@@ -18,10 +17,6 @@ var service = {
         });
   		}else {
         resolve(null);
-      }
-      if (profile && token) {
-        let obj = JSON.parse(profile);
-        resolve(obj);
       }
     });
 	},
