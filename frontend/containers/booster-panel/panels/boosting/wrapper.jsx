@@ -4,6 +4,7 @@ import {Row,Col, Grid} from 'react-bootstrap';
 import {lightBlue500} from 'material-ui/styles/colors';
 const actions = cc.get('redux.actions');
 const boosterService = cc.get('services.booster');
+const profileService = cc.get('services.profile');
 class Wrapper extends React.Component {
   constructor(props) {
     super(props);
@@ -19,7 +20,10 @@ class Wrapper extends React.Component {
   }
   updateMMR() {
     let currentMMR = $('#current-mmr')[0].value;
-    boosterService.updateMMR(this.ticketId, currentMMR, this.actions.updateMMRCallback);
+    boosterService.updateMMR(this.ticketId, currentMMR, this.actions.updateMMRCallback)
+    .then((res) => {
+      profileService.fetchProfile(this.actions.profileCallback);
+    });
   }
   render() {
     /* components */

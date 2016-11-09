@@ -1,6 +1,7 @@
 var myProfile = null;
 var service = {
-	fetchProfile: function() {
+	fetchProfile: function(callback) {
+    callback = typeof callback === 'function' ? callback : () => {};
 		const token = cookie.get('token');
     const profile = cookie.get('profile');
     return new Promise((resolve, reject) => {
@@ -10,6 +11,7 @@ var service = {
         .done(function(res) {
           cookie.set('profile', res);
           myProfile = res;
+          callback(res);
           resolve(res);
         })
         .fail(function(res) {

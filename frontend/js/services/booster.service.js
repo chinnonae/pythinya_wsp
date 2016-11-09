@@ -73,12 +73,15 @@ var service = {
       current_mmr: currentMMR
     };
     let http = getHttp();
-    http.getConstant(http.methods.PUT, '/api/ticket/' + id + '/progress', data)
-    .done((res) => {
-      callback(res);
-    })
-    .fail((res) => {
-      console.log(res);
+    return new Promise((resolve, reject) => {
+      http.getConstant(http.methods.PUT, '/api/ticket/' + id + '/progress', data)
+      .done((res) => {
+        callback(res);
+        resolve(res);
+      })
+      .fail((res) => {
+        console.log(res);
+      });
     });
   },
   createTicket: function(rawData, callback, errorCallback) {
