@@ -46,7 +46,6 @@ const actions = {
     };
   },
   createTicketCallback: function(res) {
-    console.log(res);
     return {
       type: getConstant().CREATE_TICKET_CB,
       data: res
@@ -60,6 +59,12 @@ const actions = {
   cancelBoostingCallback: function(res) {
     return {
       type: getConstant().CANCEL_BOOSTING_CB
+    };
+  },
+  updateMMRCallback: function(res) {
+    console.log(res);
+    return {
+      type: getConstant().UPDATE_MRR_CB
     };
   }
 };

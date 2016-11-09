@@ -67,6 +67,20 @@ var service = {
       console.log(res);
     });
   },
+  updateMMR: function(id, currentMMR, callback) {
+    callback = typeof callback === 'function' ? callback : () => {};
+    let data = {
+      current_mmr: currentMMR
+    };
+    let http = getHttp();
+    http.getConstant(http.methods.PUT, '/api/ticket/' + id + '/progress', data)
+    .done((res) => {
+      callback(res);
+    })
+    .fail((res) => {
+      console.log(res);
+    });
+  },
   createTicket: function(rawData, callback, errorCallback) {
     callback = typeof callback === 'function' ? callback : () => {};
     let http = getHttp();

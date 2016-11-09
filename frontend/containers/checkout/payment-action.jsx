@@ -37,7 +37,7 @@ class PaymentActionPanel extends React.Component {
         <Row className="text-right">
           <Col xs={12} sm={6} md={6} lg={6}></Col>
           <Col xs={12} sm={6} md={6} lg={6}>
-          <a onClick={this.cancel}>Cancel this ticket</a>
+          <a className="pointer" onClick={this.cancel}>Cancel this ticket</a>
           <p>(You will pay a penalty of 10% of the ticket's price)</p>
           </Col>
         </Row>
