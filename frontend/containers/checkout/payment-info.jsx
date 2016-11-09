@@ -3,9 +3,12 @@ import {Row, Col} from 'react-bootstrap';
 const actions = cc.get('redux.actions');
 
 class PaymentInfoPanel extends React.Component {
+  constructor(props) {
+    super(props);
+    this.ticket = this.props.reducer.profile.holding_ticket[0];
+    this.profile = this.props.reducer.profile;
+  }
   render() {
-    var ticket = this.props.reducer.payment.ticket;
-    var profile = this.props.reducer.profile;
     return (
       <div className="padding-top padding-bottom margin-bottom margin-top">
         <Row className="margin-bottom">
@@ -14,7 +17,7 @@ class PaymentInfoPanel extends React.Component {
             <b>Price</b>
           </Col>
           <Col xs={6} sm={4} md={2} lg={2} className="text-right">
-              { ticket.price } Coins
+              { this.ticket.price } Coins
            </Col>
         </Row>
         <Row className="margin-bottom">
@@ -22,11 +25,11 @@ class PaymentInfoPanel extends React.Component {
           <Col xs={6} sm={4} md={2} lg={2} className="text-right">
             <b>Your balance</b>
           </Col>
-          <Col xs={6} sm={4} md={2} lg={2} className="text-right">4000 - { ticket.price } Coins</Col>
+          <Col xs={6} sm={4} md={2} lg={2} className="text-right">{ this.profile.coin + ' - ' + this.ticket.price } Coins</Col>
         </Row>
         <Row>
           <Col xs={6} sm={10} md={10} lg={10}></Col>
-          <Col xs={6} sm={2} md={2} lg={2} className="text-right">{'= ' + (4000 - parseInt(ticket.price))+ ' Coins'}</Col>
+          <Col xs={6} sm={2} md={2} lg={2} className="text-right">{'= ' + (parseInt(tihs.profile.coin) - parseInt(this.ticket.price))+ ' Coins'}</Col>
         </Row>
       </div>
     );

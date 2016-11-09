@@ -41,10 +41,12 @@ class Wrapper extends React.Component {
 						<Route path='signup' component={Signup}/>
 						<Route path='client' onEnter={isPicked} component={BoosterList}/>
             <Route path='booster_panel' onEnter={requirePermission} component={BoosterPanel} />
-            <Route path='checkout' onEnter={isPickedCheckout} component={Checkout}/>
+            <Route path='track'>
+              <Route path='checkout' onEnter={isPickedCheckout} component={Checkout}/>
+              <Route path='boosting' component={BoosterInfo}/>
+            </Route>
             <Route path='topup' component={PackageListPanel}></Route>
             <Route path='topup/:packageId' component={PackagePaymentPanel} />
-            <Route path='booster_info' component={BoosterInfo} />
 					</Route>
 				</Router>
 			</Provider>
@@ -62,15 +64,39 @@ const loadProfile = (nextState, replace, callback) => {
   });
 };
 
+const track = (nextState, replace, callback) => {
+  cc.get('services.profile').fetchProfile()
+  .then((res) => {
+    if(res === null) { // not sign in
+      replace('/signin');
+    }else if((res.holding_ticket).length === 0){
+      replace('/client');
+    }else {
+      replace('/track/checkout');
+    }
+    callback();
+  });
+};
+
 const isPickedCheckout = (nextState, replace, callback) => {
   cc.get('services.profile').fetchProfile()
   .then((res) => {
     if(res === null) { // not sign in
       replace('/signin');
-    }else if((res.holding_ticket).length > 0) {
-      store.dispatch(actions.getPickedTicketCallback(res.holding_ticket[0]));
-    }else {
-      replace('/client');
+    }else if((res.holding_ticket)[0].status === BOOSTING){
+      replace('/track/boosting');
+    }
+    callback();
+  });
+};
+
+const isPickedBoosting = (nextState, replace, callback) => {
+  cc.get('services.profile').fetchProfile()
+  .then((res) => {
+    if(res === null) { // not sign in
+      replace('/signin');
+    }else if((res.holding_ticket)[0].status === WAITING_FOR_PAYMENT){
+      replace('/track/checkout');
     }
     callback();
   });
@@ -82,8 +108,7 @@ const isPicked = (nextState, replace, callback) => {
     if(res === null) { // not sign in
       replace('/signin');
     }else if((res.holding_ticket).length > 0) {
-      store.dispatch(actions.getPickedTicketCallback(res.holding_ticket[0]));
-      replace('/checkout');
+      replace('/track');
     }
     callback();
   });

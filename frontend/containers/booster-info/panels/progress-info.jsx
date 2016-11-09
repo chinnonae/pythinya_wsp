@@ -10,7 +10,7 @@ class ProgressInfoPanel extends React.Component {
           </div>
           <div className="padding-all">
             <p>How many your MMR is boosted</p>
-            <LinearProgress mode="determinate" value="50" style={{height: "20px"}}/>
+            <LinearProgress mode="determinate" value={50} style={{height: "20px"}}/>
           </div>
         </Card>
       </div>
