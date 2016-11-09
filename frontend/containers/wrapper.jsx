@@ -42,6 +42,7 @@ class Wrapper extends React.Component {
 						<Route path='client' onEnter={isPicked} component={BoosterList}/>
             <Route path='booster_panel' onEnter={requirePermission} component={BoosterPanel} />
             <Route path='track'>
+              <IndexRoute onEnter={isPickedCheckout} component={Checkout}/>
               <Route path='checkout' onEnter={isPickedCheckout} component={Checkout}/>
               <Route path='boosting' component={BoosterInfo}/>
             </Route>

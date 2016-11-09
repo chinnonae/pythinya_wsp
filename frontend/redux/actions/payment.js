@@ -1,10 +1,12 @@
 const action = {
   getPickedTicketCallback: function(res) {
+    let profile = cc.get('services.profile').getProfile();
+    console.log(profile);
     return {
       type: getConstant().GET_PICKED_TICKET_CB,
       data: {
         ticket: res,
-        hasEnoughBalance: res.price <= 4000 // TODO: REMOVE THIS!!! use the real balance from profile
+        hasEnoughBalance: res.price <= parseInt(profile.user.coin)
       }
     };
   },

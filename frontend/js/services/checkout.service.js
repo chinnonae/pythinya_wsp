@@ -28,6 +28,7 @@ var checkout = {
         }
 			})
 			.done(function(res) {
+        location.reload();
 				callback(res);
 			})
 			.fail(function(res) {
