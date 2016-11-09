@@ -1,5 +1,5 @@
 var service = {
-  buyTicket: function(ticketId, callback) {
+  buyTicket: function(ticketId, callback, errorCallback) {
     callback = typeof callback === 'function' ? callback : () => {};
     var http = getHttp();
     http.getConstant(http.methods.PUT, '/api/ticket/' + ticketId + '/pick')
@@ -8,6 +8,8 @@ var service = {
     })
     .fail(function(res) {
       console.log(res);
+      let error = JSON.parse(res.responseText);
+      errorCallback(true,error.message);
     });
   },
   getTickets: function(callback) {

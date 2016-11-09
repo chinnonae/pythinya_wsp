@@ -12,7 +12,7 @@ class Wrapper extends React.Component {
   }
   buy() {
     let id = this.props.reducer.clientPanel.buyDialog.ticket.id;
-    ticketService.buyTicket(id, this.props.actions.buyTicketCallback);
+    ticketService.buyTicket(id, this.props.actions.buyTicketCallback, this.props.actions.showAlertDialog);
   }
   render() {
     /* Components */

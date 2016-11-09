@@ -18,6 +18,11 @@ const reducer = (state, action) => {
       newState.buyDialog.isShow = action.isShow;
       newState.buyDialog.ticket = action.data;
       return newState;
+    case constant.SHOW_ALERT_DIALOG:
+      if(action.data.isShow) {
+        newState.buyDialog.isShow = false;
+      }
+      return newState;
     case constant.GET_TICKET_CB:
       newState.tickets = action.data;
       return newState;
