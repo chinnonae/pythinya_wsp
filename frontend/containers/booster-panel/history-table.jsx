@@ -4,7 +4,7 @@ class HistoryTable extends React.Component {
   render() {
     return (
       <Card>
-        <Table selectable={false}>
+        <Table className="history-table" selectable={false}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false} style={{backgroundColor: "#e0e0e0"}}>
             <TableRow>
               <TableHeaderColumn style={{width: "45%"}}>Customer name</TableHeaderColumn>

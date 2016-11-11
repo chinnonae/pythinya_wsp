@@ -28,7 +28,7 @@ class BoosterList extends React.Component {
     let newTicketView;
     let profile = profileService.getProfile();
     if(profile.user.is_booster) {
-      newTicketView = <RaisedButton onTouchTap={this.showSnackbar} label="New Ticket" primary={true}/>;
+      newTicketView = <RaisedButton id="new-ticket-btn" onTouchTap={this.showSnackbar} label="New Ticket" primary={true}/>;
     }
     /* rendering */
     return (

@@ -7,6 +7,10 @@ class App extends React.Component {
     const Loader = cc.get('components.loader');
     const AlertDialog = cc.get('components.alertDialog');
     const CoinBar = cc.get('components.coinBar');
+    let coinBarView;
+    if (this.props.reducer.profile.user) {
+      coinBarView = <CoinBar />;
+    }
     /* rendering */
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
@@ -15,7 +19,7 @@ class App extends React.Component {
           <AlertDialog />
           <div className="blur">
             <Appbar />
-            <CoinBar />
+            {coinBarView}
             {this.props.children}
           </div>
         </div>
