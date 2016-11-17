@@ -21,7 +21,6 @@ class Wrapper extends React.Component {
     var Signin = cc.get('components.signin');
     var Signup = cc.get('components.signup');
     var BoosterPanel = cc.get('components.boosterPanel');
-    var ClientPanel = cc.get('components.clientPanel.wrapperTemp');
     let CreateTicket = cc.get('components.createTicket');
     var PackageListPanel = cc.get('components.topup.packageListPanel');
     var PackagePaymentPanel = cc.get('components.topup.packagePaymentPanel');

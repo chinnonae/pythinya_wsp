@@ -22,7 +22,7 @@ class ConfirmDialog extends React.Component {
     const reducer = this.props.reducer.boosterPanel;
     const actions = [
       <FlatButton onTouchTap={this.closeDialog} label="Close"/>,
-      <FlatButton onTouchTap={this.startBoosting} primary={true} label="Yes"/>
+      <FlatButton id="confirm-boosting-btn" onTouchTap={this.startBoosting} primary={true} label="Yes"/>
     ];
     return (
       <Dialog title="Confirm" actions={actions} open={reducer.showConfirmDialog} onRequestClose={this.closeDialog}>

@@ -28,7 +28,7 @@ class WaitingPaymentPanel extends React.Component {
         <Grid className="full-width">
           <Col smOffset={1} sm={10} md={8} mdOffset={2} xs={10} xsOffset={1} lg={8} lgOffset={2}>
             <Row className="text-center flex flex-center margin-bottom">
-              <span className="display-box">Waiting for payment from &nbsp;
+              <span id="waiting-label" className="display-box">Waiting for payment from &nbsp;
                 <p>{customerName}</p>
               </span>
             </Row>

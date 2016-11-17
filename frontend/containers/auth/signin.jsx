@@ -37,7 +37,7 @@ class Signin extends React.Component {
                     <Input error={error} type="password" label="Password" elementId="password"/>
 									</Row>
                   <Row className="flex padding-bottom no-margin padding-left padding-right">
-                    <RaisedButton type="submit" className="margin-top full-width" label="Signin" primary={true}/>
+                    <RaisedButton id="submit-btn" type="submit" className="margin-top full-width" label="Signin" primary={true}/>
                   </Row>
 								</form>
 							</div>

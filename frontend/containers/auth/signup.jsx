@@ -44,7 +44,7 @@ class Signup extends React.Component {
                     <Input name="telephone" label="Mobile number" elementId="mobileNumber"/>
                   </Row>
                   <Row className="flex padding-bottom no-margin padding-left padding-right">
-                    <RaisedButton type="submit" className="margin-top full-width" label="Signup" primary={true}/>
+                    <RaisedButton id="submit-btn" type="submit" className="margin-top full-width" label="Signup" primary={true}/>
                   </Row>
                 </form>
               </div>
