@@ -5,5 +5,6 @@ import waitme from './waitme';
 import clientPanel from './client';
 import payment from './payment';
 import app from './app';
-var actions = _.merge({},auth, profile, waitme, boosterPanel, payment, clientPanel, app);
+import paypal from './paypal';
+var actions = _.merge({},auth, profile, waitme, boosterPanel, payment, clientPanel, app, paypal);
 cc.register('redux.actions', actions);

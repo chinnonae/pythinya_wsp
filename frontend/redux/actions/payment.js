@@ -1,7 +1,6 @@
 const action = {
   getPickedTicketCallback: function(res) {
     let profile = cc.get('services.profile').getProfile();
-    console.log(profile);
     return {
       type: getConstant().GET_PICKED_TICKET_CB,
       data: {

@@ -1,14 +1,14 @@
 import {Card} from 'material-ui/Card';
-import {RaisedButton} from 'material-ui'
+import {RaisedButton} from 'material-ui';
 import {Row, Col} from 'react-bootstrap';
 
 const PackageCard = (props) => {
   let style = {
     width: "250px"
-  }
+  };
   var coinPackage = props.coinPackage;
   return (
-    <Card className="margin-all" style={style}>
+    <Card className="margin-all flex" style={style}>
       <div style={{backgroundColor: "#e0e0e0", width: "250px", height: "250px"}}></div>
       <div className="padding-all relative">
         <Row className="text-center">

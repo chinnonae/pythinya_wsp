@@ -31,7 +31,7 @@ class Wrapper extends React.Component {
     var Carousel = cc.get('components.carousel');
     var Checkout = cc.get('components.checkout.wrapper');
 
-    let CreditCardForm = cc.get('components.creditcardForm');
+    let Paypal = cc.get('components.paypal');
 		return (
 			<Provider store={this.store}>
 				<Router onUpdate={this.loadJS.bind(this)} history={browserHistory}>
@@ -48,7 +48,7 @@ class Wrapper extends React.Component {
             </Route>
             <Route path='topup' component={PackageListPanel}></Route>
             <Route path='topup/:packageId' component={PackagePaymentPanel} />
-            <Route path='dev' component={CreditCardForm} />
+            <Route path='dev' component={Paypal} />
 					</Route>
 				</Router>
 			</Provider>
