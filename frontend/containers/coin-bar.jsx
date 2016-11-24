@@ -6,7 +6,7 @@ class CoinBar extends React.Component {
     return (
       <div>
         <Row className="relative">
-          <div className="pull-right margin-top margin-right">
+          <div className="margin-top margin-right flex" style={{flexDirection: "row-reverse"}}>
             <b>{coin + ' Coins'}</b>
           </div>
         </Row>

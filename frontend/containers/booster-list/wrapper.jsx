@@ -36,8 +36,7 @@ class BoosterList extends React.Component {
       <div className="margin-top">
         {/* start component top */}
         <Col xs={12} sm={12} md={7} lg={8}>
-            {/* //component top left-side */}
-            <Row style={{height: 100}} className="flex flex-mobile">
+            {/* <Row style={{height: 100}} className="flex flex-mobile">
               <Col xs={12} sm={5} md={5} lg={5} className="no-padding flex flex-column flex-end-y">
                 <div>
                   <div className="flex flex-center">Filter by MMR</div>
@@ -49,35 +48,30 @@ class BoosterList extends React.Component {
                   </Col>
                 </div>
               </Col>
-              {/* //component top right-side */}
               <Col xs={12} sm={7} md={7} lg={7} className="no-padding flex">
                 <Col xs={8} sm={8} md={7} lg={7} className="flex flex-column flex-end-y">
-                  {/* <div className="flex flex-center">Filter by Booster name</div> */}
                   <Input name="booster_name" label="Filter by booster name" elementId="boosterName"></Input>
                 </Col>
                 <Col xs={4} sm={4} md={5} lg={5} style={{paddingBottom: 10}} className="flex flex-column flex-end-y">
                   <div>{newTicketView}</div>
                 </Col>
               </Col>
-            </Row>
-          {/* //end component top */}
-          {/* //start component booster list */}
-          <Col xs={12} sm={12} md={12} lg={12}>
-            <BoosterTable/>
+            </Row> */}
+          <Col xs={12} sm={12} md={12} lg={12} className="no-padding">
+            <Card className="black-secondary padding-all" >
+              <div className="flex flex-middle">
+                <img width={15} src="/assets/menu.svg"/>
+                <p className="no-margin padding-left">Tickets</p>
+              </div>
+              <BoosterTable/>
+            </Card>
           </Col>
         </Col>
-        {/* end component booster list */}
         <Col xs={12} sm={12} md={5} lg={4}>
-          <Row className="flex flex-column flex-end-y" style={{height: 100}}>
-            <p className="text-center">History</p>
-          </Row>
-          <Col xs={12} sm={12} md={12} lg={12}>
-            <HistoryTable />
-          </Col>
+          <HistoryTable />
         </Col>
         <Dialog />
         <SnackBar />
-        {/* //end component booster list */}
       </div>
     );
   }
