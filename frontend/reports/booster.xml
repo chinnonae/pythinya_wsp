@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="1"
+            failures="0"
+            tests="7">
+
+  <testsuite name="booster"
+    errors="1" failures="0" hostname="" id="" package="booster" skipped="6"
+    tests="7" time="0.01000" timestamp="Thu, 10 Nov 2016 02:33:03 GMT">
+  
+    <testcase name="Sign in with booster account" time="0.01000" assertions="0">
+    </testcase>
+      <system-err>
+          Error while running [Booster / Sign in with booster account]:
+
+  TypeError: Cannot read property &#39;pause&#39; of undefined
+    at pause (/Users/taweesoft/Documents/work/pythinya_wsp/frontend/tests/booster.js:3:9)
+    at Object.Sign in with booster account (/Users/taweesoft/Documents/work/pythinya_wsp/frontend/tests/booster.js:51:7)
+    at Module.call (/usr/local/lib/node_modules/nightwatch/lib/runner/module.js:62:34)
+    at /usr/local/lib/node_modules/nightwatch/lib/runner/testcase.js:70:29
+    at _fulfilled (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:834:54)
+    at self.promiseDispatch.done (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:863:30)
+    at Promise.promise.promiseDispatch (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:796:13)
+    at /usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:556:49
+    at runSingle (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:137:13)
+    at flush (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:125:13)
+      </system-err>
+  
+  
+    
+    <testcase
+      name="Create new ticket">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="Sign out">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="Sign in with client account">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="expect the ticket is shown">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="expect the coin is shown">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="buy a latest ticket">
+      <skipped />
+    </testcase>
+    
+  
+  </testsuite>
+</testsuites>

@@ -4,7 +4,11 @@ class Input extends React.Component {
   }
   render() {
     var labelClass = '';
-    if(this.props.error){ labelClass += 'error-text active'; }
+    if(this.props.error){ labelClass += 'error-text'; }
+    let ele = $('#'+this.props.elementId);
+    if(ele.length > 0 && (ele[0].value).length > 0) {
+      labelClass += ' active';
+    }
     return (
       <div className="phAnimate">
           <label className={labelClass} htmlFor={this.props.elemenId}>{this.props.label}</label>

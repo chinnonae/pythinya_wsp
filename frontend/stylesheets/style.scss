@@ -1,30 +1,21 @@
-// @font-face {
-//   font-family: 'Sukhumvit';
-//   src: url('./fonts/sukhumvit-set/SukhumvitSet-Medium.ttf');
-// }
+@import 'colors.scss';
+
 @font-face {
   font-family: 'Sukhumvit';
   font-weight: bold;
   src: url('./fonts/sukhumvit-set/SukhumvitSet-Bold.ttf');
 }
-// @font-face {
-//   font-family: 'Sukhumvit';
-//   src: url('./fonts/sukhumvit-set/SukhumvitSet-SemiBold.ttf');
-// }
 @font-face {
   font-family: 'Sukhumvit';
   font-weight: normal;
   src: url('./fonts/sukhumvit-set/SukhumvitSet-Text.ttf');
 }
-// @font-face {
-//   font-family: 'Sukhumvit';
-//   font-weight: lighter;
-//   src: url('./fonts/sukhumvit-set/SukhumvitSet-Thin.ttf');
-// }
 
 html,body {
   font-family: 'Sukhumvit' !important;
   margin: 0px;
+  color: $white;
+  background: $black_primary;
 }
 
 .flex {
@@ -70,6 +61,14 @@ html,body {
 
 .margin-bottom {
   margin-bottom: 15px;
+}
+
+.margin-right {
+  margin-right: 15px;
+}
+
+.margin-left {
+  margin-left: 15px;
 }
 
 .padding-all {
@@ -118,10 +117,12 @@ html,body {
   font-weight: 500;
   font-size: 14px;
   display: block;
+  color: white;
   text-decoration: none;
 }
 .link-button:hover, .link-button:visited, .link-button:active, .link-button:link {
   text-decoration: none;
+  color: white;
 }
 
 .flex-column {
@@ -153,6 +154,48 @@ html,body {
   right: 0;
 }
 
+.pull-top {
+  position: absolute;
+  top: 0;
+}
+.pull-bottom {
+  position:absolute;
+  bottom: 0;
+}
 .display-box {
   display: -webkit-box !important;
+}
+
+.dummy-container {
+  background-color: #F5F5F5;
+}
+
+.black-primary {
+  background: $black_primary !important;
+  background-color: $black_primary !important;
+}
+
+.black_secondary {
+  background: $black_secondary !important;
+  background-color: $black_secondary !important;
+}
+
+.success {
+  background: $success !important;
+  background-color: $success !important;
+}
+
+.amber {
+  background: $amber !important;
+  background-color: $amber !important;
+}
+
+.error {
+  background: $error !important;
+  background-color: $error !important;
+}
+
+.blue {
+  background: $blue !important;
+  background-color: $blue !important;
 }

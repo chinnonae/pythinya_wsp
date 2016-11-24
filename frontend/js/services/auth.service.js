@@ -26,6 +26,7 @@ var auth = {
 		_.map(user, function(item) {
 			data[item.name] = item.value;
 		});
+    console.log(data);
     http.getConstant(http.methods.POST, '/api/user/signup/', data, false)
     .done(function(res) {
       getWaitmeService().hide();
