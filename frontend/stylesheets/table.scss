@@ -6,6 +6,7 @@
 // }
 
 @import 'colors.scss';
+@import 'style.scss';
 
 tbody > tr, thead, thead > tr {
   border-bottom: 0px solid white !important;
@@ -18,8 +19,15 @@ table, thead, tbody {
 tbody > tr > td {
   color: white !important;
   text-overflow: inherit !important;
+  background-color: rgba(0,0,0,0) !important;
   white-space: normal !important;
   padding: 2px !important;
+}
+
+tbody > tr > td > div {
+  @extend .flex;
+  @extend .flex-middle;
+  @extend .full-height;
 }
 
 .alter1 {

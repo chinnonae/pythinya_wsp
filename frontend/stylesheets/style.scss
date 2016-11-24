@@ -18,6 +18,9 @@ html,body {
   background: $black_primary;
 }
 
+p {
+  color :$white;
+}
 .flex {
   display: flex;
 }
@@ -175,7 +178,7 @@ html,body {
   background-color: $black_primary !important;
 }
 
-.black_secondary {
+.black-secondary {
   background: $black_secondary !important;
   background-color: $black_secondary !important;
 }
@@ -203,4 +206,8 @@ html,body {
 .transparent {
   background: $transparent !important;
   background-color: $transparent !important;
+}
+
+.white-text {
+  color: white !important;
 }

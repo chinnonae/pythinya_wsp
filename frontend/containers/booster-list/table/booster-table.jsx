@@ -8,7 +8,6 @@ class BoosterTable extends React.Component {
   render() {
     var self = this;
     return (
-      <Card className="transparent">
         <Table selectable={false} className="hoverable success-header">
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
@@ -25,18 +24,17 @@ class BoosterTable extends React.Component {
                 let tdClassName = (i % 2 === 0) ? 'alter1' : 'alter2';
                 return (
                   <TableRow onMouseUp={self.onClick.bind(self,item)} key={i} className="pointer">
-                    <TableRowColumn style={{width: "35%"}}><div className={"flex flex-middle full-height " + tdClassName}>{item.booster.first_name + " " + item.booster.last_name}</div></TableRowColumn>
-                    <TableRowColumn><div className={"flex flex-middle full-height " + tdClassName}>{item.price}</div></TableRowColumn>
-                    <TableRowColumn><div className={"flex flex-middle full-height " + tdClassName}>{"4"}</div></TableRowColumn>
-                    <TableRowColumn><div className={"flex flex-middle full-height " + tdClassName}>{item.day_used}</div></TableRowColumn>
-                    <TableRowColumn><div className={"flex flex-middle full-height " + tdClassName}>{item.min_mmr + "-" + item.max_mmr}</div></TableRowColumn>
+                    <TableRowColumn style={{width: "35%"}}><div className={tdClassName}>{item.booster.first_name + " " + item.booster.last_name}</div></TableRowColumn>
+                    <TableRowColumn><div className={tdClassName}>{item.price}</div></TableRowColumn>
+                    <TableRowColumn><div className={tdClassName}>{"4"}</div></TableRowColumn>
+                    <TableRowColumn><div className={tdClassName}>{item.day_used}</div></TableRowColumn>
+                    <TableRowColumn><div className={tdClassName}>{item.min_mmr + "-" + item.max_mmr}</div></TableRowColumn>
                   </TableRow>
                 );
               })
             }
           </TableBody>
         </Table>
-      </Card>
     );
   }
 }
