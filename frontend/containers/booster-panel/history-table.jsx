@@ -3,7 +3,7 @@ import {Card} from 'material-ui/Card';
 class HistoryTable extends React.Component {
   render() {
     return (
-      <Card>
+      <Card className="transparent">
         <Table className="history-table" selectable={false}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false} style={{backgroundColor: "#e0e0e0"}}>
             <TableRow>
