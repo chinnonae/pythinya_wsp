@@ -19,7 +19,7 @@ class Wrapper extends React.Component {
     let TicketInfoTable = cc.get('components.ticketInfoTable');
     let actionButton = [
       <FlatButton label="Cancel" className="white-text" onTouchTap={this.close} />,
-      <FlatButton id="buy-ticket-btn" label="Buy" className="success margin-left" onTouchTap={this.buy} />
+      <FlatButton id="buy-ticket-btn" label="Buy" className="margin-left success-text" onTouchTap={this.buy} />
     ];
     /* rendering */
     var reducer = this.props.reducer.clientPanel;

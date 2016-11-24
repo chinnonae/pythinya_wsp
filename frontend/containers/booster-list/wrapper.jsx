@@ -33,7 +33,7 @@ class BoosterList extends React.Component {
     /* rendering */
     return (
 
-      <div className="margin-top">
+      <div>
         {/* start component top */}
         <Col xs={12} sm={12} md={7} lg={8}>
             {/* <Row style={{height: 100}} className="flex flex-mobile">
