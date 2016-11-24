@@ -11,7 +11,7 @@ class BoosterTable extends React.Component {
         <Table selectable={false} className="hoverable success-header">
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
-              <TableHeaderColumn style={{width: "35%"}}>Booster name</TableHeaderColumn>
+              <TableHeaderColumn style={{width: "25%"}}>Booster name</TableHeaderColumn>
               <TableHeaderColumn>Price</TableHeaderColumn>
               <TableHeaderColumn>Boosted times</TableHeaderColumn>
               <TableHeaderColumn>Day used</TableHeaderColumn>
