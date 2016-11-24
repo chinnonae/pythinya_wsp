@@ -3,7 +3,7 @@ import {green300} from 'material-ui/styles/colors';
 var Theme = getMuiTheme({
   fontFamily: "Sukhumvit",
   palette : {
-    primary1Color: "#3b3b3b"
+    primary1Color: "#333334"
   }
 });
 
