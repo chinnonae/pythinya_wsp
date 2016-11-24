@@ -8,3 +8,4 @@ import './loader.scss';
 import './carousel.scss';
 import './media-query.scss';
 import './snackbar.scss';
+import './main.scss';
