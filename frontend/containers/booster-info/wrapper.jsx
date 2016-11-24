@@ -1,4 +1,5 @@
 import {Grid, Row, Col} from 'react-bootstrap';
+import {Card} from 'material-ui';
 const actions = cc.get('redux.actions');
 class Wrapper extends React.Component {
   constructor(props) {
@@ -9,22 +10,14 @@ class Wrapper extends React.Component {
   render() {
     var BoosterInfoPanel = cc.get('components.booster-info.boosterInfoPanel');
     var ProgressInfoPanel = cc.get('components.booster-info.progressInfoPanel');
-    var ContactCard = cc.get('components.boosterPanel.contactsPanel.dialog.contactCard');
     return (
       <Grid  className="flex flex-center flex-middle" style={{height: "calc(100vh - 64px)"}}>
-        <div className="full-width">
-          <Row className="margin-bottom flex">
-            <Col xs={12} sm={12} md={12} lg={12} className="container-center">
-              <b>Booster information</b>
-              <p>You can contract your booster directly</p>
-              <ContactCard client={this.booster} />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12} sm={12} md={12} lg={12} className="container-center">
-            <ProgressInfoPanel />
-            </Col>
-          </Row>
+        <div className="full-width flex flex-center">
+          <Col xs={12} sm={12} md={6} lg={6}>
+            <Card className="black-secondary padding-all">
+              <BoosterInfoPanel booster={this.booster}/>
+            </Card>
+          </Col>
         </div>
       </Grid>
     );

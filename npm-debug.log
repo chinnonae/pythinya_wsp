@@ -1,43 +1,20 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/local/bin/node',
-1 verbose cli   '/usr/local/bin/npm',
-1 verbose cli   'install',
-1 verbose cli   '--save-dev',
-1 verbose cli   'react-slick' ]
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'start' ]
 2 info using npm@3.10.8
 3 info using node@v6.9.1
-4 silly loadCurrentTree Starting
-5 silly install loadCurrentTree
-6 silly install readLocalPackageData
-7 silly rollbackFailedOptional Starting
-8 silly rollbackFailedOptional Finishing
-9 silly runTopLevelLifecycles Finishing
-10 silly install printInstalled
-11 verbose stack Error: Failed to parse json
-11 verbose stack Unexpected token 'a' at 1:1
-11 verbose stack atom-beautify@0.29.10
-11 verbose stack ^
-11 verbose stack     at parseError (/usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:390:11)
-11 verbose stack     at parseJson (/usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:79:23)
-11 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:48:5
-11 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/graceful-fs/graceful-fs.js:78:16
-11 verbose stack     at tryToString (fs.js:455:3)
-11 verbose stack     at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:442:12)
-12 verbose cwd /Users/taweesoft/Documents/work/pythinya_wsp
-13 error Darwin 16.0.0
-14 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "--save-dev" "react-slick"
-15 error node v6.9.1
-16 error npm  v3.10.8
-17 error file /Users/taweesoft/Documents/package.json
-18 error code EJSONPARSE
-19 error Failed to parse json
-19 error Unexpected token 'a' at 1:1
-19 error atom-beautify@0.29.10
-19 error ^
-20 error File: /Users/taweesoft/Documents/package.json
-21 error Failed to parse package.json data.
-21 error package.json must be actual JSON, not just JavaScript.
-21 error
-21 error This is not a bug in npm.
-21 error Tell the package author to fix their package.json file. JSON.parse
-22 verbose exit [ 1, true ]
+4 verbose stack Error: ENOENT: no such file or directory, open '/Users/Peter/pythinya_wsp/package.json'
+4 verbose stack     at Error (native)
+5 verbose cwd /Users/Peter/pythinya_wsp
+6 error Darwin 16.0.0
+7 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "start"
+8 error node v6.9.1
+9 error npm  v3.10.8
+10 error path /Users/Peter/pythinya_wsp/package.json
+11 error code ENOENT
+12 error errno -2
+13 error syscall open
+14 error enoent ENOENT: no such file or directory, open '/Users/Peter/pythinya_wsp/package.json'
+15 error enoent ENOENT: no such file or directory, open '/Users/Peter/pythinya_wsp/package.json'
+15 error enoent This is most likely not a problem with npm itself
+15 error enoent and is related to npm not being able to find a file.
+16 verbose exit [ -2, true ]
