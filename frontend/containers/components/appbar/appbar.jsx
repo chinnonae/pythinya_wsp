@@ -57,7 +57,7 @@ class Appbar extends React.Component {
       </div>
     );
     return (
-      <AppBar iconStyleRight={{display: 'flex', margin: 0}} iconStyleLeft={{display: 'flex', margin: 0}} iconElementLeft={leftComponent} iconElementRight={rightComponent}/>
+      <AppBar className="black-primary" iconStyleRight={{display: 'flex', margin: 0}} iconStyleLeft={{display: 'flex', margin: 0}} iconElementLeft={leftComponent} iconElementRight={rightComponent}/>
     );
   }
 }
