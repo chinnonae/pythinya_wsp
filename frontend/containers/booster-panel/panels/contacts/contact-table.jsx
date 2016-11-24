@@ -9,7 +9,7 @@ class ContactTable extends React.Component {
     var self = this;
     return (
       <Card className="transparent">
-        <Table selectable={false} className="hoverable">
+        <Table selectable={false} className="hoverable success-header">
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
               <TableHeaderColumn style={{width: "45%"}}>Customer name</TableHeaderColumn>
@@ -20,11 +20,12 @@ class ContactTable extends React.Component {
           <TableBody displayRowCheckbox={false}>
             {
               _.map(this.props.reducer.boosterPanel.filteredContacts, function(item, i) {
+                let tdClassName = (i % 2 === 0) ? 'alter1' : 'alter2';
                 return (
                   <TableRow onMouseUp={self.onClick.bind(self,item)} key={i} className="pointer">
-                    <TableRowColumn style={{width: "45%"}}>{item.first_name + " " + item.last_name}</TableRowColumn>
-                    <TableRowColumn>{"2 days ago"}</TableRowColumn>
-                    <TableRowColumn>{item.telephone}</TableRowColumn>
+                    <TableRowColumn style={{width: "45%"}}><div className={tdClassName}>{item.first_name + " " + item.last_name}</div></TableRowColumn>
+                    <TableRowColumn><div className={tdClassName}>{"2 days ago"}</div></TableRowColumn>
+                    <TableRowColumn><div className={tdClassName}>{item.telephone}</div></TableRowColumn>
                   </TableRow>
                 );
               })
