@@ -1,11 +1,51 @@
-.hoverable > tbody > tr {
-  transition: 0.3s ease-in;
-}
-.hoverable > tbody > tr:hover {
-  background-color: rgba(179,229,252,0.15);
+// .hoverable > tbody > tr {
+//   transition: 0.3s ease-in;
+// }
+// .hoverable > tbody > tr:hover {
+//   background-color: rgba(179,229,252,0.15);
+// }
+
+@import 'colors.scss';
+@import 'style.scss';
+
+tbody > tr, thead, thead > tr {
+  border-bottom: 0px solid white !important;
+  margin-top: 2px !important;
 }
 
+table, thead, tbody {
+  background-color: rgba(0,0,0,0) !important;
+}
 tbody > tr > td {
+  color: white !important;
   text-overflow: inherit !important;
+  background-color: rgba(0,0,0,0) !important;
   white-space: normal !important;
+  padding: 2px !important;
+}
+
+tbody > tr > td > div {
+  @extend .flex;
+  @extend .flex-middle;
+  @extend .full-height;
+}
+
+.alter1 {
+  padding-left: 24px;
+  padding-right: 24px;
+  background-color: rgba(74,74,74,1) !important;
+}
+
+.alter2 {
+  padding-left: 24px;
+  padding-right: 24px;
+  background-color: rgba(74,74,74,0.59) !important;
+}
+
+.success-header > thead > tr > th {
+  color: $success !important;
+}
+
+.amber-header > thead > tr > th {
+  color: $amber !important;
 }

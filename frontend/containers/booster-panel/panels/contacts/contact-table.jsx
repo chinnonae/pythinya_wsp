@@ -8,7 +8,7 @@ class ContactTable extends React.Component {
   render() {
     var self = this;
     return (
-      <Card>
+      <Card className="transparent">
         <Table selectable={false} className="hoverable">
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
