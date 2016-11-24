@@ -45,58 +45,35 @@ class Main extends React.Component {
     };
     /* rendering */
     return (
-      <Grid id="signup-panel" className="flex flex-center full-width " style={{height: "calc(100vh - 64px)"}}>
-        <Grid className="padding-all full-width">
-          <Row className="flex flex-mobile" style={{height: 400}}>
-            <Col md={6} lg={6} className="gray-fade-right">
-              {/* <Image src="/assets/logo.svg" className="full-width full-height" /> */}
-            </Col>
-            <Col md={6} lg={6}>
+      <Grid id="signup-panel" className="flex flex-center no-padding full-width" style={{height: "calc(100vh - 64px)"}}>
+        <Grid className="full-width">
+          <Row className="flex flex-mobile black-secondary" style={{height: "60%"}}>
 
+            <Col md={6} lg={6} className=" flex flex-center flex-middle">
+              <Image src="/assets/logo.svg" />
             </Col>
-            {/* <Col xs={12} sm={12} md={6} lg={6} className="color-signup">
-              <div className="flat-card padding-left padding-right padding-bottom">
-              <form id="signup-form" onSubmit={this.onSubmit}>
-              <Row className="flex padding-all">
-              <div className="container-center">
-              Sign Up
-              </div>
-              </Row>
-              <Divider />
-              <Row className="padding-left padding-right no-margin flex flex-column padding-all" style={{paddingTop: 30, paddingBottom:50}} >
-              <Input name="first_name" label="Firstname" elementId="firstname"/>
-              <Input name="last_name" label="Lastname" elementId="lastname"/>
-              <Input error={error} name="email" label={emailLabel} elementId="email"/>
-              <Input name="password" type="password" label="Password" elementId="password"/>
-              <Input name="telephone" label="Mobile number" elementId="mobileNumber"/>
-              </Row>
-              <Row className="flex padding-bottom no-margin padding-left padding-right">
-              <RaisedButton type="submit" className="margin-top full-width" label="Signup" primary={true}/>
-              </Row>
-              </form>
-              </div>
-            </Col> */}
+            <Col md={6} lg={6} className="flex flex-middle flex-center flex-column">
+              <Image className="pythinya-scale" src="/assets/pythinya.png"/>
+              <br></br>
+              <Divider className="divider-width"/>
+              <h3 style={{height: 1.01}}>MMR Booster</h3>
+              <RaisedButton className="signup-margin-top" label="Sign up" backgroundColor={"#F6A623"} labelColor={"#FFFFFF"}/>
+            </Col>
           </Row>
-          <Row class="flex flex-mobile">
-            <Col md={6} lg={6}>
-
+          <br></br>
+          <Row class="flex flex-mobile flex-cont">
+            <Col md={6} lg={6} className=" flex flex-center flex-middle black-secondary" style={{height: "100%"}}>
+              <img src="/assets/dota2logo.svg"></img>
+              <h4>Supported Dota 2</h4>
             </Col>
-            <Col md={6} lg={6}>
+            <Col md={6} lg={6} className=" flex flex-center flex-middle black-secondary">
 
             </Col>
           </Row>
-          {/* <Row className="flex"> */}
-          {/* <div className="container full-width">
-            <Slider {...settings}>
-              <div><Image className="box-size" src="/assets/kanoon.jpg"></Image></div>
-              <div><Image className="box-size" src="/assets/nonae.jpg"></Image></div>
-              <div><Image className="box-size" src="/assets/not.jpg"></Image></div>
-              <div><Image className="box-size" src="/assets/p.jpg"></Image></div>
-            </Slider>
-          </div> */}
-          {/* </Row> */}
         </Grid>
+
       </Grid>
+
     );
   }
 }
