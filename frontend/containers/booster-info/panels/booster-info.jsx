@@ -25,7 +25,13 @@ class BoosterInfoPanel extends React.Component {
           </div>
         </div>
         <Row className="flex flex-center margin-bottom">
-          <RaisedButton style={{width: "30%"}} backgroundColor={"#F6A623"} label="Back" labelColor="white"/>
+          <RaisedButton
+            style={{width: "30%"}}
+            onClick={this.props.action}
+            backgroundColor={"#F6A623"}
+            label="Back"
+            labelColor="white"
+          />
         </Row>
       </div>
     );

@@ -1,18 +1,34 @@
-import {Card} from 'material-ui/Card';
-import LinearProgress from 'material-ui/LinearProgress';
+import {Row} from 'react-bootstrap';
+import {RaisedButton} from 'material-ui';
 class ProgressInfoPanel extends React.Component {
   render () {
     return (
       <div>
-        <Card>
-          <div className="full-width padding-all" style={{backgroundColor: "#e0e0e0"}}>
-            <label>Progress</label>
+        <div className="flex flex-center">
+          <img width="60" src="/assets/logo-amber.svg" />
+        </div>
+        <div className="flex flex-center">
+          <div className="text-center">
+            <Row>
+              <h2><p>55%</p></h2>
+            </Row>
+            <Row>
+              <p>of boosting</p>
+            </Row>
+            <Row>
+              <p>If you have any problem you can contact your booster directly</p>
+            </Row>
           </div>
-          <div className="padding-all">
-            <p>How many your MMR is boosted</p>
-            <LinearProgress mode="determinate" value={50} style={{height: "20px"}}/>
-          </div>
-        </Card>
+        </div>
+          <Row className="flex flex-center margin-bottom margin-top">
+            <RaisedButton
+              style={{width: "30%"}}
+              onClick={this.props.action}
+              backgroundColor={"#F6A623"}
+              label="Booster Information"
+              labelColor="white"
+            />
+          </Row>
       </div>
     );
   }
