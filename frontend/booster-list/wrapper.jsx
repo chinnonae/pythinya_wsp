@@ -21,7 +21,6 @@ class BoosterList extends React.Component {
                 <Input name="start_mmr" label="Start(1500)" elementId="startMMR"></Input>
                 <Input name="end_mmr" label="End(2500)" elementId="endMMR"></Input>
               </div>
-
             </Col>
             //component top right-side
             <Col xs={7} sm={7} md={7} lg={7}>
