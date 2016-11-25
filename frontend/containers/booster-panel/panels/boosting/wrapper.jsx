@@ -97,7 +97,6 @@ class Wrapper extends React.Component {
             </Col>
           </Row>
         </div>
-
         <div style={{marginTop: 40, marginBottom: 40}}>
           <Row className="flex flex-center">
             <Col xs={11} sm={8} md={9} lg={7} className="flex flex-center">

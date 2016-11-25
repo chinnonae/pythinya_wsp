@@ -1,6 +1,7 @@
 import {Col, Grid, Row, Form} from 'react-bootstrap';
 import {TextField, RaisedButton, Divider} from 'material-ui';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import AddBoxIcon from 'material-ui/svg-icons/content/add-box';
 import {Card} from 'material-ui/Card';
 var actions = cc.get('redux.actions');
 const ticketService = cc.get('services.ticket');
@@ -28,19 +29,20 @@ class BoosterList extends React.Component {
     let newTicketView;
     let profile = profileService.getProfile();
     if(profile.user.is_booster) {
-      newTicketView = <RaisedButton id="new-ticket-btn" onTouchTap={this.showSnackbar} label="New Ticket" primary={true}/>;
+      newTicketView = <AddBoxIcon className="pull-right pull-top pointer" onClick={this.showSnackbar} style={{top: 15, right: 15}} color="#81C784" />;
+      // newTicketView = <RaisedButton id="new-ticket-btn" onTouchTap={this.showSnackbar} label="New Ticket" primary={true}/>;
     }
     /* rendering */
     return (
-
       <div>
         <Col xs={12} sm={12} md={7} lg={8} className="margin-top">
           <Col xs={12} sm={12} md={12} lg={12} className="no-padding">
-            <Card className="black-secondary padding-all" >
+            <Card className="black-secondary padding-all">
               <div className="flex flex-middle">
                 <img width={15} src="/assets/menu.svg"/>
                 <p className="no-margin padding-left">Tickets</p>
               </div>
+              {newTicketView}
               <BoosterTable/>
             </Card>
           </Col>
