@@ -9,3 +9,4 @@ import './carousel.scss';
 import './media-query.scss';
 import './snackbar.scss';
 import './main.scss';
+import './input-range/InputRange.scss';

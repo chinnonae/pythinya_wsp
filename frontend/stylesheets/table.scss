@@ -1,12 +1,15 @@
-// .hoverable > tbody > tr {
-//   transition: 0.3s ease-in;
-// }
-// .hoverable > tbody > tr:hover {
-//   background-color: rgba(179,229,252,0.15);
-// }
-
 @import 'colors.scss';
 @import 'style.scss';
+
+.hoverable > tbody > tr > td > .alter1, .hoverable > tbody > tr > td > .alter2{
+  transition: 0.2s ease-in;
+}
+
+.hoverable > tbody > tr:hover {
+  .alter1, .alter2 {
+    background-color: $success !important;
+  }
+}
 
 tbody > tr, thead, thead > tr {
   border-bottom: 0px solid white !important;
