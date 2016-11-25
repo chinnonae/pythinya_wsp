@@ -34,29 +34,7 @@ class BoosterList extends React.Component {
     return (
 
       <div>
-        {/* start component top */}
-        <Col xs={12} sm={12} md={7} lg={8}>
-            {/* <Row style={{height: 100}} className="flex flex-mobile">
-              <Col xs={12} sm={5} md={5} lg={5} className="no-padding flex flex-column flex-end-y">
-                <div>
-                  <div className="flex flex-center">Filter by MMR</div>
-                  <Col xs={6} sm={6} md={6} lg={6}>
-                    <Input name="start_mmr" label="Start(1500)" elementId="startMMR"></Input>
-                  </Col>
-                  <Col xs={6} sm={6} md={6} lg={6}>
-                    <Input name="end_mmr" label="End(2500)" elementId="endMMR"></Input>
-                  </Col>
-                </div>
-              </Col>
-              <Col xs={12} sm={7} md={7} lg={7} className="no-padding flex">
-                <Col xs={8} sm={8} md={7} lg={7} className="flex flex-column flex-end-y">
-                  <Input name="booster_name" label="Filter by booster name" elementId="boosterName"></Input>
-                </Col>
-                <Col xs={4} sm={4} md={5} lg={5} style={{paddingBottom: 10}} className="flex flex-column flex-end-y">
-                  <div>{newTicketView}</div>
-                </Col>
-              </Col>
-            </Row> */}
+        <Col xs={12} sm={12} md={7} lg={8} className="margin-top">
           <Col xs={12} sm={12} md={12} lg={12} className="no-padding">
             <Card className="black-secondary padding-all" >
               <div className="flex flex-middle">
@@ -67,7 +45,7 @@ class BoosterList extends React.Component {
             </Card>
           </Col>
         </Col>
-        <Col xs={12} sm={12} md={5} lg={4}>
+        <Col xs={12} sm={12} md={5} lg={4} className="margin-top">
           <HistoryTable />
         </Col>
         <Dialog />

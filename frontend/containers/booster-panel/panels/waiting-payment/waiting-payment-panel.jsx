@@ -79,7 +79,7 @@ class WaitingPaymentPanel extends React.Component {
           </Row>
         </div>
         <Row className='flex flex-center'>
-          <FlatButton onClick={this.cancel} labelColor='white' className="error" label="Cancel" />
+          <FlatButton onClick={this.cancel} style={{paddingLeft: 20, paddingRight: 20}} labelColor='white' className="error white-text" label="Cancel" />
         </Row>
         <p className="text-center small-text margin-top">(You will be deducted 10% of ticket’s price)</p>
       </Card>

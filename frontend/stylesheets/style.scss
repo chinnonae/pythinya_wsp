@@ -1,5 +1,4 @@
 @import 'colors.scss';
-
 @font-face {
   font-family: 'Sukhumvit';
   font-weight: bold;
@@ -18,8 +17,9 @@ html,body {
   background: $black_primary;
 }
 
-p, span {
+p {
   color :$white;
+  font-size: 1em;
 }
 .flex {
   display: flex;
