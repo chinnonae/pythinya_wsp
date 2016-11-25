@@ -1,6 +1,7 @@
 import {Col, Grid, Row, Form} from 'react-bootstrap';
 import {TextField, RaisedButton, Divider} from 'material-ui';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import AddBoxIcon from 'material-ui/svg-icons/content/add-box';
 import {Card} from 'material-ui/Card';
 var actions = cc.get('redux.actions');
 const ticketService = cc.get('services.ticket');
@@ -28,46 +29,25 @@ class BoosterList extends React.Component {
     let newTicketView;
     let profile = profileService.getProfile();
     if(profile.user.is_booster) {
-      newTicketView = <RaisedButton id="new-ticket-btn" onTouchTap={this.showSnackbar} label="New Ticket" primary={true}/>;
+      newTicketView = <AddBoxIcon className="pull-right pull-top pointer" onClick={this.showSnackbar} style={{top: 15, right: 15}} color="#81C784" />;
+      // newTicketView = <RaisedButton id="new-ticket-btn" onTouchTap={this.showSnackbar} label="New Ticket" primary={true}/>;
     }
     /* rendering */
     return (
-
       <div>
-        {/* start component top */}
-        <Col xs={12} sm={12} md={7} lg={8}>
-            {/* <Row style={{height: 100}} className="flex flex-mobile">
-              <Col xs={12} sm={5} md={5} lg={5} className="no-padding flex flex-column flex-end-y">
-                <div>
-                  <div className="flex flex-center">Filter by MMR</div>
-                  <Col xs={6} sm={6} md={6} lg={6}>
-                    <Input name="start_mmr" label="Start(1500)" elementId="startMMR"></Input>
-                  </Col>
-                  <Col xs={6} sm={6} md={6} lg={6}>
-                    <Input name="end_mmr" label="End(2500)" elementId="endMMR"></Input>
-                  </Col>
-                </div>
-              </Col>
-              <Col xs={12} sm={7} md={7} lg={7} className="no-padding flex">
-                <Col xs={8} sm={8} md={7} lg={7} className="flex flex-column flex-end-y">
-                  <Input name="booster_name" label="Filter by booster name" elementId="boosterName"></Input>
-                </Col>
-                <Col xs={4} sm={4} md={5} lg={5} style={{paddingBottom: 10}} className="flex flex-column flex-end-y">
-                  <div>{newTicketView}</div>
-                </Col>
-              </Col>
-            </Row> */}
+        <Col xs={12} sm={12} md={7} lg={8} className="margin-top">
           <Col xs={12} sm={12} md={12} lg={12} className="no-padding">
-            <Card className="black-secondary padding-all" >
+            <Card className="black-secondary padding-all">
               <div className="flex flex-middle">
                 <img width={15} src="/assets/menu.svg"/>
                 <p className="no-margin padding-left">Tickets</p>
               </div>
+              {newTicketView}
               <BoosterTable/>
             </Card>
           </Col>
         </Col>
-        <Col xs={12} sm={12} md={5} lg={4}>
+        <Col xs={12} sm={12} md={5} lg={4} className="margin-top">
           <HistoryTable />
         </Col>
         <Dialog />

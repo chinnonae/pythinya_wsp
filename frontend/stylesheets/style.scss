@@ -1,5 +1,4 @@
 @import 'colors.scss';
-
 @font-face {
   font-family: 'Sukhumvit';
   font-weight: bold;
@@ -20,6 +19,7 @@ html,body {
 
 p {
   color :$white;
+  font-size: 1em;
 }
 .flex {
   display: flex;
@@ -100,6 +100,10 @@ p {
 
 .text-center {
   text-align: center;
+}
+
+.text-right {
+  text-align: right;
 }
 
 .error-text {
@@ -222,4 +226,8 @@ p {
 
 .error-text {
   color: $error !important;
+}
+
+.small-text {
+  font-size: 0.8em;
 }
