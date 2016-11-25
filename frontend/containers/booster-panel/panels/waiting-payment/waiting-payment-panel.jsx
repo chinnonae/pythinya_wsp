@@ -1,5 +1,5 @@
 import {Card} from 'material-ui/Card';
-import {RaisedButton, Divider} from 'material-ui';
+import {FlatButton, Divider} from 'material-ui';
 import {Row,Col, Grid} from 'react-bootstrap';
 import {deepOrange300} from 'material-ui/styles/colors';
 const actions = cc.get('redux.actions');
@@ -20,6 +20,7 @@ class WaitingPaymentPanel extends React.Component {
   render() {
     let Stepper = cc.get('components.boosterPanel.stepper');
     let boostingTicket = this.profile.boosting_ticket;
+    let customer = boostingTicket.clients[0];
     var customerName = boostingTicket.clients[0].first_name + " " + boostingTicket.clients[0].last_name;
     var mmrRange = boostingTicket.min_mmr + '-' + boostingTicket.max_mmr;
     var price = boostingTicket.price + ' coins';
@@ -31,26 +32,56 @@ class WaitingPaymentPanel extends React.Component {
         </div>
         <Stepper activeStep={1} />
         <Divider style={{marginTop: 20, marginLeft: 20, marginRight: 20, marginBottom: 20, backgroundColor: "rgba(155,155,155,0.6)"}}/>
-        <Row className="text-center flex flex-center margin-bottom">
-          <span id="waiting-label" className="display-box">Waiting for payment from &nbsp;
-            <p>{customerName}</p>
-          </span>
+        <Row className="text-center flex flex-column flex-center margin-bottom">
+          <p id="waiting-label">You are waiting for payment from the client</p>
+          <p className="small-text">If you have any problem you can contact the client directly.</p>
         </Row>
-        <Row className="relative flex margin-bottom">
-          <p>Customer name</p>
-          <p className="pull-right">{customerName}</p>
+        <div style={{marginTop: 40, marginBottom: 40}}>
+          <Row>
+            <Col xs={6} sm={6} md={6} lg={6}>
+              <p className="text-right"><b>Customer name</b></p>
+            </Col>
+            <Col xs={6} sm={6} md={6} lg={6}>
+              <p>{customerName}</p>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={6} sm={6} md={6} lg={6}>
+              <p className="text-right"><b>Email</b></p>
+            </Col>
+            <Col xs={6} sm={6} md={6} lg={6}>
+              <p>{customer.email}</p>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={6} sm={6} md={6} lg={6}>
+              <p className="text-right"><b>Telephone</b></p>
+            </Col>
+            <Col xs={6} sm={6} md={6} lg={6}>
+              <p>{customer.telephone}</p>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={6} sm={6} md={6} lg={6}>
+              <p className="text-right"><b>MMR range</b></p>
+            </Col>
+            <Col xs={6} sm={6} md={6} lg={6}>
+              <p>{mmrRange}</p>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={6} sm={6} md={6} lg={6}>
+              <p className="text-right"><b>Price</b></p>
+            </Col>
+            <Col xs={6} sm={6} md={6} lg={6}>
+              <p>{price}</p>
+            </Col>
+          </Row>
+        </div>
+        <Row className='flex flex-center'>
+          <FlatButton onClick={this.cancel} labelColor='white' className="error" label="Cancel" />
         </Row>
-        <Row className="relative flex margin-bottom">
-          <p>MMR Range</p>
-          <p className="pull-right">{mmrRange}</p>
-        </Row>
-        <Row className="relative flex margin-bottom">
-          <p>Price</p>
-          <p className="pull-right">{price}</p>
-        </Row>
-        <Row className='flex'>
-          <RaisedButton backgroundColor={deepOrange300} onClick={this.cancel} labelColor='white' className="container-center" label="Cancel" />
-        </Row>
+        <p className="text-center small-text margin-top">(You will be deducted 10% of ticket’s price)</p>
       </Card>
     );
   }
