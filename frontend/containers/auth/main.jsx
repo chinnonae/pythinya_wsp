@@ -47,27 +47,35 @@ class Main extends React.Component {
     return (
       <Grid id="signup-panel" className="flex flex-center no-padding full-width" style={{height: "calc(100vh - 64px)"}}>
         <Grid className="full-width">
-          <Row className="flex flex-mobile black-secondary" style={{height: "60%"}}>
-
-            <Col md={6} lg={6} className=" flex flex-center flex-middle">
-              <Image src="/assets/logo.svg" />
+          <Row className="flex flex-mobile main-left-right-padding" style={{height: "60%", backgroundColor: "#4a4a4a"}}>
+            <Col md={6} lg={6} className="gray-fade-right full-width" >
+              <div className="flex flex-center flex-middle" style={{height: "100%", width: "100%"}}>
+                <Image style={{width: "25%"}} src="/assets/logo.svg" />
+              </div>
             </Col>
-            <Col md={6} lg={6} className="flex flex-middle flex-center flex-column">
+            <Col md={6} lg={6} className="flex flex-middle flex-center flex-column full-width">
               <Image className="pythinya-scale" src="/assets/pythinya.png"/>
               <br></br>
               <Divider className="divider-width"/>
-              <h3 style={{height: 1.01}}>MMR Booster</h3>
-              <RaisedButton className="signup-margin-top" label="Sign up" backgroundColor={"#F6A623"} labelColor={"#FFFFFF"}/>
+              <h3
+                style={{height: 1.7}}>MMR Booster</h3>
+              <RaisedButton href={'/signup'} className="signup-margin-top" label="Sign up" backgroundColor={"#F6A623"} labelColor={"#FFFFFF"}/>
             </Col>
           </Row>
           <br></br>
-          <Row class="flex flex-mobile flex-cont">
-            <Col md={6} lg={6} className=" flex flex-center flex-middle black-secondary" style={{height: "100%"}}>
-              <img src="/assets/dota2logo.svg"></img>
-              <h4>Supported Dota 2</h4>
+          <Row className="flex flex-mobile" style={{height: "35%"}}>
+            <Col md={6} lg={6} className="no-padding full-width" style={{paddingRight: 7.5}}>
+              <div className="flex flex-center flex-middle flex-column black-secondary full-height">
+                <img  src="/assets/dota2logo.svg"></img>
+                <h4>Supported Dota 2</h4>
+              </div>
             </Col>
-            <Col md={6} lg={6} className=" flex flex-center flex-middle black-secondary">
-
+            <Col md={6} lg={6} className="no-padding full-width" style={{paddingLeft: 7.5}}>
+              <div className="flex flex-center flex-middle flex-column black-secondary full-height">
+                <img
+                  src="/assets/handshake-flat.svg"></img>
+                <h4>Trusted Boosters</h4>
+              </div>
             </Col>
           </Row>
         </Grid>
