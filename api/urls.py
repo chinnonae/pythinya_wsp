@@ -25,11 +25,12 @@ ticket_url = [
 ]
 
 payment_url = [
-    url(r'^topup$', views.TopupListView.as_view()),
-    url(r'^topup/(?P<pk>[0-9]+)$', views.TopupView.as_view())
+    url(r'^$', views.TopupListView.as_view()),
+    url(r'^(?P<pk>[0-9]+)$', views.TopupView.as_view())
 ]
 
 urlpatterns = [
     url(r'^user/', include(user_url)),
-    url(r'^ticket/', include(ticket_url))
+    url(r'^ticket/', include(ticket_url)),
+    url(r'^topup/', include(payment_url))
 ]
