@@ -1,9 +1,9 @@
 import {Card, Divider} from 'material-ui';
 const CardPanel = (props) => {
   return (
-    <Card className={this.props.className + " black-secondary"}>
-      <h3>{props.title}</h3>
-      <Divider />
+    <Card className={props.className + " black-secondary padding-all"}>
+      <h4 className="no-margin white-text">{props.title}</h4>
+      <Divider className="margin-top" />
       {
         props.children
       }
