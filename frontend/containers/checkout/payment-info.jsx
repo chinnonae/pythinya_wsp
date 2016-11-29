@@ -14,22 +14,26 @@ class PaymentInfoPanel extends React.Component {
         <Row className="margin-bottom">
           <Col xs={0} sm={4} md={8} lg={8}></Col>
           <Col xs={6} sm={4} md={2} lg={2} className="text-right">
-            <b>Price</b>
+            <p><b>Price</b></p>
           </Col>
           <Col xs={6} sm={4} md={2} lg={2} className="text-right">
-              { this.ticket.price } Coins
+              <p>{ this.ticket.price } Coins</p>
            </Col>
         </Row>
         <Row className="margin-bottom">
           <Col xs={0} sm={4} md={8} lg={8}></Col>
           <Col xs={6} sm={4} md={2} lg={2} className="text-right">
-            <b>Your balance</b>
+            <p><b>Your balance</b></p>
           </Col>
-          <Col xs={6} sm={4} md={2} lg={2} className="text-right">{ this.profile.user.coin + ' - ' + this.ticket.price } Coins</Col>
+          <Col xs={6} sm={4} md={2} lg={2} className="text-right">
+            <p>{ this.profile.user.coin + ' - ' + this.ticket.price } Coins</p>
+          </Col>
         </Row>
         <Row>
           <Col xs={6} sm={10} md={10} lg={10}></Col>
-          <Col xs={6} sm={2} md={2} lg={2} className="text-right">{'= ' + (parseInt(this.profile.user.coin) - parseInt(this.ticket.price))+ ' Coins'}</Col>
+          <Col xs={6} sm={2} md={2} lg={2} className="text-right">
+            <p>{'= ' + (parseInt(this.profile.user.coin) - parseInt(this.ticket.price))+ ' Coins'}</p>
+          </Col>
         </Row>
       </div>
     );
