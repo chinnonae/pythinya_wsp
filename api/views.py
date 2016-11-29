@@ -282,7 +282,7 @@ class TopupListView(APIView):
 
     def get(self, request):
         payment_service = PaymentService()
-        available_topups = payment_service.topup_list()
+        available_topups, message = payment_service.topup_list()
         serialized = TopupRateSerializer(available_topups, many=True)
 
         return Response({
@@ -292,6 +292,7 @@ class TopupListView(APIView):
 
 
 class TopupView(APIView):
+    permission_classes = (AllowAny,)
 
     def get(self, request, pk):
         topup_rate = TopupRate.objects.get(pk)
