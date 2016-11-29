@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'corsheaders',
     'rest_framework.authtoken',
+    'paypal.standard.ipn',
     'user.apps.UserConfig',
     'ticket_system.apps.TicketSystemConfig',
     'payment.apps.PaymentConfig',
@@ -146,3 +147,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+PAYPAL_TEST = True
