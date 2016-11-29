@@ -16,7 +16,7 @@ class Appbar extends React.Component {
     if(this.props.reducer.profile.isAuth) { // If user has been logged in
       if(this.props.reducer.profile.user.is_booster) {
         boosterPanelView = (
-          <FlatButton>
+          <FlatButton id="booster-panel-btn">
             <Link className="link-button" style={{color: "white"}} to={'/booster_panel'}>Booster Panel</Link>
           </FlatButton>
         );
@@ -28,7 +28,7 @@ class Appbar extends React.Component {
             <Link className="link-button" style={{color: "white"}} to={'/client'}>Tickets</Link>
           </FlatButton>
           {boosterPanelView}
-          <FlatButton onClick={this.signout.bind(this)} style={{color: "white"}}>
+          <FlatButton id="signout-btn" onClick={this.signout.bind(this)} style={{color: "white"}}>
             <Link className="link-button" style={{color: "white"}} >{name}</Link>
           </FlatButton>
         </div>
@@ -36,10 +36,10 @@ class Appbar extends React.Component {
     } else { //otherwise show sign in and sign up button.
       view = (
         <div>
-          <FlatButton>
+          <FlatButton id="signin-button">
             <Link className="link-button" style={{color: "white"}} to={'/signin'}>Sign in</Link>
           </FlatButton>
-          <FlatButton>
+          <FlatButton id="signup-button">
             <Link className="link-button" style={{color: "white"}} to={'/signup'}>Sign up</Link>
           </FlatButton>
         </div>
@@ -50,8 +50,14 @@ class Appbar extends React.Component {
         {view}
       </div>
     );
+    let leftComponent = (
+      <div className="full-height flex flex-middle">
+        <img width="20" src="/assets/logo.svg" />
+        <h4 className="no-margin" style={{marginLeft: 15, color: "white"}}>Pythinya</h4>
+      </div>
+    );
     return (
-      <AppBar title="Pythinya" iconStyleRight={{display: 'flex', margin: 0}} iconElementRight={rightComponent}/>
+      <AppBar className="black-primary" iconStyleRight={{display: 'flex', margin: 0}} iconStyleLeft={{display: 'flex', margin: 0}} iconElementLeft={leftComponent} iconElementRight={rightComponent}/>
     );
   }
 }

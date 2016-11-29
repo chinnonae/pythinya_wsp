@@ -1,32 +1,26 @@
-// @font-face {
-//   font-family: 'Sukhumvit';
-//   src: url('./fonts/sukhumvit-set/SukhumvitSet-Medium.ttf');
-// }
+@import 'colors.scss';
 @font-face {
   font-family: 'Sukhumvit';
   font-weight: bold;
   src: url('./fonts/sukhumvit-set/SukhumvitSet-Bold.ttf');
 }
-// @font-face {
-//   font-family: 'Sukhumvit';
-//   src: url('./fonts/sukhumvit-set/SukhumvitSet-SemiBold.ttf');
-// }
 @font-face {
   font-family: 'Sukhumvit';
   font-weight: normal;
   src: url('./fonts/sukhumvit-set/SukhumvitSet-Text.ttf');
 }
-// @font-face {
-//   font-family: 'Sukhumvit';
-//   font-weight: lighter;
-//   src: url('./fonts/sukhumvit-set/SukhumvitSet-Thin.ttf');
-// }
 
 html,body {
   font-family: 'Sukhumvit' !important;
   margin: 0px;
+  color: $white;
+  background: $black_primary;
 }
 
+p {
+  color :$white;
+  font-size: 1em;
+}
 .flex {
   display: flex;
 }
@@ -42,19 +36,19 @@ html,body {
 }
 
 .padding-left {
-  padding-left: 15px;
+  padding-left: 15px !important;
 }
 
 .padding-right {
-  padding-right: 15px;
+  padding-right: 15px !important;
 }
 
 .padding-bottom {
-  padding-bottom: 15px;
+  padding-bottom: 15px !important;
 }
 
 .padding-top {
-  padding-top: 15px;
+  padding-top: 15px !important;
 }
 .no-margin {
   margin: 0px;
@@ -106,6 +100,10 @@ html,body {
 
 .text-center {
   text-align: center;
+}
+
+.text-right {
+  text-align: right;
 }
 
 .error-text {
@@ -177,4 +175,59 @@ html,body {
 
 .dummy-container {
   background-color: #F5F5F5;
+}
+
+.black-primary {
+  background: $black_primary !important;
+  background-color: $black_primary !important;
+}
+
+.black-secondary {
+  background: $black_secondary !important;
+  background-color: $black_secondary !important;
+}
+
+.success {
+  background: $success !important;
+  background-color: $success !important;
+}
+
+.amber {
+  background: $amber !important;
+  background-color: $amber !important;
+}
+
+.error {
+  background: $error !important;
+  background-color: $error !important;
+}
+
+.blue {
+  background: $blue !important;
+  background-color: $blue !important;
+}
+
+.transparent {
+  background: $transparent !important;
+  background-color: $transparent !important;
+}
+
+.white-text {
+  color: white !important;
+}
+
+.success-text {
+  color: $success !important;
+}
+
+.amber-text {
+  color: $amber !important;
+}
+
+.error-text {
+  color: $error !important;
+}
+
+.small-text {
+  font-size: 0.8em;
 }

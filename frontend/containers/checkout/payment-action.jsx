@@ -21,9 +21,9 @@ class PaymentActionPanel extends React.Component {
   render() {
     var buttonView;
     if (this.props.reducer.payment.hasEnoughBalance) {
-      buttonView = <RaisedButton onTouchTap={this.pay} label="Pay" primary={true} className="full-width"/>;
+      buttonView = <RaisedButton onTouchTap={this.pay} backgroundColor={"#81C784"} labelColor="white" label="Pay" className="full-width"/>;
     } else {
-      buttonView = <RaisedButton className="full-width" backgroundColor={orange500} labelColor="white">
+      buttonView = <RaisedButton className="full-width" backgroundColor={"#EF5350"} labelColor="white">
         <Link className="link-button" to='/topup'>Buy more coin</Link>
       </RaisedButton>;
     }

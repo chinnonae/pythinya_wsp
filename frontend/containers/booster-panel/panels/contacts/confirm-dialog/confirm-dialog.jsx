@@ -21,16 +21,14 @@ class ConfirmDialog extends React.Component {
     const ContactCard = cc.get('components.boosterPanel.contactsPanel.dialog.contactCard');
     const reducer = this.props.reducer.boosterPanel;
     const actions = [
-      <FlatButton onTouchTap={this.closeDialog} label="Close"/>,
-      <FlatButton onTouchTap={this.startBoosting} primary={true} label="Yes"/>
+      <FlatButton onTouchTap={this.closeDialog} className="white-text" label="Close"/>,
+      <FlatButton id="confirm-boosting-btn" className="success-text" onTouchTap={this.startBoosting} primary={true} label="Yes"/>
     ];
     return (
-      <Dialog title="Confirm" actions={actions} open={reducer.showConfirmDialog} onRequestClose={this.closeDialog}>
+      <Dialog actionsContainerClassName="black-primary" titleClassName="black-primary white-text" bodyClassName="black-primary"  title="Confirm" actions={actions} open={reducer.showConfirmDialog} onRequestClose={this.closeDialog}>
         <p>Do you want to boost for this client?</p>
         <Row className="flex margin-top padding-top">
           <Col sm={12} xs={12} md={7} lg={7} className="container-center">
-            <p>Client's information</p>
-            <p>You can contact your client directly.</p>
             <ContactCard client={reducer.dialog.item}/>
           </Col>
         </Row>
