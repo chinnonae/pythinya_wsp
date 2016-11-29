@@ -45,48 +45,43 @@ class Main extends React.Component {
     };
     /* rendering */
     return (
-      <Grid id="signup-panel" className="flex flex-center full-width " style={{height: "calc(100vh - 64px)"}}>
-        <Grid className="padding-all full-width">
-          <Row className="flex flex-mobile" >
-              <Col md={8} lg={8} className="dummy-container">
-                {/* <Image src="/assets/dota2logo.png" className="full-width full-height" /> */}
-              </Col>
-
-              <Col xs={12} sm={12} md={4} lg={4} className="color-signup">
-                <div className="flat-card padding-left padding-right padding-bottom">
-                  <form id="signup-form" onSubmit={this.onSubmit}>
-                    <Row className="flex padding-all">
-                      <div className="container-center">
-                        Sign Up
-                      </div>
-                    </Row>
-                    <Divider />
-                    <Row className="padding-left padding-right no-margin flex flex-column padding-all" style={{paddingTop: 30, paddingBottom:50}} >
-                      <Input name="first_name" label="Firstname" elementId="firstname"/>
-                      <Input name="last_name" label="Lastname" elementId="lastname"/>
-                      <Input error={error} name="email" label={emailLabel} elementId="email"/>
-                      <Input name="password" type="password" label="Password" elementId="password"/>
-                      <Input name="telephone" label="Mobile number" elementId="mobileNumber"/>
-                    </Row>
-                    <Row className="flex padding-bottom no-margin padding-left padding-right">
-                      <RaisedButton type="submit" className="margin-top full-width" label="Signup" primary={true}/>
-                    </Row>
-                  </form>
-                </div>
-              </Col>
+      <Grid id="signup-panel" className="flex flex-center no-padding full-width" style={{height: "calc(100vh - 64px)"}}>
+        <Grid className="full-width">
+          <Row className="flex flex-mobile main-left-right-padding" style={{height: "60%", backgroundColor: "#4a4a4a"}}>
+            <Col md={6} lg={6} className="gray-fade-right full-width" >
+              <div className="flex flex-center flex-middle" style={{height: "100%", width: "100%"}}>
+                <Image style={{width: "25%"}} src="/assets/logo.svg" />
+              </div>
+            </Col>
+            <Col md={6} lg={6} className="flex flex-middle flex-center flex-column full-width">
+              <Image className="pythinya-scale" src="/assets/pythinya.png"/>
+              <br></br>
+              <Divider className="divider-width"/>
+              <h3
+                style={{height: 1.7}}>MMR Booster</h3>
+              <RaisedButton href={'/signup'} className="signup-margin-top" label="Sign up" backgroundColor={"#F6A623"} labelColor={"#FFFFFF"}/>
+            </Col>
           </Row>
-          {/* <Row className="flex"> */}
-          {/* <div className="container full-width">
-            <Slider {...settings}>
-              <div><Image className="box-size" src="/assets/kanoon.jpg"></Image></div>
-              <div><Image className="box-size" src="/assets/nonae.jpg"></Image></div>
-              <div><Image className="box-size" src="/assets/not.jpg"></Image></div>
-              <div><Image className="box-size" src="/assets/p.jpg"></Image></div>
-            </Slider>
-          </div> */}
-          {/* </Row> */}
+          <br></br>
+          <Row className="flex flex-mobile" style={{height: "35%"}}>
+            <Col md={6} lg={6} className="no-padding full-width" style={{paddingRight: 7.5}}>
+              <div className="flex flex-center flex-middle flex-column black-secondary full-height">
+                <img  src="/assets/dota2logo.svg"></img>
+                <h4>Supported Dota 2</h4>
+              </div>
+            </Col>
+            <Col md={6} lg={6} className="no-padding full-width" style={{paddingLeft: 7.5}}>
+              <div className="flex flex-center flex-middle flex-column black-secondary full-height">
+                <img
+                  src="/assets/handshake-flat.svg"></img>
+                <h4>Trusted Boosters</h4>
+              </div>
+            </Col>
+          </Row>
         </Grid>
+
       </Grid>
+
     );
   }
 }
