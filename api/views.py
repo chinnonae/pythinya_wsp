@@ -302,14 +302,3 @@ class TopupView(APIView):
             "package": serialized.data,
             "status": 200
         })
-
-    def post(self, request, pk):
-        user_payment_action = UserPaymentAction(request.user)
-
-        topup_rate = TopupRate.objects.get(pk=pk)
-        user_payment_action.topup(topup_rate)
-
-        return Response({
-            "message": "Successful",
-            "status": 200
-        })
