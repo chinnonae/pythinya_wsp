@@ -1,4 +1,5 @@
 import {Grid} from 'react-bootstrap';
+import {Card} from 'material-ui/Card';
 const checkoutService = cc.get('services.checkout');
 const actions = cc.get('redux.actions');
 class Wrapper extends React.Component {
@@ -15,11 +16,13 @@ class Wrapper extends React.Component {
     return (
       <Grid className="flex flex-center flex-middle" style={{height: "calc(100vh - 64px)"}}>
         <Grid className="full-width padding-all">
-          <div className="margin-bottom margin-top padding-all">
-            <TicketInfoTable ticket={ticket}/>
-          </div>
-          <PaymentInfoPanel />
-          <PaymentActionPanel />
+          <Card className="black-secondary padding-all">
+            <div className="margin-bottom margin-top padding-all">
+              <TicketInfoTable ticket={ticket}/>
+            </div>
+            <PaymentInfoPanel />
+            <PaymentActionPanel />
+          </Card>
         </Grid>
       </Grid>
     );

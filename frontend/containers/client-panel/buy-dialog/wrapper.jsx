@@ -18,13 +18,13 @@ class Wrapper extends React.Component {
     /* Components */
     let TicketInfoTable = cc.get('components.ticketInfoTable');
     let actionButton = [
-      <FlatButton label="Cancel" onTouchTap={this.close} />,
-      <FlatButton id="buy-ticket-btn" label="Buy" primary={true} onTouchTap={this.buy} />
+      <FlatButton label="Cancel" className="white-text" onTouchTap={this.close} />,
+      <FlatButton id="buy-ticket-btn" label="Buy" className="margin-left success-text" onTouchTap={this.buy} />
     ];
     /* rendering */
     var reducer = this.props.reducer.clientPanel;
     return (
-      <Dialog title="Ticket" actions={actionButton} open={reducer.buyDialog.isShow} onRequestClose={this.close}>
+      <Dialog actionsContainerClassName="black-primary" titleClassName="black-primary white-text" bodyClassName="black-primary" title="Ticket" actions={actionButton} open={reducer.buyDialog.isShow} onRequestClose={this.close}>
         <p>Do you want to buy this ticket?</p>
         <TicketInfoTable ticket={reducer.buyDialog.ticket}/>
       </Dialog>

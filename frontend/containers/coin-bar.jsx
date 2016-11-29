@@ -4,13 +4,11 @@ class CoinBar extends React.Component {
   render() {
     let coin = this.props.reducer.profile.user.coin;
     return (
-      <div>
-        <Row className="relative">
-          <div className="pull-right margin-top margin-right">
-            <b>{coin + ' Coins'}</b>
-          </div>
-        </Row>
-      </div>
+      <Row className="relative margin-bottom">
+        <div className="margin-top margin-right flex" style={{flexDirection: "row-reverse"}}>
+          <b>{coin + ' Coins'}</b>
+        </div>
+      </Row>
     );
   }
 }

@@ -50,8 +50,14 @@ class Appbar extends React.Component {
         {view}
       </div>
     );
+    let leftComponent = (
+      <div className="full-height flex flex-middle">
+        <img width="20" src="/assets/logo.svg" />
+        <h4 className="no-margin" style={{marginLeft: 15, color: "white"}}>Pythinya</h4>
+      </div>
+    );
     return (
-      <AppBar title="Pythinya" iconStyleRight={{display: 'flex', margin: 0}} iconElementRight={rightComponent}/>
+      <AppBar className="black-primary" iconStyleRight={{display: 'flex', margin: 0}} iconStyleLeft={{display: 'flex', margin: 0}} iconElementLeft={leftComponent} iconElementRight={rightComponent}/>
     );
   }
 }
