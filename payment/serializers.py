@@ -8,4 +8,3 @@ class TopupRateSerializer(ModelSerializer):
     class Meta:
         fields = ('id', 'baht', 'coin')
         model = TopupRate
-

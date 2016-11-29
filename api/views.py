@@ -284,7 +284,6 @@ class TopupListView(APIView):
         payment_service = PaymentService()
         available_topups = payment_service.topup_list()
         serialized = TopupRateSerializer(available_topups, many=True)
-        print("-----", serialized)
         return Response({
             "packages": serialized.data,
             "status": 200
