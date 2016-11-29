@@ -8,10 +8,8 @@ class PackageListPanel extends React.Component {
           {
             _.times(10, function(i) {
               return (
-                <Col key={i} xs={12} sm={6} md={4} lg={3} className="flex margin-top margin-bottom">
-                  <div className="container-center">
-                    <PackageCard />
-                  </div>
+                <Col key={i} xs={12} sm={6} md={4} lg={3} className="margin-top margin-bottom no-margin" style={{padding: 2}}>
+                  <PackageCard />
                 </Col>
               );
             })
