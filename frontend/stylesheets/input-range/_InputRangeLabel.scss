@@ -1,0 +1,26 @@
+.InputRange-label {
+  color: $InputRange-label-color;
+  font-family: $InputRange-fontFamily;
+  font-size: 1em;
+  line-height: 0;
+  white-space: nowrap;
+}
+
+.InputRange-label--min,
+.InputRange-label--max {
+  bottom: -1.4rem;
+  position: absolute;
+}
+
+.InputRange-label--min {
+  left: 0;
+}
+
+.InputRange-label--max {
+  right: 0;
+}
+
+.InputRange-label--value {
+  position: absolute;
+  top: -1.8rem;
+}

@@ -8,30 +8,29 @@ class ContactTable extends React.Component {
   render() {
     var self = this;
     return (
-      <Card className="transparent">
-        <Table selectable={false} className="hoverable">
-          <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-            <TableRow>
-              <TableHeaderColumn style={{width: "45%"}}>Customer name</TableHeaderColumn>
-              <TableHeaderColumn>Date</TableHeaderColumn>
-              <TableHeaderColumn>Phone</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody displayRowCheckbox={false}>
-            {
-              _.map(this.props.reducer.boosterPanel.filteredContacts, function(item, i) {
-                return (
-                  <TableRow onMouseUp={self.onClick.bind(self,item)} key={i} className="pointer">
-                    <TableRowColumn style={{width: "45%"}}>{item.first_name + " " + item.last_name}</TableRowColumn>
-                    <TableRowColumn>{"2 days ago"}</TableRowColumn>
-                    <TableRowColumn>{item.telephone}</TableRowColumn>
-                  </TableRow>
-                );
-              })
-            }
-          </TableBody>
-        </Table>
-      </Card>
+      <Table selectable={false} className="hoverable success-header">
+        <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+          <TableRow>
+            <TableHeaderColumn style={{width: "45%"}}>Customer name</TableHeaderColumn>
+            <TableHeaderColumn>Date</TableHeaderColumn>
+            <TableHeaderColumn>Phone</TableHeaderColumn>
+          </TableRow>
+        </TableHeader>
+        <TableBody displayRowCheckbox={false}>
+          {
+            _.map(this.props.reducer.boosterPanel.filteredContacts, function(item, i) {
+              let tdClassName = (i % 2 === 0) ? 'alter1' : 'alter2';
+              return (
+                <TableRow onMouseUp={self.onClick.bind(self,item)} key={i} className="pointer">
+                  <TableRowColumn style={{width: "45%"}}><div className={tdClassName}>{item.first_name + " " + item.last_name}</div></TableRowColumn>
+                  <TableRowColumn><div className={tdClassName}>{"2 days ago"}</div></TableRowColumn>
+                  <TableRowColumn><div className={tdClassName}>{item.telephone}</div></TableRowColumn>
+                </TableRow>
+              );
+            })
+          }
+        </TableBody>
+      </Table>
     );
   }
 }

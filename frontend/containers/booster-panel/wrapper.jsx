@@ -25,17 +25,12 @@ class Wrapper extends React.Component {
     }
     /* rendering */
     return (
-      <Grid className="full-width">
-        <Col xs={12} sm={12} md={7} lg={8} className="padding-right">
+      <Grid className="full-width no-padding">
+        <Col xs={12} sm={12} md={7} lg={8}>
           { panelView }
         </Col>
-        <Col xs={12} sm={12} md={5} lg={4} className="padding-left">
-          <Row className="flex flex-column flex-end-y" style={{height: 100}}>
-            <p className="text-center">History</p>
-          </Row>
-          <Row>
-            <HistoryTable />
-          </Row>
+        <Col xs={12} sm={12} md={5} lg={4}>
+          <HistoryTable />
         </Col>
       </Grid>
     );

@@ -11,7 +11,7 @@ class BoosterTable extends React.Component {
         <Table selectable={false} className="hoverable success-header">
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
-              <TableHeaderColumn style={{width: "35%"}}>Booster name</TableHeaderColumn>
+              <TableHeaderColumn style={{width: "25%"}}>Booster name</TableHeaderColumn>
               <TableHeaderColumn>Price</TableHeaderColumn>
               <TableHeaderColumn>Boosted times</TableHeaderColumn>
               <TableHeaderColumn>Day used</TableHeaderColumn>
@@ -24,7 +24,7 @@ class BoosterTable extends React.Component {
                 let tdClassName = (i % 2 === 0) ? 'alter1' : 'alter2';
                 return (
                   <TableRow onMouseUp={self.onClick.bind(self,item)} key={i} className="pointer">
-                    <TableRowColumn style={{width: "35%"}}><div className={tdClassName}>{item.booster.first_name + " " + item.booster.last_name}</div></TableRowColumn>
+                    <TableRowColumn style={{width: "25%"}}><div className={tdClassName}>{item.booster.first_name + " " + item.booster.last_name}</div></TableRowColumn>
                     <TableRowColumn><div className={tdClassName}>{item.price}</div></TableRowColumn>
                     <TableRowColumn><div className={tdClassName}>{"4"}</div></TableRowColumn>
                     <TableRowColumn><div className={tdClassName}>{item.day_used}</div></TableRowColumn>
