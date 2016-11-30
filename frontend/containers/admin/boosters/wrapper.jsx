@@ -18,6 +18,9 @@ class Wrapper extends React.Component {
       }
     };
   }
+  componentDidMount() {
+    let adminService = cc.get('services.admin');
+  }
   changeViewState(state) {
     this.setState({
       viewState: state

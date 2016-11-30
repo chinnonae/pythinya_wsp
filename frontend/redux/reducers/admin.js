@@ -1,26 +1,6 @@
 import constant from '../constants';
 let initialState = {
-  users: [{
-    name: "Taweerat Chaiman",
-    email: 'taweesoft@gmail.com',
-    coins: 15000,
-    current_mmr: 4500,
-    status: 'Being boosted'
-  },
-  {
-    name: "Patinya Yongyai",
-    email: 'patinya@gmail.com',
-    coins: 7500,
-    current_mmr: 3000,
-    status: 'Available'
-  },{
-    name: "Thongrapee Panyapathipan",
-    email: 'kulaspa@gmail.com',
-    coins: 3000,
-    current_mmr: 5525,
-    status: 'Waiting for payment'
-  }],
-
+  users: [],
   boosters: [{
     name: "Taweerat Chaiman",
     email: 'taweesoft@gmail.com',
@@ -67,14 +47,32 @@ let reducer = (state, action) => {
   let newState = _.clone(state);
   switch(action.type) {
     case constant.ADMIN_GET_USERS_CB:
-      newState.users = action.data;
+      newState.users = userFormatter(action.data);
       return newState;
-    case constant.ADMIN_GET_BOOSTERS_CB:
+    case constant.ADMIN_GET_VERIFIED_BOOSTERS_CB:
       newState.boosters = action.data;
+      return newState;
+    case constant.ADMIN_GET_PENDING_BOOSTERS_CB:
+      newState.pending = action.data;
       return newState;
     default:
       return state;
   }
+};
+
+const userFormatter = (raw) => {
+  let formatted = [];
+  _.map(raw, (data) => {
+    let obj = {
+      name: data.first_name + " " + data.last_name,
+      coins: data.coin,
+      current_mmr: data.currentMMR === -1 ? 'TBA' : data.currentMMR,
+      email: data.email,
+      status: data.status
+    };
+    formatted.push(obj);
+  });
+  return formatted;
 };
 
 export default reducer;

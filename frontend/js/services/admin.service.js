@@ -2,7 +2,7 @@ let services = {
   getUsers: (callback) => {
     callback = typeof callback === 'function' ? callback : () => {};
     let http = getHttp();
-    http.getConstant(http.methods.GET, '/api/admin/list/client', {})
+    http.getConstant(http.methods.GET, '/api/admin/list/client', {}, false)
     .done((res) => {
       callback(res);
     })
