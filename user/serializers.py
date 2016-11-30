@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import User
+from .models import User, BoosterProfile
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -19,4 +19,13 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+
+
+class BoosterProfileSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+
+    class Meta:
+        model = BoosterProfile
+        fields = ('current_mmr', 'stream_id', 'user', 'id_card_image_src')
+        extra_kwargs = {'user': {'read_only': True}}
 

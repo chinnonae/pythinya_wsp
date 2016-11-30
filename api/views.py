@@ -3,16 +3,21 @@ from django.utils.translation import ugettext as _
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
+from rest_framework.parsers import FileUploadParser, MultiPartParser
 
 from ticket_system.models import Ticket
 from ticket_system.serializers import TicketSerializer
-from user.serializers import UserSerializer
-from user.models import User
+from user.serializers import UserSerializer, BoosterProfileSerializer
+from user.models import User, BoosterProfile
 from payment.serializers import TopupRateSerializer
 from payment.models import TopupRate
 
-from .models import BoosterTicketAction, ClientTicketAction, UserService, UserPaymentAction, PaymentService, UserTicketAction
+from .models import BoosterTicketAction, ClientTicketAction, UserService, UserPaymentAction, PaymentService, UserTicketAction, AdminUserList, AdminUserAction
 
+
+import hashlib
+import uuid
+import os
 
 class TicketView(APIView):
 
@@ -312,4 +317,87 @@ class TopupView(APIView):
         return Response({
             "message": "Successful",
             "status": 200
+        })
+
+
+class BoosterRegister(APIView):
+    permission_classes = (AllowAny,)
+    parser_classes = (MultiPartParser,)
+
+    def post(self, request):
+        id_card_image = request.FILES['id_card']
+        print(request.data)
+        homedir = os.path.expanduser('~')
+        new_filename = str(hashlib.md5((str(uuid.uuid4()) + id_card_image.name).encode('utf-8')).hexdigest())
+        new_filepath = homedir + '/pythinya/image/booster_id_card/' + new_filename
+        destination = open(new_filepath, 'wb+')
+
+        for chunk in id_card_image.chunks():
+            destination.write(chunk)
+        destination.close()
+
+        user_service = UserService()
+        temp_dict = dict(request.data.items())
+        temp_dict['is_active'] = False
+        result, message, error_field = user_service.register(**temp_dict)
+        booster = BoosterProfile.objects.create(
+            current_mmr=temp_dict['current_mmr'],
+            id_card_image_src=new_filename,
+            stream_id=temp_dict['stream_id'],
+            user=result
+        )
+
+        return Response({
+            'profile': BoosterProfileSerializer(booster).data
+        })
+
+
+class ClientWithTicketServiceDetail(APIView):
+
+    def get(self, request):
+
+        return Response({
+            "clients": AdminUserList(None).client_with_ticket_status()
+        })
+
+
+class BoosterWithTicketServiceDetail(APIView):
+
+    def get(self, request):
+
+        return Response({
+            "boosters": AdminUserList(None).booster_with_ticket_status()
+        })
+
+
+class BoosterApproval(APIView):
+
+    def post(self, request, pk):
+        user = User.objects.get(pk=pk)
+        user_obj, message = AdminUserAction(None, user).approve_booster()
+
+        return Response({
+            "message": message
+        })
+
+
+class BoosterDenial(APIView):
+
+    def post(self, request, pk):
+        user = User.objects.get(pk=pk)
+        delete_result, message = AdminUserAction(None, user).deny_booster()
+
+        return Response({
+            "message": message
+        })
+
+
+class PendingBoosterList(APIView):
+
+    def get(self):
+        pending_boosters = User.objects.filter(is_active=False).filter(is_booster=True)
+        booster_profiles = BoosterProfile.objects.filter(user=pending_boosters)
+
+        return Response({
+            "pending_booster": BoosterProfileSerializer(booster_profiles, many=True)
         })

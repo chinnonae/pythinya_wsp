@@ -276,6 +276,11 @@ class AdminUserAction:
 
         return self.user, "The user is an approved booster"
 
+    def deny_booster(self):
+        delete_result = self.user.delete()
+
+        return delete_result, "Booster registration have been removed"
+
 
 class AdminUserList:
 
@@ -331,3 +336,4 @@ class AdminUserList:
         all_booster = self.all().filter(is_booster=True).filter(is_active=False)
 
         return all_booster
+

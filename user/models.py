@@ -55,3 +55,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+
+
+class BoosterProfile(models.Model):
+    current_mmr = models.PositiveIntegerField(_("current MMR"), default=0)
+    stream_id = models.CharField(_("Stream ID"), max_length=255)
+    id_card_image_src = models.TextField(_("ID card image's source"), null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
