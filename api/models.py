@@ -1,8 +1,8 @@
 from ticket_system.serializers import TicketSerializer
 from ticket_system.models import Clientship, Ticket
-from user.serializers import UserSerializer
+from user.serializers import UserSerializer, BoosterProfileSerializer
 from payment.models import TopupRate
-from user.models import User
+from user.models import User, BoosterProfile
 
 import math
 import datetime
@@ -228,6 +228,7 @@ class UserService:
         if not serialized_user.is_valid():
             return None, "Some field is not valid", serialized_user.errors
 
+        print(serialized_user.validated_data)
         self.user = serialized_user.create(serialized_user.validated_data)
         return self.user, "Register successful", None
 
@@ -291,7 +292,7 @@ class AdminUserList:
         return User.objects.all().exclude(is_admin=True)
 
     def client_with_ticket_status(self):
-        all_users = self.all()
+        all_users = self.all().exclude(is_booster=True)
 
         user_fields = ('id', 'first_name', 'last_name', 'email', 'coin')
 
@@ -312,7 +313,7 @@ class AdminUserList:
         return results
 
     def booster_with_ticket_status(self):
-        all_boosters = self.all().filter(is_booster=True)
+        all_boosters = self.all().filter(is_booster=True).filter(is_active=True)
 
         user_fields = ('id', 'first_name', 'last_name', 'email', 'coin')
 
@@ -325,7 +326,8 @@ class AdminUserList:
                 result[user_field] = serialized_user[user_field]
 
             ticket = UserService(user).boosting_ticket()
-            result['currentMMR'] = int(ticket.currentMMR) if ticket is not None else -1
+            booster_profile = BoosterProfileSerializer(BoosterProfile.objects.get(user=user.id)).data
+            result['currentMMR'] = int(booster_profile['current_mmr'])
             result['status'] = int(ticket.status) if ticket is not None else 1
 
             results.append(result)

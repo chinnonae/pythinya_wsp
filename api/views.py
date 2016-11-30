@@ -337,6 +337,8 @@ class BoosterRegister(APIView):
         user_service = UserService()
         temp_dict = dict(request.data.items())
         temp_dict['is_active'] = False
+        temp_dict['is_booster'] = True
+        print(temp_dict)
         result, message, error_field = user_service.register(**temp_dict)
         booster = BoosterProfile.objects.create(
             current_mmr=temp_dict['current_mmr'],
