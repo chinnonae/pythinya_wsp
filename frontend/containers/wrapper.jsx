@@ -34,6 +34,7 @@ class Wrapper extends React.Component {
     var Carousel = cc.get('components.carousel');
     var Checkout = cc.get('components.checkout.wrapper');
     let Paypal = cc.get('components.paypal');
+    let BoosterSignup = cc.get('components.boosterSignup');
     /* Admin components  */
     let AdminUsers = cc.get('components.admin.users.wrapper');
     let AdminBoosters = cc.get('components.admin.boosters.wrapper');
@@ -44,6 +45,7 @@ class Wrapper extends React.Component {
 						<IndexRoute onEnter={isAuth} component={Main}/>
 						<Route path='signin' component={Signin}/>
 						<Route path='signup' component={Signup}/>
+            <Route path='signup/booster' component={BoosterSignup} />
 						<Route path='client' onEnter={isPicked} component={BoosterList}/>
             <Route path='booster_panel' onEnter={requirePermission} component={BoosterPanel} />
             <Route path='track'>
