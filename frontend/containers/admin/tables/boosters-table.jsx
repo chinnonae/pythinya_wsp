@@ -3,7 +3,7 @@ import {Card} from 'material-ui/Card';
 const actions = cc.get('redux.actions');
 class BoostersTable extends React.Component {
   onClick(item) {
-    // this.props.actions.toggleConfirmBuyDialog(true,item);
+    this.props.onClick(true,item);
   }
   render() {
     var self = this;

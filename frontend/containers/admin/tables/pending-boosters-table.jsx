@@ -3,16 +3,16 @@ import {Card} from 'material-ui/Card';
 const actions = cc.get('redux.actions');
 class BoostersTable extends React.Component {
   onClick(item) {
-    // this.props.actions.toggleConfirmBuyDialog(true,item);
+    this.props.onClick(true,item);
   }
   render() {
     var self = this;
     return (
-        <Table selectable={false} className="hoverable amber-header">
+        <Table selectable={false} className="hoverable success-header">
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
               <TableHeaderColumn style={{width: "25%"}}>Name</TableHeaderColumn>
-              <TableHeaderColumn>Email</TableHeaderColumn>
+              <TableHeaderColumn>E-mail</TableHeaderColumn>
               <TableHeaderColumn>Coins</TableHeaderColumn>
               <TableHeaderColumn>Current MMR</TableHeaderColumn>
               <TableHeaderColumn>Status</TableHeaderColumn>
@@ -20,8 +20,8 @@ class BoostersTable extends React.Component {
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
             {
-              _.map(this.props.reducer.admin.boosters, function(item, i) {
-                let tdClassName = (i % 2 === 0) ? 'alter1 alter1-amber' : 'alter2 alter2-amber';
+              _.map(this.props.reducer.admin.pending_boosters, function(item, i) {
+                let tdClassName = (i % 2 === 0) ? 'alter1' : 'alter2';
                 return (
                   <TableRow onMouseUp={self.onClick.bind(self,item)} key={i} className="pointer">
                     <TableRowColumn style={{width: "25%"}}><div className={tdClassName}>{item.name}</div></TableRowColumn>
