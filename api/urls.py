@@ -31,9 +31,9 @@ payment_url = [
 ]
 
 admin_url = [
-    url(r'^list/pending-booster', views.PendingBoosterList.as_view()),
+    url(r'^list/pending-booster$', views.PendingBoosterList.as_view()),
     url(r'^list/booster$', views.BoosterWithTicketServiceDetail.as_view()),
-    url(r'^list/clien$t', views.ClientWithTicketServiceDetail.as_view()),
+    url(r'^list/client$', views.ClientWithTicketServiceDetail.as_view()),
     url(r'^booster/(?P<pk>[0-9]+)/approve', views.BoosterApproval.as_view()),
     url(r'^booster/(?P<pk>[0-9]+)/deny', views.BoosterDenial.as_view())
 ]

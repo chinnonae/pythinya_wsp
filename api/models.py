@@ -298,14 +298,14 @@ class AdminUserList:
         results = []
         for user in all_users:
 
-            serialized_user = UserSerializer(user)
+            serialized_user = UserSerializer(user).data
             result = {}
             for user_field in user_fields:
                 result[user_field] = serialized_user[user_field]
 
             ticket = UserService(user).holding_ticket()
-            result['currentMMR'] = ticket.currentMMR if ticket is not None else -1
-            result['status'] = ticket.status if ticket is not None else -1
+            result['currentMMR'] = int(ticket.currentMMR) if ticket is not None else -1
+            result['status'] = int(ticket.status) if ticket is not None else -1
 
             results.append(result)
 
@@ -319,14 +319,14 @@ class AdminUserList:
         results = []
         for user in all_boosters:
 
-            serialized_user = UserSerializer(user)
+            serialized_user = UserSerializer(user).data
             result = {}
             for user_field in user_fields:
                 result[user_field] = serialized_user[user_field]
 
             ticket = UserService(user).boosting_ticket()
-            result['currentMMR'] = ticket.currentMMR if ticket is not None else -1
-            result['status'] = ticket.status if ticket is not None else -1
+            result['currentMMR'] = int(ticket.currentMMR) if ticket is not None else -1
+            result['status'] = int(ticket.status) if ticket is not None else -1
 
             results.append(result)
 

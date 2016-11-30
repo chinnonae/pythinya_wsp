@@ -397,7 +397,7 @@ class BoosterDenial(APIView):
 class PendingBoosterList(APIView):
     permission_classes = (AllowAny,)
 
-    def get(self):
+    def get(self, request):
         pending_boosters = User.objects.filter(is_active=False).filter(is_booster=True)
         booster_profiles = BoosterProfile.objects.filter(user=pending_boosters)
 
