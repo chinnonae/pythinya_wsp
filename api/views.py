@@ -351,6 +351,7 @@ class BoosterRegister(APIView):
 
 
 class ClientWithTicketServiceDetail(APIView):
+    permission_classes = (AllowAny,)
 
     def get(self, request):
 
@@ -360,6 +361,7 @@ class ClientWithTicketServiceDetail(APIView):
 
 
 class BoosterWithTicketServiceDetail(APIView):
+    permission_classes = (AllowAny,)
 
     def get(self, request):
 
@@ -369,6 +371,7 @@ class BoosterWithTicketServiceDetail(APIView):
 
 
 class BoosterApproval(APIView):
+    permission_classes = (AllowAny,)
 
     def post(self, request, pk):
         user = User.objects.get(pk=pk)
@@ -380,6 +383,7 @@ class BoosterApproval(APIView):
 
 
 class BoosterDenial(APIView):
+    permission_classes = (AllowAny,)
 
     def post(self, request, pk):
         user = User.objects.get(pk=pk)
@@ -391,6 +395,7 @@ class BoosterDenial(APIView):
 
 
 class PendingBoosterList(APIView):
+    permission_classes = (AllowAny,)
 
     def get(self):
         pending_boosters = User.objects.filter(is_active=False).filter(is_booster=True)
