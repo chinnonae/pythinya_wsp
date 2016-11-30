@@ -402,5 +402,5 @@ class PendingBoosterList(APIView):
         booster_profiles = BoosterProfile.objects.filter(user=pending_boosters)
 
         return Response({
-            "pending_booster": BoosterProfileSerializer(booster_profiles, many=True)
+            "pending_booster": BoosterProfileSerializer(booster_profiles, many=True).data
         })
