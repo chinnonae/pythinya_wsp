@@ -6,7 +6,8 @@ class CreditCardForm extends React.Component {
     return (
       <form id={this.props.formId}>
         <Col xs={12} sm={12} md={12} lg={12} className="no-padding">
-          <Input name="card_number" elementId="card_number" label="Card number"/>
+          <Input name="card_number" className="margin-top" elementId="card_number" label="Card number"/>
+          <img src="/assets/visalogo.jpg" className="pull-right pull-top" width={40}/>
         </Col>
         <Row>
           <Col className="flex no-padding" xs={12} sm={6} md={6} lg={6}>

@@ -5,16 +5,17 @@ class PackagePaymentPanel extends React.Component {
     var PackageCard = cc.get('components.topup.packageCard');
     let CardPanel = cc.get('components.cardPanel');
     let CreditCardPanel = cc.get('components.topup.creditcardPanel');
+    let CartPanel = cc.get('components.topup.cartPanel');
     return (
       <Row className="flex">
         <Col xs={12} sm={12} md={9} lg={9} className="container-center">
           <CardPanel title="Checkout">
-            <Row>
+            <Row className="flex flex-mobile">
               <Col xs={12} sm={12} md={7} lg={7}>
                 <CreditCardPanel />
               </Col>
-              <Col xs={12} sm={12} md={5} lg={5}>
-
+              <Col xs={12} sm={12} md={5} lg={5} style={{backgroundColor: "#4a4a4a", marginRight: "-15px"}}  >
+                <CartPanel />
               </Col>
             </Row>
           </CardPanel>
