@@ -1,6 +1,10 @@
 import {Card} from 'material-ui';
 let actions = cc.get('redux.actions');
 class Wrapper extends React.Component {
+  componentDidMount() {
+    let adminService = cc.get('services.admin');
+    adminService.getUsers(this.props.actions.getUsersCallback);
+  }
   render() {
     let UserTable = cc.get('components.admin.users.usersTable');
     return (

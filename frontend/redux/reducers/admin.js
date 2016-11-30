@@ -1,65 +1,8 @@
 import constant from '../constants';
 let initialState = {
-  users: [{
-    name: "Taweerat Chaiman",
-    email: 'taweesoft@gmail.com',
-    coins: 15000,
-    current_mmr: 4500,
-    status: 'Being boosted'
-  },
-  {
-    name: "Patinya Yongyai",
-    email: 'patinya@gmail.com',
-    coins: 7500,
-    current_mmr: 3000,
-    status: 'Available'
-  },{
-    name: "Thongrapee Panyapathipan",
-    email: 'kulaspa@gmail.com',
-    coins: 3000,
-    current_mmr: 5525,
-    status: 'Waiting for payment'
-  }],
-
-  boosters: [{
-    name: "Taweerat Chaiman",
-    email: 'taweesoft@gmail.com',
-    coins: 15000,
-    current_mmr: 4500,
-    status: 'Being boosted'
-  },
-  {
-    name: "Patinya Yongyai",
-    email: 'patinya@gmail.com',
-    coins: 7500,
-    current_mmr: 3000,
-    status: 'Available'
-  },{
-    name: "Thongrapee Panyapathipan",
-    email: 'kulaspa@gmail.com',
-    coins: 3000,
-    current_mmr: 5525,
-    status: 'Waiting for payment'
-  }],
-
-  pending_boosters: [{
-    name: "Taweerat Chaiman",
-    email: 'taweesoft@gmail.com',
-    coins: 15000,
-    current_mmr: 4500,
-    telephone: "0832529994",
-    steam_id: "taweesoft",
-    status: 'Being boosted'
-  },
-  {
-    name: "Patinya Yongyai",
-    email: 'patinya@gmail.com',
-    coins: 7500,
-    current_mmr: 3000,
-    telephone: "0834445234",
-    steam_id: "sasmaxnot19",
-    status: 'Available'
-  }]
+  users: [],
+  boosters: [],
+  pending_boosters: []
 };
 
 let reducer = (state, action) => {
@@ -67,14 +10,68 @@ let reducer = (state, action) => {
   let newState = _.clone(state);
   switch(action.type) {
     case constant.ADMIN_GET_USERS_CB:
-      newState.users = action.data;
+      newState.users = userFormatter(action.data);
       return newState;
-    case constant.ADMIN_GET_BOOSTERS_CB:
-      newState.boosters = action.data;
+    case constant.ADMIN_GET_VERIFIED_BOOSTERS_CB:
+      newState.boosters = userFormatter(action.data);
+      return newState;
+    case constant.ADMIN_GET_PENDING_BOOSTERS_CB:
+      newState.pending = boosterFormatter(action.data);
+      return newState;
+    case constant.ADMIN_PENDING_BOOSTERS_ACTION_CB:
       return newState;
     default:
       return state;
   }
+};
+
+const getStatus = (status, isBooster) => {
+  switch(status){
+    case AVAILABLE:
+      return 'Available';
+    case WAITING_FOR_PAYMENT:
+      return 'Waiting for payment';
+    case BOOSTING:
+      if(isBooster) {
+        return "Boosting";
+      }else {
+        return 'Being Boosted';
+      }
+  }
+};
+const userFormatter = (raw) => {
+  let formatted = [];
+  _.map(raw, (data) => {
+    let obj = {
+      name: data.first_name + " " + data.last_name,
+      coins: data.coin,
+      current_mmr: data.currentMMR === -1 ? 'TBA' : data.currentMMR,
+      email: data.email,
+      status: getStatus(data.status),
+      telephone: data.telephone,
+      steam_id: data.steam_id
+    };
+    formatted.push(obj);
+  });
+  return formatted;
+};
+
+const boosterFormatter = (raw) => {
+  let formatted = [];
+  _.map(raw, (data) => {
+    let obj = {
+      name: data.user.first_name + " " + data.user.last_name,
+      coins: data.user.coin,
+      current_mmr: data.current_mmr === -1 ? 'TBA' : data.current_mmr,
+      email: data.user.email,
+      status: 'Pending',
+      telephone: data.user.telephone,
+      steam_id: data.steam_id,
+      id: data.user.id
+    };
+    formatted.push(obj);
+  });
+  return formatted;
 };
 
 export default reducer;

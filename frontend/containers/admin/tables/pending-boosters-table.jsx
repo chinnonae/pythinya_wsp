@@ -20,7 +20,7 @@ class BoostersTable extends React.Component {
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
             {
-              _.map(this.props.reducer.admin.pending_boosters, function(item, i) {
+              _.map(this.props.reducer.admin.pending, function(item, i) {
                 let tdClassName = (i % 2 === 0) ? 'alter1' : 'alter2';
                 return (
                   <TableRow onMouseUp={self.onClick.bind(self,item)} key={i} className="pointer">
