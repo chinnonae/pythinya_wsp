@@ -1,4 +1,5 @@
 from django.utils.translation import ugettext as _
+from django.conf import settings
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -327,7 +328,7 @@ class BoosterRegister(APIView):
         print(request.data)
         homedir = os.path.expanduser('~')
         new_filename = str(hashlib.md5((str(uuid.uuid4()) + id_card_image.name).encode('utf-8')).hexdigest())
-        new_filepath = homedir + '/pythinya/image/booster_id_card/' + new_filename
+        new_filepath = settings.BASE_DIR + "/frontend/assets/id_card/" + new_filename
         destination = open(new_filepath, 'wb+')
 
         for chunk in id_card_image.chunks():
