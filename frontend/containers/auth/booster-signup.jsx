@@ -12,8 +12,32 @@ class Signup extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    var form = $('#signup-form');
-    authService.signup(form.serializeArray(), this.props.actions.signupCallback);
+    var forms = $('input');
+    var data = new FormData();
+    // data = new FormData(forms[7]);
+    // data = _.merge(data, new FormData(forms[1]));
+    // data = _.merge(data, new FormData(forms[2]));
+    // data = _.merge(data, new FormData(forms[3]));
+    // data = _.merge(data, new FormData(forms[4]));
+    // data = _.merge(data, new FormData(forms[5]));
+    // data = _.merge(data, new FormData(forms[6]));
+    // data = _.merge(data, new FormData(forms[7]));
+		/* serializing data from form*/
+		// _.map($('#signup-form').serializeArray(), function(item) {
+		// 	data[item.name] = item.value;
+		// });
+    // data = _.merge(data, new FormData($("#id_card")));
+    _.map($('input[type="text"]'), (form) => {
+      data.append(form.name,form.value);
+    });
+    _.map($('input[type="password"]'), (form) => {
+      data.append(form.name,form.value);
+    });
+    _.map($('input[type="file"]')[0].files, (form) => {
+      data.append('id_card',form);
+    });
+    console.log(data);
+    authService.boosterSignup(data, this.props.actions.boosterSignupCallback);
   }
   render() {
     /* Components */
@@ -41,9 +65,9 @@ class Signup extends React.Component {
                     <Input name="password" type="password" label="Password" elementId="password"/>
                     <Input name="telephone" label="Mobile number" elementId="mobileNumber"/>
                     <Input name="steam_id" label="Steam ID" elementId="steam_id"/>
-                    <Input name="mmr" label="MMR" elementId="mmr"/>
+                    <Input name="current_mmr" label="MMR" elementId="current_mmr"/>
                     <b className="white-text">Upload citizen card image</b>
-                    <input name="citizen-image" className="margin-left white-text" type="file" id="file-select"/>
+                    <input name="id_card" className="margin-left white-text" type="file" id="id_card"/>
                   </Row>
                   <Row className="flex padding-bottom no-margin padding-left padding-right">
                     <FlatButton id="submit-btn" type="submit" className="margin-top full-width blue white-text" label="Sign up"/>

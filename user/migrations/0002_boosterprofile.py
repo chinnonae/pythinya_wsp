@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('current_mmr', models.PositiveIntegerField(default=0, verbose_name='current MMR')),
-                ('stream_id', models.CharField(max_length=255, verbose_name='Stream ID')),
+                ('steam_id', models.CharField(max_length=255, verbose_name='Steam ID')),
                 ('id_card_image_src', models.TextField(blank=True, null=True, verbose_name="ID card image's source")),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],

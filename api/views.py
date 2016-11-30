@@ -341,7 +341,7 @@ class BoosterRegister(APIView):
         booster = BoosterProfile.objects.create(
             current_mmr=temp_dict['current_mmr'],
             id_card_image_src=new_filename,
-            stream_id=temp_dict['stream_id'],
+            steam_id=temp_dict['steam_id'],
             user=result
         )
 

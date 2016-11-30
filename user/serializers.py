@@ -26,6 +26,5 @@ class BoosterProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BoosterProfile
-        fields = ('current_mmr', 'stream_id', 'user', 'id_card_image_src')
+        fields = ('current_mmr', 'steam_id', 'user', 'id_card_image_src')
         extra_kwargs = {'user': {'read_only': True}}
-

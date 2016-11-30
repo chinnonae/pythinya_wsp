@@ -36,6 +36,22 @@ var action = {
     return {
       type: getConstant().SIGNOUT
     };
+  },
+  boosterSignupCallback: (res) => {
+    var isSuccess = res.status === SUCCESS;
+    var message = "";
+    if (isSuccess) {
+      window.location = "/";
+    } else {
+      message = res.message;
+    }
+    return {
+      type: getConstant().BOOSTER_SIGNUP_CB,
+      data: {
+        isSuccess: isSuccess,
+        message: message
+      }
+    };
   }
 };
 

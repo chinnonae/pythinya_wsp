@@ -42,6 +42,46 @@ var auth = {
     var profileService = cc.get('services.profile');
     profileService.clear();
     callback();
+  },
+  boosterSignup: (user,callback) => {
+    getWaitmeService().show();
+    let http = getHttpService();
+    callback = typeof callback === 'function' ? callback : () => {};
+		// var data = {};
+		// /* serializing data from form*/
+		// _.map(user, function(item) {
+		// 	data[item.name] = item.value;
+		// });
+    console.log(user);
+    $.ajax({
+      method: 'POST',
+      url: URL + '/api/user/register-booster',
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: 'json',
+      data: user
+    })
+    .done((res) => {
+      getWaitmeService().hide();
+      console.log(res);
+      callback(res);
+    })
+    .fail((res) => {
+      getWaitmeService().hide();
+      console.log('Error');
+      console.log(res);
+    });
+
+    // http.getConstant(http.methods.POST, '/api/user/register-booster', data, false)
+    // .done(function(res) {
+    //   getWaitmeService().hide();
+    //   callback(res);
+    // })
+    // .fail(function(res) {
+    //   getWaitmeService().hide();
+    //   callback(res);
+    // });
   }
 };
 

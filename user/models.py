@@ -59,6 +59,6 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 class BoosterProfile(models.Model):
     current_mmr = models.PositiveIntegerField(_("current MMR"), default=0)
-    stream_id = models.CharField(_("Stream ID"), max_length=255)
+    steam_id = models.CharField(_("Steam ID"), max_length=255)
     id_card_image_src = models.TextField(_("ID card image's source"), null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
