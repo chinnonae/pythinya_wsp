@@ -2,10 +2,10 @@ from ticket_system.serializers import TicketSerializer
 from ticket_system.models import Clientship, Ticket
 from user.serializers import UserSerializer
 from payment.models import TopupRate
-from payment.serializers import TopupRateSerializer
+from user.models import User
 
 import math
-
+import datetime
 
 class BoosterTicketAction:
 
@@ -207,7 +207,7 @@ class UserService:
     def holding_ticket(self):
         holding_ticket = Ticket.objects.filter(clients=self.user)\
             .exclude(status=4)\
-            .exclude(status=1)
+            .first()
 
         return holding_ticket
 
@@ -250,3 +250,90 @@ class UserPaymentAction:
         self.user.save()
 
         return self.user
+
+
+class AdminUserAction:
+
+    def __init__(self, admin, user):
+        self.admin = admin
+        self.user = user
+
+    def ban(self, duration_in_days):
+        self.user.ban_util = datetime.datetime.now() + datetime.timedelta(days=duration_in_days)
+        self.user.save()
+
+        return self.user, "The user is banned until %s" % self.user.ban_util
+
+    def unban(self):
+        self.user.ban_util = None
+        self.user.save()
+
+        return self.user, "The user is unbanned"
+
+    def approve_booster(self):
+        self.user.is_active = True
+        self.user.save()
+
+        return self.user, "The user is an approved booster"
+
+    def deny_booster(self):
+        delete_result = self.user.delete()
+
+        return delete_result, "Booster registration have been removed"
+
+
+class AdminUserList:
+
+    def __init__(self, admin):
+        self.admin = admin
+
+    def all(self):
+        return User.objects.all().exclude(is_admin=True)
+
+    def client_with_ticket_status(self):
+        all_users = self.all()
+
+        user_fields = ('id', 'first_name', 'last_name', 'email', 'coin')
+
+        results = []
+        for user in all_users:
+
+            serialized_user = UserSerializer(user)
+            result = {}
+            for user_field in user_fields:
+                result[user_field] = serialized_user[user_field]
+
+            ticket = UserService(user).holding_ticket()
+            result['currentMMR'] = ticket.currentMMR if ticket is not None else -1
+            result['status'] = ticket.status if ticket is not None else -1
+
+            results.append(result)
+
+        return results
+
+    def booster_with_ticket_status(self):
+        all_boosters = self.all().filter(is_booster=True)
+
+        user_fields = ('id', 'first_name', 'last_name', 'email', 'coin')
+
+        results = []
+        for user in all_boosters:
+
+            serialized_user = UserSerializer(user)
+            result = {}
+            for user_field in user_fields:
+                result[user_field] = serialized_user[user_field]
+
+            ticket = UserService(user).boosting_ticket()
+            result['currentMMR'] = ticket.currentMMR if ticket is not None else -1
+            result['status'] = ticket.status if ticket is not None else -1
+
+            results.append(result)
+
+        return results
+
+    def pending_booster(self):
+        all_booster = self.all().filter(is_booster=True).filter(is_active=False)
+
+        return all_booster
+
