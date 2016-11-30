@@ -19,8 +19,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_admin = models.BooleanField(_('staff'), default=False)
     telephone = models.CharField(_('telephone'), max_length=10)
     is_booster = models.BooleanField(_('booster'), default=False)
-    boosted_time = models.PositiveIntegerField(_("boosted time"), default=0)
-    coin = models.PositiveIntegerField(_("coin"), default=0)
+    boosted_time = models.PositiveIntegerField(_('boosted time'), default=0)
+    coin = models.PositiveIntegerField(_('coin'), default=0)
+    ban_util = models.DateTimeField(_('ban until'), null=True, blank=True)
 
     objects = UserManager()
 
