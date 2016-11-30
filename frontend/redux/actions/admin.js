@@ -9,13 +9,13 @@ let actions = {
   getVerifiedBoostersCallback: (data) => {
     return {
       type: constant.ADMIN_GET_VERIFIED_BOOSTERS_CB,
-      data: data
+      data: data.boosters
     };
   },
   getPendingBoostersCallback: (data) => {
     return {
       type: constant.ADMIN_GET_PENDING_BOOSTERS_CB,
-      data: data
+      data: data['pending-booster']
     };
   }
 };

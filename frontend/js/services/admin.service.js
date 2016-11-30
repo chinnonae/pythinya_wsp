@@ -13,7 +13,7 @@ let services = {
   getVerifiedBoosters: (callback) => {
     callback = typeof callback === 'function' ? callback : () => {};
     let http = getHttp();
-    http.getConstant(http.methods.GET, '/api/admin/list/booster', {})
+    http.getConstant(http.methods.GET, '/api/admin/list/booster', {}, false)
     .done((res) => {
       callback(res);
     })
@@ -24,7 +24,7 @@ let services = {
   getPendingBoosters: (callback) => {
     callback = typeof callback === 'function' ? callback : () => {};
     let http = getHttp();
-    http.getConstant(http.methods.GET, '/api/admin/list/pending-booster', {})
+    http.getConstant(http.methods.GET, '/api/admin/list/pending-booster', {}, false)
     .done((res) => {
       callback(res);
     })

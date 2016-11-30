@@ -1,6 +1,7 @@
 import {Card, FlatButton} from 'material-ui';
 import PlayArrow from 'material-ui/svg-icons/av/play-arrow';
 import {Row, Col} from 'react-bootstrap';
+let actions = cc.get('redux.actions');
 const VERIFIED = 1;
 const PENDING = 2;
 class Wrapper extends React.Component {
@@ -20,6 +21,8 @@ class Wrapper extends React.Component {
   }
   componentDidMount() {
     let adminService = cc.get('services.admin');
+    adminService.getVerifiedBoosters(this.props.actions.getVerifiedBoostersCallback);
+    adminService.getPendingBoosters(this.props.actions.getPendingBoostersCallback);
   }
   changeViewState(state) {
     this.setState({
@@ -104,4 +107,4 @@ class Wrapper extends React.Component {
   }
 }
 
-cc.register('components.admin.boosters.wrapper', Wrapper);
+cc.register('components.admin.boosters.wrapper', connect(mapStateToProps, mapDispatchToProps(actions))(Wrapper));
