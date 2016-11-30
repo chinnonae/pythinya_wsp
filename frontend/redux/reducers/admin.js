@@ -16,7 +16,9 @@ let reducer = (state, action) => {
       newState.boosters = userFormatter(action.data);
       return newState;
     case constant.ADMIN_GET_PENDING_BOOSTERS_CB:
-      newState.pending = userFormatter(action.data);
+      newState.pending = boosterFormatter(action.data);
+      return newState;
+    case constant.ADMIN_PENDING_BOOSTERS_ACTION_CB:
       return newState;
     default:
       return state;
@@ -48,6 +50,24 @@ const userFormatter = (raw) => {
       status: getStatus(data.status),
       telephone: data.telephone,
       steam_id: data.steam_id
+    };
+    formatted.push(obj);
+  });
+  return formatted;
+};
+
+const boosterFormatter = (raw) => {
+  let formatted = [];
+  _.map(raw, (data) => {
+    let obj = {
+      name: data.user.first_name + " " + data.user.last_name,
+      coins: data.user.coin,
+      current_mmr: data.current_mmr === -1 ? 'TBA' : data.current_mmr,
+      email: data.user.email,
+      status: 'Pending',
+      telephone: data.user.telephone,
+      steam_id: data.steam_id,
+      id: data.user.id
     };
     formatted.push(obj);
   });

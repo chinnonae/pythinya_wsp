@@ -15,7 +15,13 @@ let actions = {
   getPendingBoostersCallback: (data) => {
     return {
       type: constant.ADMIN_GET_PENDING_BOOSTERS_CB,
-      data: data['pending-booster']
+      data: data.pending_booster
+    };
+  },
+  pendingBoosterAction: (data) => {
+    location.reload();
+    return {
+      type: constant.ADMIN_PENDING_BOOSTERS_ACTION_CB
     };
   }
 };

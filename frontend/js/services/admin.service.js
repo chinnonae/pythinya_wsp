@@ -31,6 +31,28 @@ let services = {
     .fail((res) => {
       console.log(res);
     });
+  },
+  approveBooster: (user, callback) => {
+    callback = typeof callback === 'function' ? callback : () => {};
+    let http = getHttp();
+    http.getConstant(http.methods.POST, '/api/admin/booster/' + user.id  + '/approve', {}, false)
+    .done((res) => {
+      callback(res);
+    })
+    .fail((res) => {
+      console.log(res);
+    });
+  },
+  denyBooster: (user, callback) => {
+    callback = typeof callback === 'function' ? callback : () => {};
+    let http = getHttp();
+    http.getConstant(http.methods.POST, '/api/admin/booster/' + user.id  + '/deny', {}, false)
+    .done((res) => {
+      callback(res);
+    })
+    .fail((res) => {
+      console.log(res);
+    });
   }
 };
 

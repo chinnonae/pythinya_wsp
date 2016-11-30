@@ -1,6 +1,15 @@
 import {Dialog, FlatButton} from 'material-ui';
 import {Row, Col} from 'react-bootstrap';
+let actions = cc.get('redux.actions');
 class InfoDialog extends React.Component {
+  approve(user) {
+    let adminService = cc.get('services.admin');
+    adminService.approveBooster(user,this.props.actions.pendingBoosterAction);
+  }
+  deny(user) {
+    let adminService = cc.get('services.admin');
+    adminService.denyBooster(user,this.props.actions.pendingBoosterAction);
+  }
   render() {
     let user = this.props.user;
     return (
@@ -37,12 +46,12 @@ class InfoDialog extends React.Component {
           </Col>
         </Row>
         <div className="flex flex-reverse" >
-          <FlatButton label="Approve" className="success white-text" style={{marginLeft: 10}}/>
-          <FlatButton label="Deny" className="error white-text"/>
+          <FlatButton onTouchTap={this.approve.bind(this,user)} label="Approve" className="success white-text" style={{marginLeft: 10}}/>
+          <FlatButton onTouchTap={this.deny.bind(this,user)} label="Deny" className="error white-text"/>
         </div>
       </Dialog>
     );
   }
 }
 
-cc.register('components.admin.boosters.pendingInfoDialog', InfoDialog);
+cc.register('components.admin.boosters.pendingInfoDialog', connect(mapStateToProps, mapDispatchToProps(actions))(InfoDialog));
