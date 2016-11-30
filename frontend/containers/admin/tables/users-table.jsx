@@ -12,7 +12,7 @@ class UsersTable extends React.Component {
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
               <TableHeaderColumn style={{width: "25%"}}>Name</TableHeaderColumn>
-              <TableHeaderColumn>Email</TableHeaderColumn>
+              <TableHeaderColumn>E-mail</TableHeaderColumn>
               <TableHeaderColumn>Coins</TableHeaderColumn>
               <TableHeaderColumn>Current MMR</TableHeaderColumn>
               <TableHeaderColumn>Status</TableHeaderColumn>
