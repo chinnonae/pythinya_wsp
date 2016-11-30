@@ -305,7 +305,7 @@ class AdminUserList:
 
             ticket = UserService(user).holding_ticket()
             result['currentMMR'] = int(ticket.currentMMR) if ticket is not None else -1
-            result['status'] = int(ticket.status) if ticket is not None else -1
+            result['status'] = int(ticket.status) if ticket is not None else 1
 
             results.append(result)
 
@@ -326,7 +326,7 @@ class AdminUserList:
 
             ticket = UserService(user).boosting_ticket()
             result['currentMMR'] = int(ticket.currentMMR) if ticket is not None else -1
-            result['status'] = int(ticket.status) if ticket is not None else -1
+            result['status'] = int(ticket.status) if ticket is not None else 1
 
             results.append(result)
 
