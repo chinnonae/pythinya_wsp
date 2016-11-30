@@ -67,7 +67,8 @@ const boosterFormatter = (raw) => {
       status: 'Pending',
       telephone: data.user.telephone,
       steam_id: data.steam_id,
-      id: data.user.id
+      id: data.user.id,
+      src: `/assets/id_card/${data.id_card_image_src}`
     };
     formatted.push(obj);
   });
