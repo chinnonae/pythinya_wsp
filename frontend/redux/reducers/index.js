@@ -5,12 +5,14 @@ import boosterPanelReducer from './booster-panel';
 import appReducer from './app';
 import clientReducer from './client';
 import paymentReducer from './payment';
+import topupReducer from './topup';
 var reducers = combineReducers({
   auth: authReducer,
   profile: profileReducer,
   app: appReducer,
   boosterPanel: boosterPanelReducer,
   clientPanel: clientReducer,
-  payment: paymentReducer
+  payment: paymentReducer,
+  topup: topupReducer
 });
 cc.register('redux.reducers', reducers);

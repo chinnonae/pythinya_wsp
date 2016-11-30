@@ -25,6 +25,10 @@ p {
   display: flex;
 }
 
+.flex-reverse {
+  flex-direction: row-reverse;
+}
+
 .container-center {
   margin-left: auto;
   margin-right: auto;
@@ -51,7 +55,7 @@ p {
   padding-top: 15px !important;
 }
 .no-margin {
-  margin: 0px;
+  margin: 0px !important;
 }
 
 .flex-column {
@@ -59,7 +63,7 @@ p {
 }
 
 .margin-top {
-  margin-top: 15px;
+  margin-top: 15px !important;
 }
 
 .margin-bottom {

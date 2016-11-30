@@ -53,7 +53,7 @@ class Appbar extends React.Component {
     let leftComponent = (
       <div className="full-height flex flex-middle">
         <img width="20" src="/assets/logo.svg" />
-        <h4 className="no-margin" style={{marginLeft: 15, color: "white"}}>Pythinya</h4>
+        <h4 className="no-margin" style={{paddingLeft: 15, color: "white"}}>Pythinya</h4>
       </div>
     );
     return (

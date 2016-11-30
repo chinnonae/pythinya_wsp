@@ -40,8 +40,6 @@ class SnackBar extends React.Component {
                   <img src="/assets/tag.svg" />
                   <b className={titleClassName}>{title}</b>
                 </div>
-
-
                 <CloseIcon onClick={this.close.bind(this)} color="white" className="pointer pull-top pull-right margin-top margin-right"/>
                 {/* <img onClick={this.close.bind(this)} src="/assets/close-black.svg" className="pointer pull-top pull-right margin-right margin-top"/> */}
                 <Row className="flex margin-top">

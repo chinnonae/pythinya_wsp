@@ -5,8 +5,11 @@ class CoinBar extends React.Component {
     let coin = this.props.reducer.profile.user.coin;
     return (
       <Row className="relative margin-bottom">
-        <div className="margin-top margin-right flex" style={{flexDirection: "row-reverse"}}>
-          <b>{coin + ' Coins'}</b>
+        <div className="margin-top margin-right flex flex-column" style={{flexDirection: "row-reverse"}}>
+          <div className="flex flex-column">
+            <b className="text-right">{coin + ' Coins'}</b>
+            <Link className="text-right white-text" to="/topup">Buy more coins</Link>
+          </div>
         </div>
       </Row>
     );

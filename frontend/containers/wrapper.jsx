@@ -4,6 +4,7 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import App from './app.jsx';
 const waitmeService = cc.get('services.waitme');
+const snackbarService = cc.get('services.snackbar');
 const actions = cc.get('redux.actions');
 injectTapEventPlugin();
 let store;
@@ -26,11 +27,13 @@ class Wrapper extends React.Component {
     var PackagePaymentPanel = cc.get('components.topup.packagePaymentPanel');
     var BoosterInfo = cc.get('components.booster-info.wrapper');
     waitmeService.subscribe(this.store);
+    snackbarService.subscribe(this.store);
 		var Main = cc.get('components.main');
 		var BoosterList = cc.get('components.booster_list');
     var Carousel = cc.get('components.carousel');
     var Checkout = cc.get('components.checkout.wrapper');
 
+    let Paypal = cc.get('components.paypal');
 		return (
 			<Provider store={this.store}>
 				<Router onUpdate={this.loadJS.bind(this)} history={browserHistory}>
@@ -46,7 +49,8 @@ class Wrapper extends React.Component {
               <Route path='boosting' component={BoosterInfo}/>
             </Route>
             <Route path='topup' component={PackageListPanel}></Route>
-            <Route path='topup/:packageId' component={PackagePaymentPanel} />
+            <Route path='topup/:id' component={PackagePaymentPanel} />
+            <Route path='dev' component={Paypal} />
 					</Route>
 				</Router>
 			</Provider>
@@ -57,8 +61,6 @@ class Wrapper extends React.Component {
 const loadProfile = (nextState, replace, callback) => {
   cc.get('services.profile').fetchProfile()
   .then((res) => {
-    console.log('loading profile');
-    console.log(res);
     store.dispatch(actions.profileCallback(res));
     callback();
   });

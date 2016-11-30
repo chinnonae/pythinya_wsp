@@ -1,19 +1,36 @@
 import {Row, Col, Grid} from 'react-bootstrap';
+const actions = cc.get('redux.actions');
 class PackagePaymentPanel extends React.Component {
+  componentWillMount() {
+    let topupId = this.props.params.id;
+    this.props.actions.setCurrentTopup(topupId-1);
+  }
   render() {
-    var CreditPaymentPanel = cc.get('components.topup.creditPaymentPanel');
+    var CreditPaymentPanel = cc.get('components.paypal');
     var PackageCard = cc.get('components.topup.packageCard');
+    let CardPanel = cc.get('components.cardPanel');
+    let CreditCardPanel = cc.get('components.topup.creditcardPanel');
+    let CartPanel = cc.get('components.topup.cartPanel');
+    let Snackbar = cc.get('components.snackbar');
+    let currentTopup = this.props.reducer.topup.currentTopup;
     return (
-      <Grid className="no-margin full-width">
-        <Row className="flex">
-          <Col xs={12} sm={6} md={6} lg={6} className="container-center">
-            <PackageCard />
-            <CreditPaymentPanel />
-          </Col>
-        </Row>
-      </Grid>
+      <Row className="flex">
+        <Col xs={12} sm={12} md={9} lg={9} className="container-center"  style={{height: "70vh"}}>
+          <CardPanel title="Checkout" className="full-height">
+            <Row className="flex flex-mobile full-height height-mobile"  style={{height: "70vh"}}>
+              <Col xs={12} sm={12} md={7} lg={7}>
+                <CreditCardPanel topup={currentTopup}/>
+              </Col>
+              <Col xs={12} sm={12} md={5} lg={5} style={{backgroundColor: "#4a4a4a", marginRight: "-15px"}}  >
+                <CartPanel topup={currentTopup} />
+              </Col>
+            </Row>
+          </CardPanel>
+        </Col>
+        <Snackbar />
+      </Row>
     );
   }
 }
 
-cc.register('components.topup.packagePaymentPanel', PackagePaymentPanel);
+cc.register('components.topup.packagePaymentPanel', connect(mapStateToProps, mapDispatchToProps(actions))(PackagePaymentPanel));
