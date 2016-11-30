@@ -5,10 +5,11 @@ from rest_framework.authtoken import views as auth_view
 from . import views
 
 user_url = [
-    url(r'^signin/$', auth_view.obtain_auth_token),
-    url(r'^signup/$', views.Register.as_view()),
-    url(r'^(?P<pk>[0-9]+/)|()profile/$', views.UserView.as_view()),
-    url(r'^profile/interested-ticket', views.UserInterestedTicketView.as_view())
+    url(r'^signin$', auth_view.obtain_auth_token),
+    url(r'^signup$', views.Register.as_view()),
+    url(r'^(?P<pk>[0-9]+/)|()profile$', views.UserView.as_view()),
+    url(r'^profile/interested-ticket', views.UserInterestedTicketView.as_view()),
+    url(r'^register-booster$', views.BoosterRegister.as_view()),
 ]
 
 ticket_url = [
@@ -29,8 +30,18 @@ payment_url = [
     url(r'^(?P<pk>[0-9]+)$', views.TopupView.as_view())
 ]
 
+admin_url = [
+    url(r'^list/pending-booster', views)
+    url(r'^list/booster$', views.BoosterWithTicketServiceDetail.as_view()),
+    url(r'^list/clien$t', views.ClientWithTicketServiceDetail.as_view()),
+    url(r'^booster/(?P<pk>[0-9]+)/approve', views.BoosterApproval.as_view()),
+    url(r'^booster/(?P<pk>[0-9]+)/deny', views.BoosterDenial.as_view())
+]
+
 urlpatterns = [
     url(r'^user/', include(user_url)),
     url(r'^ticket/', include(ticket_url)),
-    url(r'^topup/', include(payment_url))
+    url(r'^topup/', include(payment_url)),
+    url(r'^admin/', include(admin_url)),
+    url(r'^test$', views.BoosterRegister.as_view())
 ]

@@ -19,8 +19,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_admin = models.BooleanField(_('staff'), default=False)
     telephone = models.CharField(_('telephone'), max_length=10)
     is_booster = models.BooleanField(_('booster'), default=False)
-    boosted_time = models.PositiveIntegerField(_("boosted time"), default=0)
-    coin = models.PositiveIntegerField(_("coin"), default=0)
+    boosted_time = models.PositiveIntegerField(_('boosted time'), default=0)
+    coin = models.PositiveIntegerField(_('coin'), default=0)
+    ban_util = models.DateTimeField(_('ban until'), null=True, blank=True)
 
     objects = UserManager()
 
@@ -54,3 +55,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+
+
+class BoosterProfile(models.Model):
+    current_mmr = models.PositiveIntegerField(_("current MMR"), default=0)
+    stream_id = models.CharField(_("Stream ID"), max_length=255)
+    id_card_image_src = models.TextField(_("ID card image's source"), null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
