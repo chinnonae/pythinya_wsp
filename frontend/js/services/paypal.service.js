@@ -78,7 +78,8 @@ let paymentFormatter = (data) => {
         amount: {
           total: data.total,
           currency: "USD"
-        }
+        },
+        description: data.description
       }
     ]
   };

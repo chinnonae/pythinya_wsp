@@ -4,10 +4,12 @@ let actions = cc.get('redux.actions');
 class CreditCardPanel extends React.Component {
   pay() {
     let paypalService = cc.get('services.paypal');
+    let profile = cc.get('services.profile').getProfile();
     let data = $('#topup-checkout-form').serializeArray();
     let dataObj = {};
     _.map(data, (item) => { dataObj[item.name] = item.value; });
     dataObj.total = this.props.reducer.topup.currentTopup.baht;
+    dataObj.description = profile.user.id;
     paypalService.makePayment(dataObj,this.props.actions.makePaymentCallback);
   }
   render() {
