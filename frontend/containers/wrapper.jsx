@@ -3,6 +3,7 @@ import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import App from './app.jsx';
+import AdminApp from './admin/adminapp.jsx';
 const waitmeService = cc.get('services.waitme');
 const snackbarService = cc.get('services.snackbar');
 const actions = cc.get('redux.actions');
@@ -32,8 +33,10 @@ class Wrapper extends React.Component {
 		var BoosterList = cc.get('components.booster_list');
     var Carousel = cc.get('components.carousel');
     var Checkout = cc.get('components.checkout.wrapper');
-
     let Paypal = cc.get('components.paypal');
+    /* Admin components  */
+    let AdminUsers = cc.get('components.admin.users.wrapper');
+    let AdminBoosters = cc.get('components.admin.boosters.wrapper');
 		return (
 			<Provider store={this.store}>
 				<Router onUpdate={this.loadJS.bind(this)} history={browserHistory}>
@@ -52,6 +55,11 @@ class Wrapper extends React.Component {
             <Route path='topup/:id' component={PackagePaymentPanel} />
             <Route path='dev' component={Paypal} />
 					</Route>
+          <Route path='/admin' component={AdminApp}>
+            <IndexRoute component={AdminUsers} />
+            <Route path={'users'} component={AdminUsers} />
+            <Route path={'boosters'} component={AdminBoosters}/>
+          </Route>
 				</Router>
 			</Provider>
 		);

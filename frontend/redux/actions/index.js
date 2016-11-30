@@ -7,5 +7,6 @@ import payment from './payment';
 import app from './app';
 import paypal from './paypal';
 import topup from './topup';
-var actions = _.merge({},auth, profile, waitme, boosterPanel, payment, clientPanel, app, paypal, topup);
+import admin from './admin';
+var actions = _.merge({},auth, profile, waitme, boosterPanel, payment, clientPanel, app, paypal, topup, admin);
 cc.register('redux.actions', actions);
