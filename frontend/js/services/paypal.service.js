@@ -27,8 +27,13 @@ let getToken = () => {
 let service = {
   makePayment: (data, callback) => {
     let waitmeService = cc.get('services.waitme');
+    let snackbarService = cc.get('services.snackbar');
     waitmeService.show();
     callback = typeof callback === 'function' ? callback : () => {};
+    let snackbarCallback = () => {
+      window.location = '/';
+    };
+
     getToken()
     .then((res) => {
       $.ajax({
@@ -43,10 +48,13 @@ let service = {
       })
       .done((res) => {
         waitmeService.hide();
+        snackbarService.show('Success',snackbarCallback);
         console.log(res);
         callback(res);
       })
       .fail((err) => {
+        waitmeService.hide();
+        snackbarService.show('Fail, please try again');
         console.log(err);
       });
     });

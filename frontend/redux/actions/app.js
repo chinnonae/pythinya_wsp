@@ -7,6 +7,16 @@ var actions = {
         message: message
       }
     };
+  },
+  toggleSnackBar: (isShow, message, callback) => {
+    return {
+      type: getConstant().TOGGLE_SNACK_BAR,
+      data: {
+        isShow: isShow,
+        message: message,
+        callback: callback
+      }
+    };
   }
 };
 

@@ -3,7 +3,7 @@ const actions = cc.get('redux.actions');
 class PackagePaymentPanel extends React.Component {
   componentWillMount() {
     let topupId = this.props.params.id;
-    this.props.actions.setCurrentTopup(topupId);
+    this.props.actions.setCurrentTopup(topupId-1);
   }
   render() {
     var CreditPaymentPanel = cc.get('components.paypal');
@@ -11,6 +11,7 @@ class PackagePaymentPanel extends React.Component {
     let CardPanel = cc.get('components.cardPanel');
     let CreditCardPanel = cc.get('components.topup.creditcardPanel');
     let CartPanel = cc.get('components.topup.cartPanel');
+    let Snackbar = cc.get('components.snackbar');
     let currentTopup = this.props.reducer.topup.currentTopup;
     return (
       <Row className="flex">
@@ -26,6 +27,7 @@ class PackagePaymentPanel extends React.Component {
             </Row>
           </CardPanel>
         </Col>
+        <Snackbar />
       </Row>
     );
   }
