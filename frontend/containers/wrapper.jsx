@@ -47,7 +47,7 @@ class Wrapper extends React.Component {
               <Route path='boosting' component={BoosterInfo}/>
             </Route>
             <Route path='topup' component={PackageListPanel}></Route>
-            <Route path='topup/:packageId' component={PackagePaymentPanel} />
+            <Route path='topup/:id' component={PackagePaymentPanel} />
             <Route path='dev' component={Paypal} />
 					</Route>
 				</Router>

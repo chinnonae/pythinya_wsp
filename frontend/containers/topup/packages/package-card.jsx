@@ -12,12 +12,12 @@ const PackageCard = (props) => {
       <div className="flex">
         <img width={25} src="/assets/coins.svg" />
         <Row className="flex flex-column flex-center padding-left">
-          <p className="no-margin text-right">2000 Coins</p>
-          <p className="small-text no-margin text-right">1,500 Baht</p>
+          <p className="no-margin text-right">{props.topup.coin} Coins</p>
+          <p className="small-text no-margin text-right">${props.topup.baht}</p>
         </Row>
       </div>
       <Row className="pull-right pull-top flex flex-middle full-height padding-right">
-        <span className="success-text pointer">Buy now</span>
+        <Link className="success-text pointer" to={`/topup/${props.topup.id}`}>Buy now</Link>
       </Row>
     </Card>
   );

@@ -9,8 +9,10 @@ let reducer = (state, action) => {
   const constant = cc.get('redux.constants');
   switch(action.type) {
     case constant.GET_TOPUPS_CB:
-      console.log(data);
-      newState.topups = data;
+      newState.topups = _.sortBy(action.data, (data) => { return data.coin; });
+      return newState;
+    case constant.SET_CURRENT_TOPUP:
+      newState.currentTopup = state.topups[action.topupId];
       return newState;
     default:
       return state;

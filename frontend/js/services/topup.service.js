@@ -3,7 +3,7 @@ let service = {
     callback = typeof callback === 'function' ? callback : () => {};
     const token = cookie.get('token');
     let http = getHttp();
-    http.getConstant(http.methods.GET, '/api/topup', _ , true)
+    http.getConstant(http.methods.GET, '/api/topup/', {} , true)
     .done((res) => {
       callback(res.packages);
     })
@@ -16,3 +16,5 @@ let service = {
 const getHttp = () => {
   return cc.get('services.http');
 };
+
+cc.register('services.topup', service);
