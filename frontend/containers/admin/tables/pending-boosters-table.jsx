@@ -8,7 +8,7 @@ class BoostersTable extends React.Component {
   render() {
     var self = this;
     return (
-        <Table selectable={false} className="hoverable success-header">
+        <Table selectable={false} className="hoverable amber-header">
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
               <TableHeaderColumn style={{width: "25%"}}>Name</TableHeaderColumn>
@@ -21,7 +21,7 @@ class BoostersTable extends React.Component {
           <TableBody displayRowCheckbox={false}>
             {
               _.map(this.props.reducer.admin.boosters, function(item, i) {
-                let tdClassName = (i % 2 === 0) ? 'alter1' : 'alter2';
+                let tdClassName = (i % 2 === 0) ? 'alter1 alter1-amber' : 'alter2 alter2-amber';
                 return (
                   <TableRow onMouseUp={self.onClick.bind(self,item)} key={i} className="pointer">
                     <TableRowColumn style={{width: "25%"}}><div className={tdClassName}>{item.name}</div></TableRowColumn>
@@ -39,4 +39,4 @@ class BoostersTable extends React.Component {
   }
 }
 
-cc.register('components.admin.boosters.boostersTable', connect(mapStateToProps, mapDispatchToProps(actions))(BoostersTable));
+cc.register('components.admin.boosters.pendingBoostersTable', connect(mapStateToProps, mapDispatchToProps(actions))(BoostersTable));

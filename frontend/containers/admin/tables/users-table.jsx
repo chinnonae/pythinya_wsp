@@ -8,7 +8,7 @@ class UsersTable extends React.Component {
   render() {
     var self = this;
     return (
-        <Table selectable={false} className="hoverable success-header">
+        <Table selectable={false} className="hoverable amber-header">
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
               <TableHeaderColumn style={{width: "25%"}}>Name</TableHeaderColumn>
@@ -21,14 +21,14 @@ class UsersTable extends React.Component {
           <TableBody displayRowCheckbox={false}>
             {
               _.map(this.props.reducer.admin.users, function(item, i) {
-                let tdClassName = (i % 2 === 0) ? 'alter1' : 'alter2';
+                let tdClassName = (i % 2 === 0) ? 'alter1 alter1-amber' : 'alter2 alter2-amber';
                 return (
                   <TableRow onMouseUp={self.onClick.bind(self,item)} key={i} className="pointer">
-                    <TableRowColumn style={{width: "25%"}}><div className={tdClassName}>{item.booster.first_name + " " + item.booster.last_name}</div></TableRowColumn>
-                    <TableRowColumn><div className={tdClassName}>{item.price}</div></TableRowColumn>
-                    <TableRowColumn><div className={tdClassName}>{"4"}</div></TableRowColumn>
-                    <TableRowColumn><div className={tdClassName}>{item.day_used}</div></TableRowColumn>
-                    <TableRowColumn><div className={tdClassName}>{item.min_mmr + "-" + item.max_mmr}</div></TableRowColumn>
+                    <TableRowColumn style={{width: "25%"}}><div className={tdClassName}>{item.name}</div></TableRowColumn>
+                    <TableRowColumn><div className={tdClassName}>{item.email}</div></TableRowColumn>
+                    <TableRowColumn><div className={tdClassName}>{item.coins}</div></TableRowColumn>
+                    <TableRowColumn><div className={tdClassName}>{item.current_mmr}</div></TableRowColumn>
+                    <TableRowColumn><div className={tdClassName}>{item.status}</div></TableRowColumn>
                   </TableRow>
                 );
               })

@@ -1,7 +1,45 @@
 import constant from '../constants';
 let initialState = {
-  users: [],
-  boosters: []
+  users: [{
+    name: "Taweerat Chaiman",
+    email: 'taweesoft@gmail.com',
+    coins: 15000,
+    current_mmr: 4500,
+    status: 'Being boosted'
+  },
+  {
+    name: "Patinya Yongyai",
+    email: 'patinya@gmail.com',
+    coins: 7500,
+    current_mmr: 3000,
+    status: 'Available'
+  },{
+    name: "Thongrapee Panyapathipan",
+    email: 'kulaspa@gmail.com',
+    coins: 3000,
+    current_mmr: 5525,
+    status: 'Waiting for payment'
+  }],
+  boosters: [{
+    name: "Taweerat Chaiman",
+    email: 'taweesoft@gmail.com',
+    coins: 15000,
+    current_mmr: 4500,
+    status: 'Being boosted'
+  },
+  {
+    name: "Patinya Yongyai",
+    email: 'patinya@gmail.com',
+    coins: 7500,
+    current_mmr: 3000,
+    status: 'Available'
+  },{
+    name: "Thongrapee Panyapathipan",
+    email: 'kulaspa@gmail.com',
+    coins: 3000,
+    current_mmr: 5525,
+    status: 'Waiting for payment'
+  }]
 };
 
 let reducer = (state, action) => {

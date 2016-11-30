@@ -9,6 +9,9 @@
   .alter1, .alter2 {
     background-color: $success !important;
   }
+  .alter1-amber, .alter2-amber {
+    background-color: $amber !important;
+  }
 }
 
 tbody > tr, thead, thead > tr {
