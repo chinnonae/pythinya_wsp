@@ -16,7 +16,7 @@ class InfoDialog extends React.Component {
       <Dialog actionsContainerClassName="black-primary" titleClassName="black-primary white-text" bodyClassName="black-primary" title="Booster information" open={this.props.open} onRequestClose={this.props.onClose.bind(this,false,{})}>
         <Row>
           <Col xs={12} sm={12} md={6} lg={6}>
-            <img />
+            <img src={user.src} width={300}/>
           </Col>
           <Col xs={12} sm={12} md={6} lg={6}>
             <div className="flex flex-center">
