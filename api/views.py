@@ -158,6 +158,8 @@ class Register(APIView):
     def post(self, request, format=None):
         user_service = UserService()
         temp_dict = dict(request.data.items())
+        temp_dict['is_active'] = True
+        temp_dict['is_booster'] = False
         result, message, error_field = user_service.register(**temp_dict)
 
         if result is None:
@@ -327,7 +329,7 @@ class BoosterRegister(APIView):
         id_card_image = request.FILES['id_card']
         print(request.data)
         homedir = os.path.expanduser('~')
-        new_filename = str(hashlib.md5((str(uuid.uuid4()) + id_card_image.name).encode('utf-8')).hexdigest())
+        new_filename = str(hashlib.md5((str(uuid.uuid4()) + id_card_image.name).encode('utf-8')).hexdigest()) + id_card_image.name
         new_filepath = settings.BASE_DIR + "/frontend/assets/id_card/" + new_filename
         destination = open(new_filepath, 'wb+')
 
