@@ -19,6 +19,8 @@ from .models import BoosterTicketAction, ClientTicketAction, UserService, UserPa
 import hashlib
 import uuid
 import os
+import requests
+import json
 
 class TicketView(APIView):
 
@@ -158,6 +160,8 @@ class Register(APIView):
     def post(self, request, format=None):
         user_service = UserService()
         temp_dict = dict(request.data.items())
+        temp_dict['is_active'] = True
+        temp_dict['is_booster'] = False
         result, message, error_field = user_service.register(**temp_dict)
 
         if result is None:
@@ -307,17 +311,6 @@ class TopupView(APIView):
             "status": 200
         })
 
-    def post(self, request, pk):
-        user_payment_action = UserPaymentAction(request.user)
-
-        topup_rate = TopupRate.objects.get(pk=pk)
-        user_payment_action.topup(topup_rate)
-
-        return Response({
-            "message": "Successful",
-            "status": 200
-        })
-
 
 class BoosterRegister(APIView):
     permission_classes = (AllowAny,)
@@ -327,7 +320,7 @@ class BoosterRegister(APIView):
         id_card_image = request.FILES['id_card']
         print(request.data)
         homedir = os.path.expanduser('~')
-        new_filename = str(hashlib.md5((str(uuid.uuid4()) + id_card_image.name).encode('utf-8')).hexdigest())
+        new_filename = str(hashlib.md5((str(uuid.uuid4()) + id_card_image.name).encode('utf-8')).hexdigest()) + id_card_image.name
         new_filepath = settings.BASE_DIR + "/frontend/assets/id_card/" + new_filename
         destination = open(new_filepath, 'wb+')
 
@@ -380,6 +373,22 @@ class BoosterApproval(APIView):
         user = User.objects.get(pk=pk)
         user_obj, message = AdminUserAction(None, user).approve_booster()
 
+        headers = {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "X-Postmark-Server-token": "37b7b1e2-8fd5-4f96-be3e-c5d8ab9d2669",
+        }
+        payload = {
+            "From": "taweerat.c@ku.th",
+            "To": user.email,
+            "TemplateId": 1119601,
+            "TemplateModel": {
+                "name": user.get_full_name(),
+                "username": user.email
+            }
+        }
+        request = requests.post('https://api.postmarkapp.com/email/withTemplate', headers=headers, data=json.dumps(payload))
+
         return Response({
             "message": message
         })
@@ -407,3 +416,45 @@ class PendingBoosterList(APIView):
         return Response({
             "pending_booster": BoosterProfileSerializer(booster_profiles, many=True).data
         })
+
+
+class PaypalCreditCard(APIView):
+    permission_classes = (AllowAny,)
+
+    def post(self, request, pk):
+
+        headers = {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "X-Postmark-Server-Token": "37b7b1e2-8fd5-4f96-be3e-c5d8ab9d2669"
+        }
+        payload = {
+            "From": "taweerat.c@ku.th",
+            "To": "",
+            "TemplateId": 1117482,
+            "TemplateModel": {
+                "purchase_date": "",
+                "name": "",
+                "credit_card_name": "",
+                "credit_card_brand": "",
+                "credit_card_last_four": "",
+                "receipt_id": "",
+                "date": "",
+                "coin": "",
+                "amount": "",
+                "total": "",
+                "billing_url": "",
+                "expiration_date": "",
+                "receipt_details": [{
+                    "description": "",
+                    "amount": ""
+                }],
+                "support_url": "",
+                "action_url": ""
+            }
+        }
+
+        return Response({
+            "message": "invoice sent"
+        })
+

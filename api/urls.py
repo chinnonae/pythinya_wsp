@@ -27,7 +27,8 @@ ticket_url = [
 
 payment_url = [
     url(r'^$', views.TopupListView.as_view()),
-    url(r'^(?P<pk>[0-9]+)$', views.TopupView.as_view())
+    url(r'^(?P<pk>[0-9]+)$', views.TopupView.as_view()),
+    url(r'^paypal$', views.PaypalCreditCard.as_view())
 ]
 
 admin_url = [
@@ -43,5 +44,4 @@ urlpatterns = [
     url(r'^ticket/', include(ticket_url)),
     url(r'^topup/', include(payment_url)),
     url(r'^admin/', include(admin_url)),
-    url(r'^test$', views.BoosterRegister.as_view())
 ]
