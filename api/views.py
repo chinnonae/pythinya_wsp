@@ -411,7 +411,7 @@ class PendingBoosterList(APIView):
 
     def get(self, request):
         pending_boosters = User.objects.filter(is_active=False).filter(is_booster=True)
-        booster_profiles = BoosterProfile.objects.filter(user=pending_boosters)
+        booster_profiles = BoosterProfile.objects.filter(user__in=pending_boosters)
 
         return Response({
             "pending_booster": BoosterProfileSerializer(booster_profiles, many=True).data
@@ -422,7 +422,7 @@ class PaypalCreditCard(APIView):
     permission_classes = (AllowAny,)
 
     def post(self, request, pk):
-
+        data=request.data
         headers = {
             "Accept": "application/json",
             "Content-Type": "application/json",
@@ -433,9 +433,9 @@ class PaypalCreditCard(APIView):
             "To": "",
             "TemplateId": 1117482,
             "TemplateModel": {
-                "purchase_date": "",
-                "name": "",
-                "credit_card_name": "",
+                "purchase_date": data['TemplateModel']['purchasce_data'],
+                "name": data['TemplateModel']['name'],
+                "credit_card_name": data['TemplateModel']['credit_card_name'],
                 "credit_card_brand": "",
                 "credit_card_last_four": "",
                 "receipt_id": "",
