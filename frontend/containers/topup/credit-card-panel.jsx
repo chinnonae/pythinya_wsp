@@ -9,7 +9,10 @@ class CreditCardPanel extends React.Component {
     let dataObj = {};
     _.map(data, (item) => { dataObj[item.name] = item.value; });
     dataObj.total = this.props.reducer.topup.currentTopup.baht;
-    dataObj.description = profile.user.id;
+    dataObj.description = {
+      email: profile.user.email,
+      coins: this.props.reducer.topup.currentTopup.coin
+    };
     paypalService.makePayment(dataObj,this.props.actions.makePaymentCallback);
   }
   render() {

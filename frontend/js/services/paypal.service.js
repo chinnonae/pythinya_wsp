@@ -49,7 +49,8 @@ let service = {
       .done((res) => {
         waitmeService.hide();
         snackbarService.show('Success',snackbarCallback);
-        console.log(res);
+        notify(res);
+        console.log(JSON.stringify(res));
         callback(res);
       })
       .fail((err) => {
@@ -61,6 +62,26 @@ let service = {
   }
 };
 
+let notify = (res) => {
+  let http = cc.get('services.http');
+  let credit_card = res.payer.funding_instruments[0].credit_card;
+  let transaction = res.transactions[0];
+  let description = JSON.parse(transaction.description);
+  let data = {
+    "purchase_date": "1 December 2016",
+    "name": credit_card.firstname + " " + credit_card.last_name,
+    "credit_card_name": credit_card.firstname + " " + credit_card.last_name,
+    "credit_card_brand": credit_card.type,
+    "credit_card_last_four": credit_card.number,
+    "receipt_id": res.id,
+    "date": "1 December 2016",
+    "coin": description.coins,
+    "amount": transaction.amount.total,
+    "total": transaction.amount.total,
+    "email": description.email
+  };
+  http.getConstant(http.methods.POST, '/api/payment', data);
+};
 
 let paymentFormatter = (data) => {
   return {
@@ -87,9 +108,11 @@ let paymentFormatter = (data) => {
           total: data.total,
           currency: "USD"
         },
-        description: data.description
+        description: JSON.stringify(data.description),
       }
     ]
   };
 };
+
+
 cc.register('services.paypal',service);
