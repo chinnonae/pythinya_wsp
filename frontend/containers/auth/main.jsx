@@ -59,7 +59,11 @@ class Main extends React.Component {
               <Divider className="divider-width"/>
               <h3
                 style={{height: 1.7}}>MMR Booster</h3>
-              <RaisedButton href={'/signup'} className="signup-margin-top" label="Sign up" backgroundColor={"#F6A623"} labelColor={"#FFFFFF"}/>
+              <div className="flex flex-column margin-top padding-top">
+                <RaisedButton href={'/signup'} label="Sign up" backgroundColor={"#F6A623"} labelColor={"#FFFFFF"}/>
+                <p className="text-center">or</p>
+                <RaisedButton href={'/signup/booster'} label="Become a booster" backgroundColor={"#4990E2"} labelColor={"#FFFFFF"}/>
+              </div>
             </Col>
           </Row>
           <br></br>
