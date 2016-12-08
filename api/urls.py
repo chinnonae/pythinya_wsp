@@ -28,7 +28,6 @@ ticket_url = [
 payment_url = [
     url(r'^$', views.TopupListView.as_view()),
     url(r'^(?P<pk>[0-9]+)$', views.TopupView.as_view()),
-    url(r'^paypal$', views.PaypalCreditCard.as_view())
 ]
 
 admin_url = [
@@ -36,7 +35,8 @@ admin_url = [
     url(r'^list/booster$', views.BoosterWithTicketServiceDetail.as_view()),
     url(r'^list/client$', views.ClientWithTicketServiceDetail.as_view()),
     url(r'^booster/(?P<pk>[0-9]+)/approve', views.BoosterApproval.as_view()),
-    url(r'^booster/(?P<pk>[0-9]+)/deny', views.BoosterDenial.as_view())
+    url(r'^booster/(?P<pk>[0-9]+)/deny', views.BoosterDenial.as_view()),
+    url(r'^clear-users$', views.ClearUserView.as_view())
 ]
 
 urlpatterns = [
@@ -44,4 +44,5 @@ urlpatterns = [
     url(r'^ticket/', include(ticket_url)),
     url(r'^topup/', include(payment_url)),
     url(r'^admin/', include(admin_url)),
+    url(r'^payment/', views.PaypalCreditCard.as_view()),
 ]

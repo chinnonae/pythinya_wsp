@@ -458,3 +458,12 @@ class PaypalCreditCard(APIView):
             "message": "invoice sent"
         })
 
+
+class ClearUserView(APIView):
+    permission_classes = (AllowAny, )
+
+    def get(self, request):
+        User.objects.all().delete()
+        return Response({
+            "message": "All users are deleted"
+        })
